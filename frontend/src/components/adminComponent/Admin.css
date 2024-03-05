@@ -1,0 +1,26 @@
+.adminContainer {
+    /* height: 80vh; */
+    margin:0 0 5em; 
+}
+.adminBtns {
+    display: grid;
+    align-items: stretch;
+    justify-items: center;
+    grid-template-columns: repeat(3,1fr);
+}
+.adminBtns .adminLinks {
+    padding: 0.5em 1em;
+    font-weight: 600;
+    background: white;
+    text-decoration: none;
+    color: var(--bs-theme-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px var(--bs-gray-500);
+    transition: all ease-in-out 0.3s;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.adminLinks:hover {
+    color: var(--bs-theme-bg);
+    background-color: var(--bs-theme-secondary);
+}

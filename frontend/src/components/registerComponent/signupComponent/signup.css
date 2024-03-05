@@ -1,0 +1,35 @@
+.signupContainer {
+    width: 50%;
+    margin: 0 auto 5em;
+    text-align: center;
+}
+.signupContainer form .signupInp{
+    border-radius: 5px;
+    border: none;
+    padding: 15px 20px;
+}
+.signupContainer form .signupInp,.signupArea,.signUpsubmitBtn {
+    display: block;
+    width: 100%;
+    margin:0 0 1em;
+}
+.signupContainer form .signupInp {
+    color: var(--bs-theme-secondary);
+    outline:  2px solid var(--bs-secondary);
+}
+.signupContainer form .signupArea {
+    border:  2px solid var(--bs-secondary);
+    padding: 15px 20px;
+}
+.signupContainer form .signUpsubmitBtn {
+    padding: 10px 0;  
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background: var(--bs-secondary);
+    font-weight: 600; 
+}
+.signupContainer form .signUpsubmitBtn:hover {
+    background: #8d73dd;
+}

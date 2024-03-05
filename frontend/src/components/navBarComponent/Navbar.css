@@ -1,0 +1,110 @@
+.navBarContainer {
+    /* background: cyan; */
+    padding: 10px 0;
+    background: var(--bs-white);
+    box-shadow: 0px 1px 10px var(--bs-gray-400);
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+}
+.navBarContainer .navSection1{
+    width: 90%;
+    margin: auto;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+
+.navBarContainer .navSection1 .logo{
+    width: 120px;
+}
+.navBarContainer .navSection1 .logo img{
+    width: 100%;
+}
+
+.navBarContainer .navSection1 .searchInput input{
+    width: 50em;
+    padding-left: 20px;
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.navBarContainer .navSection1 .usericons{
+    font-size: 16px;
+    padding: 11px 15px;
+    background: var(--bs-gray-200);
+    border-radius: 50%;
+    margin-left: 1em;
+    /* border:  1px solid black; */
+}
+.navSection1 .regBtn {
+    display: flex;
+    gap: 0.5em;
+}
+.navSection1 .regBtn a {
+    padding: 5px 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+
+}
+.navSection1 .regBtn a:nth-child(1) {
+    color: var(--bs-dark);
+    /* background-color: rgba(64, 87, 109, .07); */
+    background-color: var(--bs-gray-200);
+}
+.navSection1 .regBtn a:nth-child(2) {
+    color: var(--bs-white);
+    background-color: #64398c;
+}
+.navSection1 .regBtn a:nth-child(1):hover {
+    background: var(--bs-gray-400);
+}
+.navSection1 .regBtn a:nth-child(2):hover {
+    background: var(--bs-theme-secondary);
+}
+
+.navBarContainer .navSection2{
+    width: 90%;
+    padding: 0 0 10px;
+    display: flex;
+    margin: auto;
+}
+
+.navBarContainer .navSection2 .categoriesButton button{
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    gap: 0.5em;
+    color: var(--bs-theme-secondary);
+    font-weight: 600;
+    border-radius: 5px;
+
+    background: var(--bs-theme-bg);
+    border: none;
+}
+.navBarContainer .navSection2 .pageLinks{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.navBarContainer .navSection2 .pageLinks a{
+    text-decoration: none;
+    transition: ease 0.5s all;
+    font-weight: 500;
+    color: var(--bs-theme-secondary);
+}
+.navBarContainer .navSection2 .pageLinks a:hover{
+    color: var(--bs-secondary);
+}
+.navBarContainer .navSection2 .pageLinks a:not(:first-child) {
+    margin-left: 1em;
+}
+
+
+
+
+

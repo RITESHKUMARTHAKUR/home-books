@@ -1,0 +1,24 @@
+.schoolCardContainer {
+    box-shadow: var(--bs-theme-box-shadow);
+    display: flex;
+    text-decoration: none;
+    padding: 0.5em 1em  1em 1em;
+    border-radius: 10px;
+    margin: 10px 10px ;
+    background: var(--bs-white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.schoolCardContainer div{
+    width: 300px;
+    margin-bottom: 20px;
+}
+.schoolCardContainer img{
+    width: 100%;
+    border-radius: 10px;
+}
+.schoolCardContainer h3,p{
+    margin: 0;
+}
+

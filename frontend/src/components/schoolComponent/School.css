@@ -1,0 +1,119 @@
+.schoolBannerContainer {
+    padding: 1.5em 0;
+    background: var(--bs-white);
+    display: flex;
+    margin-bottom: 1em;
+    color: var(--bs-theme-secondary);
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: var(--bs-theme-box-shadow);
+    justify-content: space-evenly;
+}
+
+.schoolBannerContainer .schoolContent h3 {
+    margin: 0;
+}
+
+.schoolBannerContainer .schoolContent hr{
+    height: 3px;
+    border: none;
+    background:var(--bs-theme-primary);
+    width: 100%;
+    outline: none;
+}
+
+.schoolBannerContainer .schoolContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.schoolContainer .schoolImgBanner {
+    height: 20vh;
+}
+
+.schoolContainer .schoolImgBanner img{
+    height: 100%;
+    border-radius: 10px;
+    width: 100%;
+
+}
+
+.schoolContainer h3 {
+    text-align: center;
+}
+
+.schoolContainer .schoolBooksContainer {
+    padding: 10px;
+    box-shadow: var(--bs-theme-box-shadow);
+    margin-bottom: 2em;
+    border-radius: 10px;
+}
+
+.schoolContainer .schoolTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+.schoolContainer .schoolTable thead select {
+    width: 100%;
+    outline: none;
+    height: 100%;
+    font-weight: bold;
+    color: var(--bs-theme-secondary);
+    border: none;
+    padding: 0 10px;
+}
+
+.schoolContainer .schoolTable thead tr:nth-child(1){
+    /* margin-bottom: 10em; */
+    background: var(--bs-white);
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.tableBorderRadius {
+    border-radius: 10px;
+}
+.tableBorderRadius {
+ border-radius: 10px !important;
+}
+
+.schoolContainer .schoolTable tbody {
+    background: var(--bs-white);
+    border-radius: 10px;
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.schoolContainer .schoolTable tr:first-child {
+    color:  var(--bs-theme-secondary);
+    text-align: left;
+}
+.schoolContainer .schoolTable tr:first-child th:first-child {
+    text-align: center;
+    padding: 10px;
+}
+.schoolContainer .schoolTable tr:not(:first-child) {
+    color:  E6E6FA;
+    font-weight: 500;
+}
+.schoolContainer .schoolTable tr:nth-child(even) {
+    background-color:  #E6E6FA;
+    font-weight: 500;
+}
+
+
+.schoolContainer .schoolTable tbody tr th input {
+    height: 20px;
+}
+.schoolContainer
+.schoolContainer .schoolTable tbody tr:nth-last-child(1) th {
+    /* background: red; */
+    border-radius: 0 0 0 10px;
+}
+.schoolContainer .schoolTable tbody tr:nth-last-child(1) td:last-child {
+   /* background: red; */
+    border-radius: 0 0 10px 0;
+}
+.borderLeft {
+    border-radius: 10px 0px 0px 0px;
+}
+.borderRight {
+    border-radius: 0px 10px 0px 0px;
+}
+

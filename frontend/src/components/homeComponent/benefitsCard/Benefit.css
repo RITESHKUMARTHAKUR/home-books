@@ -1,0 +1,28 @@
+.benefitConatiner{
+    display: flex;
+    text-align: center;
+    box-shadow: var(--bs-theme-box-shadow);
+    flex-direction: column;
+    background: var(--bs-white);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 1em 2em;
+}
+
+.benefitConatiner .benefitIcon {
+    display: flex;
+    justify-content: center;
+    background: var(--bs-gray-200);
+    width: fit-content;
+    border-radius: 50%;
+    align-self: center;
+    font-size: 1.5em;
+    padding: 20px;
+}
+
+.benefitConatiner p{
+    font-size: 15px;
+}
+.benefitConatiner h4{
+    margin-bottom: 0;
+}

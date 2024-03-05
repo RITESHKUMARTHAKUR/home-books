@@ -1,0 +1,67 @@
+.cartsContainer {
+    display: flex;
+    padding: 2em 0;
+    /* background-color: var(--bs-primary); */
+    /* padding: 10px 10px; */
+    justify-content: space-between;
+}
+.cartsContainer .cartDetailsContainer {
+    width: 65%;
+}
+.cartsContainer .cartSummary{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+}
+.cartsContainer .cartSummary .cartsTotalContainer{
+    width: 100%;
+    background: var(--bs-white);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0px 0px 5px 0px var(--bs-gray-500);
+}
+.cartsContainer .cartSummary .cartsTotalContainer .cartName{
+    color: var(--bs-theme-secondary);
+    font-weight: bold;
+}
+.cartsContainer .cartSummary .cartsTotalContainer .cartTotal{
+    display: flex;
+    padding: 1em 0 0;
+    justify-content: space-between;
+}
+.cartsContainer .cartSummary .cartsTotalContainer .cartTotal .totalAmount{
+    color: var(--bs-theme-secondary);
+    font-weight: 500;
+}
+.cartsContainer .cartSummary .payButtonsContainer {
+    display: flex;
+    gap: 1.5em;
+    padding: 1em 0;
+}
+.cartsContainer .cartSummary .payButtonsContainer button{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    background: var(--bs-theme-secondary);
+    font-weight: 600;
+    color: var(--bs-white);
+    box-shadow: 0px 0px 5px 0px var(--bs-gray-500);
+    padding: 0.5em 1em;
+    transition: all ease-in-out 0.3s;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.cartsContainer .cartSummary .payButtonsContainer button:hover{
+    background: var(--bs-white);
+    color: var(--bs-theme-secondary);
+
+    /* background: var(--bs-purple); */
+
+}
+
+@media only screen and (max-width: 768px) {
+    
+}

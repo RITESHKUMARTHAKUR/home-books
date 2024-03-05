@@ -1,0 +1,64 @@
+.profileContainer .profileContainerFirst{
+    display: flex;
+    padding: 1em 0;
+    /* background: var(--bs-white); */
+    align-items: center;
+    border-radius: 15px;
+    gap:4em;
+    justify-content: center;
+    /* box-shadow: var(--bs-theme-box-shadow); */
+}
+.profileContainer .profileContainerFirst .profileImg{
+    border-radius: 50%;
+    width: 150px;
+}
+
+.profileContainer .profileContainerFirst .profileContent p{
+    margin-bottom:10px;
+}
+.profileContainer .profileContainerFirst .profileContent p:nth-child(3){
+    display: flex;
+    align-items: center;
+}
+
+.profileBtnDiv {
+    display: flex;
+    gap: 1em;
+}
+.profileBtns{
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 0.5em 1.5em;
+    color: var(--bs-theme-secondary);
+    background: transparent;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.profileBtns:hover {
+    border: 2px solid var(--bs-theme-secondary);
+    background: var(--bs-theme-secondary);
+    color: var(--bs-white);
+
+}
+.profileContainerSecond {
+    padding: 1em 1em;
+    background: var(--bs-white);
+    border-radius: 5px;
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.profileContainerSecond .containerSecondHeading {
+    color: var(--bs-theme-secondary);
+    font-weight: 600;
+}
+.profileContainerSecond hr{
+    height: 3px;
+    border: none;
+    background: var(--bs-secondary);
+}
+.profileContainerSecond .favoutatesContainer {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+

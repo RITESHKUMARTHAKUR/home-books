@@ -1,0 +1,41 @@
+.addBooksContainer {
+    margin: 1em auto 5em;
+}
+.addBooksForm {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(2,1fr);
+}
+.addBooksForm .addBooksInp{
+    padding: 0.5em 1em;
+    outline: none;
+    border-radius: 5px;
+    border:  2px solid var(--bs-secondary);
+}
+.addBookBtn ,.addBookDesc,.addBooksFile {
+    grid-column: span 2;
+}
+.addBooksFile {
+    background: var(--bs-white);
+}
+
+
+.addBookBtn {
+    padding: 10px 0;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background: var(--bs-secondary);
+    font-weight: 600;
+}
+.addBookBtn:hover {
+   background:  #8d73dd;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}   

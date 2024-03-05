@@ -1,0 +1,32 @@
+.loginContainer {
+    width: 50%;
+    margin: 3em auto  5em;
+    text-align: center;
+}
+.loginContainer form .loginInp {
+    border-radius: 5px;
+    border: none;
+    outline: 2px solid var(--bs-secondary);
+    padding: 15px 20px;
+}
+/* .loginContainer form .loginInp:focus {
+    outline: 2px solid var(--bs-secondary);
+} */
+.loginContainer form .loginInp,.loginBtn {
+    display: block;
+    margin:  1em 0;
+    width: 100%;
+}
+
+.loginContainer form .loginBtn {
+    padding: 10px 0;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background: var(--bs-secondary);
+    font-weight: 600;
+}
+.loginContainer form .loginBtn:hover {
+    background: #8d73dd;
+}

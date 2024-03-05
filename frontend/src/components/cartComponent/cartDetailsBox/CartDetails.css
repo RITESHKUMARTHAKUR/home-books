@@ -1,0 +1,72 @@
+.cartDetailsBox {
+    /* background: cyan; */
+    background: var(--bs-white);
+    display: flex;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    box-shadow:  var(--bs-theme-box-shadow);
+    border-radius: 5px;
+    width: 90%;
+}
+
+.cartDetailsBox .bookImg {
+    width: 150px;
+}
+.cartDetailsBox .bookImg img{
+    width: 100%;
+}
+
+
+.cartDetailsBox .bookCartDetails {
+    display: flex;
+    flex-grow: 1;
+    padding: 0 1em;
+    flex-direction: column;
+}
+.cartDetailsBox .bookCartDetails .bookCartPrimary{
+    display: flex;
+    justify-content: space-between;
+    /* height: 50%; */
+}
+.cartDetailsBox .bookCartDetails .bookCartPrimary button{
+   align-self: flex-start;
+   color: var(--bs-theme-secondary);
+   background: transparent;
+   border: 2px solid var(--bs-gray-400);
+   display: flex;
+   padding: 5px;
+   border-radius: 5px;
+   align-items: center;
+}
+
+.cartDetailsBox .bookCartDetails .bookCartSecondary{
+    display: flex;
+    height: 50%;
+    /* background: lightcyan; */
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartPrice{
+    display: flex;
+}
+
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartPrice p:nth-child(2) {
+    font-weight: bold;
+    color: var(--bs-theme-secondary);
+}
+
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease{
+    display: flex;
+}
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease button{
+    /* box-shadow: var(--bs-theme-box-shadow); */
+    margin-left: 1em;
+    padding: 5px;
+    border-radius: 3px;
+    color: var(--bs-theme-secondary);
+    display: flex;
+    background: transparent;
+    border: 2px solid var(--bs-gray-400);
+    align-items: center;
+
+}

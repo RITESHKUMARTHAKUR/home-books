@@ -1,0 +1,70 @@
+.contactContainer {
+    margin: 0 0 2em 0;
+}
+.contactFirst {
+    text-align: center;
+    display: flex;
+    font-size: 2em;
+    margin: 0 0 1em 0;
+    color: var(--bs-theme-secondary);
+    flex-direction: column;
+}
+.contactFirst h4{
+    margin: 0.5em 0 0 0;
+}
+
+.contactSecond {
+    /* box-shadow: var(--bs-theme-box-shadow); */
+    border-radius: 5px;
+    border: 2px solid var(--bs-secondary);
+    width: 80%;
+    padding: 1em;
+    display: flex;
+    background: var(--bs-white);
+    margin: auto;
+}
+.contactSecond .contactRight, .contactLeft {
+    width: 50%;
+}
+.contactSecond .contactLeft {
+    background-image: url("../../images/contact.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.contactSecond .contactRight .inputGroup{
+    display: grid;
+    color: var(--bs-theme-secondary);
+    margin-bottom: 1em;
+    font-weight: 500;
+}
+.contactSecond .contactRight .inputGroup  input {
+    height: 2em;
+    color: var(--bs-theme-secondary);
+}
+.contactSecond .contactRight .inputGroup  input,textarea {
+    border: 3px solid var(--bs-secondary);
+    color: var(--bs-theme-secondary) !important;
+    outline: none;
+    border-radius: 5px;
+}
+
+.contactSecond .contactRight button span{
+    display: flex;
+    font-size: 1em;
+    align-items: center;
+}
+.contactSecond .contactRight button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    border: none;
+    color: var(--bs-theme-secondary);
+    background: var(--bs-secondary);
+    font-weight: 600;
+    letter-spacing: 5px;
+    border-radius: 5px;
+    padding: 0.5em 0.5em;
+}

@@ -1,0 +1,64 @@
+.productCard {
+    width: 70%;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+    background: var(--bs-white);
+    /* margin: 20px 20px; */
+    margin: 20px auto;
+    box-shadow: var(--bs-theme-box-shadow);
+    display: flex;
+    flex-direction: column;
+}
+.productCard .productCardFirst{
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+.productCard .productCardFirst .cardDiscount {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: var(--bs-white);
+    background: var(--bs-theme-secondary);
+}
+
+.productCard .productCardFirst button{
+    border: none;
+    display: flex;
+    font-weight: bold;
+    color: var(--bs-secondary);
+    background: transparent;
+    align-items: center;
+}
+.productCard .productCardSecond{
+    width: 200px;
+    align-self: center;
+}
+.productCard .productCardSecond img{
+    width: 100%;
+}
+.productCard .productCardThird{
+    margin-top: 1em;
+    font-weight: 600;
+    /* color: var(--bs-secondary); */
+}
+.productCard .productCardFourth{
+    display: flex;
+    justify-content: space-between;
+}
+.productCard .productCardFourth div{
+    color: var(--bs-theme-secondary);
+    font-weight: 400;
+}
+.productCard .productCardFourth button{
+    border: 2px solid var(--bs-theme-secondary);
+    background: transparent;
+    border-radius: 5px;
+    display: flex;
+    color: var(--bs-theme-secondary);
+    align-items: center;
+    /* box-shadow: var(--bs-theme-box-shadow); */
+
+}

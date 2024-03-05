@@ -1,0 +1,60 @@
+.orderContainerBox {
+    width: 60%;
+    margin-bottom: 1.5em;
+    padding:  0.5em 1em;
+    border-radius: 5px;
+    background: var(--bs-white);
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.orderContainerBox .orderId {
+    text-align: right;
+    /* color: var(--bs-pink); */
+    /* color: #8A2BE2; */
+}
+.orderContainerBox .orderContainer {
+    display: flex;
+}
+.orderContainerBox .orderContainer .orderDetailsContainer {
+    flex-grow: 1;
+    display: grid;
+    align-content: space-around;
+    text-align: left;
+}
+.orderContainerBox .orderContainer .orderDetailsContainer button{
+    /* border: 2px solid #8A2BE2;
+    color: #8A2BE2;
+    background: var(--bs-theme-bg); */
+    border: 2px solid var(--bs-pink);
+    color: var(--bs-pink);
+    font-weight: 600;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+    padding: 5px;
+    background: transparent;
+    border-radius: 5px;
+}
+.orderContainerBox .orderContainer .orderDetailsContainer button:hover {
+    background: var(--bs-pink);
+    color: var(--bs-theme-bg);
+}
+.orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(1) {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: var(--bs-theme-secondary);
+}
+.orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(2) {
+    font-size: .7em;
+    color: var(--bs-gray-600);
+    margin-bottom: 10px;
+}
+.orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(3),p:nth-child(4) {
+    color: var(--bs-theme-secondary);
+}
+/* .orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(4) {} */
+
+.orderContainerBox .orderContainer .orderImgContainer {
+    width: 200px;
+}
+.orderContainerBox .orderContainer .orderImgContainer img{
+    width: 100%;
+}

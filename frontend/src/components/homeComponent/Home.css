@@ -1,0 +1,93 @@
+.homeContainer .homeSectionFirst{
+    display: flex;
+    gap: 2em;
+}
+
+.homeContainer .categoriesBar {
+    width: 20%;
+    display: flex;
+    background: var(--bs-white);
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.homeContainer .categoriesBar a{
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-decoration:  none;
+    width: 100%;
+    padding-left: 2em;
+    overflow: hidden;
+    color: var(--bs-theme-secondary);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.homeContainer .categoriesBar a:hover{
+    background: #BC8CF2;
+    transition: all ease-in 0.3s;
+}
+
+.homeContainer .productSlider {
+    height: 100%;
+    background: var(--bs-white);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 2em 2.5em;
+    width: calc(100% - (20% + 2em));
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.homeContainer .homeSectionFirst  .productSlider .sliderDiv{
+    display: flex !important;
+    padding: 0 1em;
+    /* background: #E1F6F7; */
+}
+/* .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivImg{
+    width: 200px;
+} */
+.homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent h1{
+    margin: 0;
+    line-height: 1em;
+    margin-bottom: 1em;
+}
+.homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent button{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 1.5em 0;
+    color: var(--bs-white);
+    background: var(--bs-theme-secondary);
+    box-shadow: var(--bs-theme-box-shadow);
+}
+.homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivImg img{
+    width: 100%;
+}
+.homeContainer .homeSectionSecond .sectionHeader {
+    display: flex;
+    margin:  2em 0 0 0;
+    align-items: center;
+}
+
+
+.homeContainer .homeSectionThird {
+    margin: 5em 0 3em;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.homeContainer .homeSectionFourth h3{
+    display:flex;
+    align-items: center;
+}
+
+ .slick-prev:before,.slick-next:before  {
+    color: var(--bs-theme-secondary);
+    font-size: 30px;
+}
+
