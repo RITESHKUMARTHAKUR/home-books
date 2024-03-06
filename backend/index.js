@@ -10,7 +10,8 @@ const upload = multer({ dest: 'uploads/' })
 
 
 const PORT = process.env.PORT || 5000;
-const origin = process.env.ORIGIN_FRONTEND;
+const origin = ['https://homebooks.in', 'http://localhost:3000'];
+
 
 app.use(cors({credentials: true, origin: origin }));
 // app.use(cors({origin: origin }));

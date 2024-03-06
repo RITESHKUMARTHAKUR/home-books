@@ -8,9 +8,25 @@ import { useAuth } from '../../contexts/AuthContext';
 
 
 const Navbar = () => {
+
   const {setCurrentUser,currentUser} = useAuth();
   const logOutUrl = `${process.env.REACT_APP_API_BASE_URL}/logout`;
-//   useEffect(() => {
+  const revoleUrl = `${process.env.REACT_APP_API_BASE_URL}/`;
+  useEffect(() => {
+    fetch(revoleUrl, {
+        credentials: 'include'
+    });
+  }, []);
+
+
+  const logout = () => {
+    fetch(logOutUrl, {
+        method: 'POST',
+        credentials: 'include'
+    });
+    setCurrentUser(null)
+  };
+  //   useEffect(() => {
 //     fetch(profileUrl, {
 //         credentials: 'include'
 //     }).then(response => {
@@ -24,14 +40,6 @@ const Navbar = () => {
             
 //     });
 //   }, []);
-
-  const logout = () => {
-    fetch(logOutUrl, {
-        method: 'POST',
-        credentials: 'include'
-    });
-    setCurrentUser(null)
-  }
   
   return (
     <div className='navBarContainer'>
