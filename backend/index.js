@@ -42,7 +42,7 @@ const signup = require('./routes/User/signUp');
 const login = require('./routes/User/login');
 const logout = require('./routes/User/logout');
 const {profile,getProfile} = require('./routes/User/profile');
-const {addSchool,getSchool} = require('./routes/School/School');
+const {addSchool,getSchool,getSchoolInfo} = require('./routes/School/School');
 const addBook = require('./routes/Books/addBook');
 
 // Api Endpoints
@@ -53,6 +53,7 @@ app.get("/profile", profile);
 app.get("/getProfile", getProfile);
 
 app.get("/getSchool", getSchool);
+app.get("/getSchool/:id", getSchoolInfo);
 app.post("/addSchool", upload.single('schoolImg') , addSchool);
  
 app.post("/addBook", upload.single('bookImg') , addBook);

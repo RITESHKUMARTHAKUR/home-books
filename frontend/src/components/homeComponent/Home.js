@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
@@ -12,15 +12,17 @@ import {
 } from "react-icons/fa6";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BiSupport } from "react-icons/bi";
-
 import ProductCard from "./productCard/ProductCard";
 import BenefitCard from "./benefitsCard/Benefit";
 import SchoolCard from "../schoolComponent/schoolCard/schoolCard";
 
 import BookImg from "../../images/phys_book.jpg";
 import SchoolImg from "../../images/school.jpg";
+import { toast } from "react-toastify";
 
 const Home = () => {
+  const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
+  const [schoolDoc,setSchoolDoc] = useState([]);
   var settingsOffers = {
     dots: true,
     infinite: true,
@@ -34,13 +36,36 @@ const Home = () => {
   var settingsProducts = {
     dots: false,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: schoolDoc.length === 3 ? 3:4 ,
+    // slidesToShow: 4 ,
     slidesToScroll: 1,
     autoplay: false,
     speed: 200,
     autoplaySpeed: 1500,
     cssEase: "linear",
   };
+  const fetchSchools = () => {
+    fetch(getSchoolUrl, {
+      method: 'GET',
+      headers: {
+          "Content-Type": "application/json"
+      }
+    }).then(response => {
+      if (response.status !== 200) {
+          toast("No school found!");
+      }else {
+          response.json().then(schoolInfo => {
+              setSchoolDoc(schoolInfo);
+          })
+      }
+    })
+  };
+
+  useEffect(() => {
+    fetchSchools();
+  },[]);
+  
+
   const id = "rrsheuf34hd";
 
   return (
@@ -269,36 +294,15 @@ const Home = () => {
           &nbsp; Schools
         </h3>
         <Slider {...settingsProducts}>
-          <SchoolCard
+          {schoolDoc && schoolDoc.map((schoolInfo,index) => (
+            <SchoolCard
             img={SchoolImg}
-            link={`/school/${id}`}
-            title={"D.P.S"}
-            address={"Risali Sector"}
+            link={`/school/${schoolInfo._id}`}
+            title={schoolInfo.schoolName}
+            address={schoolInfo.area}
           />
-          <SchoolCard
-            img={SchoolImg}
-            link={`/school/${id}`}
-            title={"M.G.M"}
-            address={"Bhilai Sector"}
-          />
-          <SchoolCard
-            img={SchoolImg}
-            link={`/school/${id}`}
-            title={"K.P.S"}
-            address={"Nehru Nagar"}
-          />
-          <SchoolCard
-            img={SchoolImg}
-            link={`/school/${id}`}
-            title={"B.S.P"}
-            address={"Sector 10"}
-          />
-          <SchoolCard
-            img={SchoolImg}
-            link={`/school/${id}`}
-            title={"S.N.G"}
-            address={"Sector 10"}
-          />
+          ) )}
+          
         </Slider>
       </div>
 

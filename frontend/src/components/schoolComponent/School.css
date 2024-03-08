@@ -1,20 +1,34 @@
 .schoolBannerContainer {
-    padding: 1.5em 0;
+    /* padding: 10px 1rem; */
     background: var(--bs-white);
     display: flex;
     margin-bottom: 1em;
     color: var(--bs-theme-secondary);
-    align-items: center;
+    /* align-items: center; */
     border-radius: 10px;
     box-shadow: var(--bs-theme-box-shadow);
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
-.schoolBannerContainer .schoolContent h3 {
+.schoolBannerContainer .schoolContent .schoolContentUp h2,h5 {
     margin: 0;
 }
+.schoolContent {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-.schoolBannerContainer .schoolContent hr{
+.schoolBannerContainer .schoolContent .schoolContentUp hr{
+    height: 3px;
+    border: none;
+    background:var(--bs-theme-primary);
+    width: 100%;
+    outline: none;
+}
+.schoolBannerContainer .schoolContent .schoolContentDown .displayBox hr{
     height: 3px;
     border: none;
     background:var(--bs-theme-primary);
@@ -22,13 +36,29 @@
     outline: none;
 }
 
-.schoolBannerContainer .schoolContent {
+.schoolBannerContainer .schoolContent .schoolContentUp{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+.schoolBannerContainer .schoolContent .schoolContentDown .displayBox {
+    text-align: center;
+    width: fit-content;
+}
+.schoolBannerContainer .schoolContent .schoolContentDown .displayBox:nth-child(2){
+    justify-self: end;
+}
+.schoolBannerContainer .schoolContent .schoolContentDown .displayBox h3,h5,hr{
+    margin: 0;
+}
+.schoolBannerContainer .schoolContent .schoolContentDown {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2,1fr);
+}
 .schoolContainer .schoolImgBanner {
-    height: 20vh;
+    height: 40vh;
+    margin-right: 3em;
 }
 
 .schoolContainer .schoolImgBanner img{
@@ -43,11 +73,33 @@
 }
 
 .schoolContainer .schoolBooksContainer {
-    padding: 10px;
+    padding: 10px 10px 0 10px ;
     box-shadow: var(--bs-theme-box-shadow);
     margin-bottom: 2em;
     border-radius: 10px;
 }
+.tableBuy {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.tableBuy .tableBtnBuy {
+    padding: 10px 0;
+    cursor: pointer;
+    width: 30%;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+    border: 2px solid var(--bs-theme-secondary);
+    border-radius: 5px;
+    color: var(--bs-white);
+    background: var(--bs-theme-secondary);
+}
+.tableBuy .tableBtnBuy:hover {
+    color: var(--bs-theme-secondary);
+    background: var(--bs-white);
+}
+
 
 .schoolContainer .schoolTable {
     width: 100%;

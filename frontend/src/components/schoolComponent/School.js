@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./School.css";
 import SchoolImg from "../../images/school.jpg";
 
 const School = () => {
   const { id } = useParams();
+  const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool/${id}`;
+  const [schoolInfo, setSchoolInfo] = useState([]);
+
+  const fetchSchool = async () => {
+    await fetch(getSchoolUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+        response.json().then(schoolDoc =>  {
+          setSchoolInfo(schoolDoc)
+        }
+        );
+    })
+  }
+  useEffect(() => {
+      fetchSchool();
+  }, [])
+  
   return (
     <div className="schoolContainer">
       <div className="schoolBannerContainer">
@@ -12,9 +33,24 @@ const School = () => {
           <img src={SchoolImg} alt="" />
         </div>
         <div className="schoolContent">
-          <h3>M.G.M School </h3>
-          <hr />
-          <h3>Sector 6 Bhilai Nagar</h3>
+          <div className="schoolContentUp">
+            <h2>{schoolInfo.schoolName}</h2>
+            <hr />
+            <h5>{schoolInfo.location}</h5>
+            <h5>{schoolInfo.district}, {schoolInfo.schoolState} {schoolInfo.pincode}</h5>
+          </div>
+          <div className="schoolContentDown">
+            <div className="displayBox">
+              <h5>Affilated By</h5>
+              <hr />
+              <h5>{schoolInfo.affilated} Board</h5>
+            </div>
+            <div className="displayBox">
+              <h5>Medium</h5>
+              <hr />
+              <h5>{schoolInfo.medium}</h5>
+            </div>
+          </div>
         </div>
       </div>
       <div className="schoolBooksContainer">
@@ -130,6 +166,9 @@ const School = () => {
             </tr>
           </tbody>
         </table>
+        <div className="tableBuy">
+          <button className="tableBtnBuy">Buy Now</button>
+        </div>
       </div>
     </div>
   );

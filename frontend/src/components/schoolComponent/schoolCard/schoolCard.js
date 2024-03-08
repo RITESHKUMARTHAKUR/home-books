@@ -6,7 +6,7 @@ const schoolCard = (props) => {
   return (
     <Link to={props.link} className="schoolCardContainer">
         <div><img src={props.img} alt="" /></div>
-        <h3>{props.title} School</h3>
+        <h3 className='schoolCardContainerTitle'>{props.title} School</h3>
         <p>{props.address}</p>
     </Link>
   )

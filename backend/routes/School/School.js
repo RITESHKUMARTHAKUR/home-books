@@ -38,4 +38,17 @@ const getSchool = async (req,res) => {
     }
 }
 
-module.exports = {addSchool,getSchool};
+const getSchoolInfo = async (req,res) => {
+    const schoolId = req.params.id;
+    try {
+        const schoolInfo = await SchoolModel.findOne({_id:schoolId});
+        res.status(200).json(schoolInfo);
+    }
+    catch (err) {
+        res.status(400).json("Cannot add School!")
+    }
+}
+
+
+
+module.exports = {addSchool,getSchool,getSchoolInfo};

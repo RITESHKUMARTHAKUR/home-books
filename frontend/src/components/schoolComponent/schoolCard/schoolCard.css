@@ -1,10 +1,12 @@
 .schoolCardContainer {
     box-shadow: var(--bs-theme-box-shadow);
     display: flex;
+    height: 310px;
     text-decoration: none;
     padding: 0.5em 1em  1em 1em;
     border-radius: 10px;
     margin: 10px 10px ;
+    color: var(--bs-theme-secondary);
     background: var(--bs-white);
     flex-direction: column;
     align-items: center;
@@ -20,5 +22,11 @@
 }
 .schoolCardContainer h3,p{
     margin: 0;
+}
+
+.schoolCardContainer .schoolCardContainerTitle {
+    height: 70px;
+    font-size: 20px;
+    /* text-align: center; */
 }
 
