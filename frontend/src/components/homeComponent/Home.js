@@ -287,6 +287,7 @@ const Home = () => {
         </Slider>
       </div>
 
+{/* ---------------------- School Slider ---------------------- */}
       <div className="homeSectionFourth">
         <h3 className="sectionHeader">
           {" "}
@@ -296,7 +297,7 @@ const Home = () => {
         <Slider {...settingsProducts}>
           {schoolDoc && schoolDoc.map((schoolInfo,index) => (
             <SchoolCard
-            img={SchoolImg}
+            img={schoolInfo.schoolImg}
             link={`/school/${schoolInfo._id}`}
             title={schoolInfo.schoolName}
             address={schoolInfo.area}
@@ -305,6 +306,7 @@ const Home = () => {
           
         </Slider>
       </div>
+{/* ---------------------- School Slider ---------------------- */}
 
       <div className="homeSectionThird">
         <BenefitCard

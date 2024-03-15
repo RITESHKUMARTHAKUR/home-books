@@ -49,6 +49,4 @@ const getSchoolInfo = async (req,res) => {
     }
 }
 
-
-
 module.exports = {addSchool,getSchool,getSchoolInfo};

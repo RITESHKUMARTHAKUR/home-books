@@ -8,12 +8,12 @@ const addBook = async (req,res) => {
     const newpath = path+'.'+exten ;
     fs.renameSync(path, newpath );
 
-    const {title,author,edition,
+    const {title,bookPublication,author,edition,
         pubDate,language,schoolName,subject,
         bookClass,price,discount,bookDesc} = req.body;
 
     const bookDoc = await BookModel.create({
-        title,author,edition,pubDate,language,schoolName,subject,
+        title,bookPublication,author,edition,pubDate,language,schoolName,subject,
         bookClass,price,discount,bookDesc,
         bookImg: newpath,elementType:"book",bookStatus: 1
     });

@@ -18,6 +18,7 @@ app.use(cors({credentials: true, origin: origin }));
 // app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 const start = async () => {
@@ -44,6 +45,7 @@ const logout = require('./routes/User/logout');
 const {profile,getProfile} = require('./routes/User/profile');
 const {addSchool,getSchool,getSchoolInfo} = require('./routes/School/School');
 const addBook = require('./routes/Books/addBook');
+const getSchoolBooks = require('./routes/Books/getSchoolBooks');
 
 // Api Endpoints
 app.post("/signup", signup);
@@ -52,10 +54,13 @@ app.post("/logout", logout);
 app.get("/profile", profile);
 app.get("/getProfile", getProfile);
 
+//School Api Endpoints
 app.get("/getSchool", getSchool);
 app.get("/getSchool/:id", getSchoolInfo);
 app.post("/addSchool", upload.single('schoolImg') , addSchool);
- 
+
+//Book Api Endpoints
+app.get("/getSchoolBooks/:id", getSchoolBooks);
 app.post("/addBook", upload.single('bookImg') , addBook);
 
 

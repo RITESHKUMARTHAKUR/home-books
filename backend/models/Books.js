@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
     title: String,
+    bookPublication: String,
     author: String,
     edition: String,
     pubDate: String,

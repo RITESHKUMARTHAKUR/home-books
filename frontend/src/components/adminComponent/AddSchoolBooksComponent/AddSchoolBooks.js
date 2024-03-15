@@ -15,6 +15,7 @@ const AddSchoolBooks = () => {
   const booksClass = [1,2,3,4,5,6,7,8,9,10,11,12];
   const [schoolDoc,setSchoolDoc] = useState([]);
   const [title,setTitle] = useState('');
+  const [bookPublication,setBookPublication] = useState('');
   const [author,setAuthor] = useState('');
   const [edition,setEdition] = useState('');
   const [pubDate,setPubDate] = useState('');
@@ -58,6 +59,7 @@ const AddSchoolBooks = () => {
     event.preventDefault();
     const data = new FormData();
     data.set('title', title);
+    data.set('bookPublication', bookPublication);
     data.set('author', author);
     data.set('edition', edition);
     data.set('pubDate', pubDate);
@@ -70,7 +72,7 @@ const AddSchoolBooks = () => {
     data.set('bookDesc', bookDesc);
     data.set('bookImg', files[0]);
 
-    if(title !== '' && author !== '' && edition !== ''&& pubDate !== '' && language !== '' && schoolName !== '' && subject !== '' && bookClass !== '' && price !== '' && bookDesc !== '' && files !== null ) {
+    if(title !== '' && bookPublication !== '' && author !== '' && edition !== ''&& pubDate !== '' && language !== '' && schoolName !== '' && subject !== '' && bookClass !== '' && price !== '' && bookDesc !== '' && files !== null ) {
       const bookDoc = await fetch(postBook, {
         method: 'POST',
         body: data
@@ -99,25 +101,26 @@ const AddSchoolBooks = () => {
           <>
             <center><h2>Add Books</h2></center>
             <form action="#" className='addBooksForm' >
-                <input className='addBooksInp' name='title'    onChange={e => setTitle(e.target.value) } type="text" placeholder='title'/>
-                <input className='addBooksInp' name='author'   onChange={e => setAuthor(e.target.value) } type="text" placeholder='author'/>
-                <input className='addBooksInp' name='edition'  onChange={e => setEdition(e.target.value) } type="text" placeholder='edition'/>
-                <input className='addBooksInp' name='pubDate'  onChange={e => setPubDate(e.target.value) } type="text" placeholder='publication date'/>
-                <input className='addBooksInp' name='language' onChange={e => setLanguage(e.target.value) } type="text" placeholder='language'/>
+                <input className='addBooksInp' name='title'       onChange={e => setTitle(e.target.value) } type="text" placeholder='title'/>
+                <input className='addBooksInp' name='author'      onChange={e => setAuthor(e.target.value) } type="text" placeholder='author'/>
+                <input className='addBooksInp' name='publication' onChange={e => setBookPublication(e.target.value) } type="text" placeholder='publication'/>
+                <input className='addBooksInp' name='pubDate'     onChange={e => setPubDate(e.target.value) } type="text" placeholder='publication date'/>
+                <input className='addBooksInp' name='edition'     onChange={e => setEdition(e.target.value) } type="text" placeholder='edition'/>
+                <input className='addBooksInp' name='language'    onChange={e => setLanguage(e.target.value) } type="text" placeholder='language'/>
+                <input className='addBooksInp' name='subject' onChange={e => setSubject(e.target.value) } type="text" placeholder='subject'/>
                 <select className='addBooksInp'  onChange={e => setSchoolName(e.target.value) }  name="schoolName" id="">
                     <option value="">select school</option>
                     {schoolDoc.map((school,index) => (
                         <option key={index} id={school._id} value={school._id}>{school.schoolName}</option>
                     ))}
                 </select>
-                <input className='addBooksInp' name='subject' onChange={e => setSubject(e.target.value) } type="text" placeholder='subject'/>
+                <input className='addBooksInp' onChange={e => setPrice(e.target.value) } name='price' type="number" placeholder='price'/>
                 <select className='addBooksInp'  onChange={e => setBookClass(e.target.value) } name="bookClass" id="">
                     <option  value="">select class</option>
                     {booksClass.map((bookClass) => (
                         <option key={bookClass} value={bookClass}>{bookClass}</option>
                     ))}
                 </select>
-                <input className='addBooksInp' onChange={e => setPrice(e.target.value) } name='price' type="number" placeholder='price'/>
                 <input className='addBooksInp' onChange={e => setDiscount(e.target.value) } name='discount' type="number"  placeholder='discount'/>
                 <textarea className='addBooksInp addBookDesc' onChange={e => setBookDesc(e.target.value) } name="bookDesc" id="" rows="4" placeholder='book description'></textarea>
                 <input className='addBooksInp addBooksFile' onChange={(e) => setFiles(e.target.files)} placeholder='no image' name='bookImg'  type="file" />

@@ -6,7 +6,9 @@ import SchoolImg from "../../images/school.jpg";
 const School = () => {
   const { id } = useParams();
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool/${id}`;
+  const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchoolBooks/${id}`;
   const [schoolInfo, setSchoolInfo] = useState([]);
+  const [schoolBooks, setSchoolBooks] = useState([]);
 
   const fetchSchool = async () => {
     await fetch(getSchoolUrl, {
@@ -22,9 +24,31 @@ const School = () => {
         );
     })
   }
+  const fetchSchoolBooks = async () => {
+    await fetch(getSchoolBooksUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+        response.json().then(schoolDoc =>  {
+          setSchoolBooks(schoolDoc)
+          // console.log(schoolDoc);
+        }
+        );
+    })
+  }
+
+  const handleSelectAll = () => {
+    console.log("All books selected!!");
+  }
+
   useEffect(() => {
       fetchSchool();
+      fetchSchoolBooks();
   }, [])
+
   
   return (
     <div className="schoolContainer">
@@ -54,6 +78,8 @@ const School = () => {
         </div>
       </div>
       <div className="schoolBooksContainer">
+        {schoolBooks.length>0 ? 
+        <>
         <table class="schoolTable">
           <thead>
             <tr className="tableBorderRadius">
@@ -90,85 +116,34 @@ const School = () => {
               <th scope="col">Price</th>
               <th className="borderRight" scope="col">
                 <label htmlFor="selectAll"></label>
-                <input type="checkbox" name="selectAll" id="" />
+                <input onClick={handleSelectAll} type="checkbox" name="selectAll" id="" />
               </th>
             </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Simplified Physics</td>
-              <td>NCRT</td>
-              <td>Lorem ipsum sit amet.</td>
-              <td> &#8377; 1000 </td>
-              <td>
-                {" "}
-                <input type="checkbox" />{" "}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Chemistry N.C.E.R.T</td>
-              <td>NCRT</td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td> &#8377; 800 </td>
-              <td>
-                {" "}
-                <input
-                  type="checkbox"
-                  className="bookCheckbox"
-                  checked=""
-                />{" "}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Simplified Mathematics</td>
-              <td>NCRT</td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td> &#8377; 1200 </td>
-              <td>
-                
-                <input
-                  type="checkbox"
-                  className="bookCheckbox"
-                  checked=""
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>R.D Sharma</td>
-              <td>NCRT</td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td> &#8377; 500 </td>
-              <td>
-                {" "}
-                <input
-                  type="checkbox"
-                  className="bookCheckbox"
-                  checked=""
-                />{" "}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Simplified Physics</td>
-              <td>NCRT</td>
-              <td>Lorem ipsum dolor sit amet.</td>
-              <td> &#8377; 850 </td>
-              <td>
-                {" "}
-                <input
-                  type="checkbox"
-                  className="bookCheckbox"
-                  checked=""
-                />{" "}
-              </td>
-            </tr>
+            {schoolBooks.map( (bookList, index) => ( 
+                <tr>
+                <th scope="row">{index+1}</th>
+                <td>{bookList.title}</td>
+                <td>{bookList.bookPublication}</td>
+                <td>{bookList.author}</td>
+                <td> &#8377; {bookList.price} </td>
+                <td>
+                  {" "}
+                  <input type="checkbox" />{" "}
+                </td>
+              </tr>
+            ) )}
+            
           </tbody>
-        </table>
+        </table> 
         <div className="tableBuy">
-          <button className="tableBtnBuy">Buy Now</button>
-        </div>
+        <button className="tableBtnBuy">Buy Now</button>
+      </div>
+      </>
+        : 
+        <center>No data</center>
+         }
+        
+        
       </div>
     </div>
   );
