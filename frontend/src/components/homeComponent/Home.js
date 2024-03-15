@@ -297,7 +297,7 @@ const Home = () => {
         <Slider {...settingsProducts}>
           {schoolDoc && schoolDoc.map((schoolInfo,index) => (
             <SchoolCard
-            img={schoolInfo.schoolImg}
+            img={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`}
             link={`/school/${schoolInfo._id}`}
             title={schoolInfo.schoolName}
             address={schoolInfo.area}
