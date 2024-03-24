@@ -10,12 +10,12 @@ const addBook = async (req,res) => {
 
     const {title,bookPublication,author,edition,
         pubDate,language,schoolName,subject,
-        bookClass,price,discount,bookDesc} = req.body;
+        bookClass,price,discount,elementType,bookDesc} = req.body;
 
     const bookDoc = await BookModel.create({
         title,bookPublication,author,edition,pubDate,language,schoolName,subject,
         bookClass,price,discount,bookDesc,
-        bookImg: newpath,elementType:"book",bookStatus: 1
+        bookImg: newpath,elementType,bookStatus: 1
     });
 
     res.json(bookDoc);

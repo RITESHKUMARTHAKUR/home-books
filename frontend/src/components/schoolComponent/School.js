@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./School.css";
-import SchoolImg from "../../images/school.jpg";
+import OrderBox from "../helpers/orderConfirmation/OrderConfirm";
+// import SchoolImg from "../../images/school.jpg";
+
 
 const School = () => {
   const { id } = useParams();
@@ -9,6 +11,8 @@ const School = () => {
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchoolBooks/${id}`;
   const [schoolInfo, setSchoolInfo] = useState([]);
   const [schoolBooks, setSchoolBooks] = useState([]);
+  const [selectedBooks,setSelectedBooks] = useState([]);
+  const [boxVisible,setBoxVisible] = useState(false);
 
   const fetchSchool = async () => {
     await fetch(getSchoolUrl, {
@@ -41,8 +45,15 @@ const School = () => {
   }
 
   const handleSelectAll = () => {
-    console.log("All books selected!!");
+    // console.log("All books selected!!");
+    const selectedId = schoolBooks.map((x) => x._id  );
+    setSelectedBooks(selectedId);
   }
+  const handleBuyNow = () => {
+        setBoxVisible(!boxVisible)
+  }
+
+
 
   useEffect(() => {
       fetchSchool();
@@ -52,6 +63,7 @@ const School = () => {
   
   return (
     <div className="schoolContainer">
+      <OrderBox boxVisible={boxVisible}  cancelBtn={handleBuyNow} />
       <div className="schoolBannerContainer">
         <div className="schoolImgBanner">
           <img src={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`} alt="" />
@@ -136,7 +148,7 @@ const School = () => {
           </tbody>
         </table> 
         <div className="tableBuy">
-        <button className="tableBtnBuy">Buy Now</button>
+        <button onClick={handleBuyNow} className="tableBtnBuy">Buy Now</button>
       </div>
       </>
         : 

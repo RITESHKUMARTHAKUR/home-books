@@ -13,6 +13,7 @@ const AddSchoolBooks = () => {
   const postBook = `${process.env.REACT_APP_API_BASE_URL}/addBook`;
 
   const booksClass = [1,2,3,4,5,6,7,8,9,10,11,12];
+  const elementData = ["book","noteBook","stationery"];
   const [schoolDoc,setSchoolDoc] = useState([]);
   const [title,setTitle] = useState('');
   const [bookPublication,setBookPublication] = useState('');
@@ -25,6 +26,7 @@ const AddSchoolBooks = () => {
   const [bookClass,setBookClass] = useState('');
   const [price,setPrice] = useState(0);
   const [discount,setDiscount] = useState(0);
+  const [elementType,setElementType] = useState('');
   const [bookDesc,setBookDesc] = useState('');
 
   const [files,setFiles] = useState(null);
@@ -69,6 +71,7 @@ const AddSchoolBooks = () => {
     data.set('bookClass', bookClass);
     data.set('price', price);
     data.set('discount', discount);
+    data.set('elementType', elementType);
     data.set('bookDesc', bookDesc);
     data.set('bookImg', files[0]);
 
@@ -122,6 +125,12 @@ const AddSchoolBooks = () => {
                     ))}
                 </select>
                 <input className='addBooksInp' onChange={e => setDiscount(e.target.value) } name='discount' type="number"  placeholder='discount'/>
+                <select className='addBooksInp'  onChange={e => setElementType(e.target.value) } name="bookClass" id="">
+                    <option  value="">select type</option>
+                    {elementData.map((bookClass) => (
+                        <option key={bookClass} value={bookClass}>{bookClass}</option>
+                    ))}
+                </select>
                 <textarea className='addBooksInp addBookDesc' onChange={e => setBookDesc(e.target.value) } name="bookDesc" id="" rows="4" placeholder='book description'></textarea>
                 <input className='addBooksInp addBooksFile' onChange={(e) => setFiles(e.target.files)} placeholder='no image' name='bookImg'  type="file" />
                     
