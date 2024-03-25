@@ -11,7 +11,10 @@ const School = () => {
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchoolBooks/${id}`;
   const [schoolInfo, setSchoolInfo] = useState([]);
   const [schoolBooks, setSchoolBooks] = useState([]);
+  const [schoolBooksDoc, setSchoolBooksDoc] = useState([]);
   const [selectedBooks,setSelectedBooks] = useState([]);
+  const [selectedBookClass,setSelectedBookClass] = useState("1");
+  const [distinctBookClass,setDistinctBookClass] = useState([]);
   const [boxVisible,setBoxVisible] = useState(false);
 
   const fetchSchool = async () => {
@@ -28,6 +31,7 @@ const School = () => {
         );
     })
   }
+
   const fetchSchoolBooks = async () => {
     await fetch(getSchoolBooksUrl, {
       method: 'GET',
@@ -36,30 +40,43 @@ const School = () => {
       }
     })
     .then(response => {
-        response.json().then(schoolDoc =>  {
-          setSchoolBooks(schoolDoc)
-          // console.log(schoolDoc);
+        response.json().then(schoolDoc =>{
+          let responseDoc = schoolDoc.map( shoolData => ({...shoolData, selected: false }))
+          setSchoolBooks(responseDoc);
+          let disttClass = [...new Set(responseDoc.map(book => book.bookClass))];
+          setDistinctBookClass(disttClass);
+          let booksList = responseDoc.filter((x) => x.bookClass === "1" )
+          setSchoolBooksDoc(booksList);
+          console.log(schoolBooksDoc);
         }
-        );
-    })
+        )
+    });
   }
 
   const handleSelectAll = () => {
     // console.log("All books selected!!");
-    const selectedId = schoolBooks.map((x) => x._id  );
-    setSelectedBooks(selectedId);
+    console.log(schoolBooks);
+    // const selectedId = schoolBooks.map((x) => x._id  );
+    // setSelectedBooks(selectedId);
   }
   const handleBuyNow = () => {
-        setBoxVisible(!boxVisible)
+    setBoxVisible(!boxVisible)
   }
 
+  useEffect(()=> {
+    let booksList = schoolBooks.filter((x) => x.bookClass === selectedBookClass )
+    setSchoolBooksDoc(booksList);
+    console.log(booksList);
+  },[selectedBookClass]);
 
+  const handleClassChange = (e) => {  
+    setSelectedBookClass(e.target.value);
+  }
 
   useEffect(() => {
       fetchSchool();
       fetchSchoolBooks();
   }, [])
-
   
   return (
     <div className="schoolContainer">
@@ -89,6 +106,7 @@ const School = () => {
           </div>
         </div>
       </div>
+      {selectedBookClass}
       <div className="schoolBooksContainer">
         {schoolBooks.length>0 ? 
         <>
@@ -96,19 +114,10 @@ const School = () => {
           <thead>
             <tr className="tableBorderRadius">
               <th className="tableBorderRadius" scope="col" colSpan="6">
-                <select name="" id="">
-                  <option value="1">Class 1</option>
-                  <option value="2">Class 2</option>
-                  <option value="3">Class 3</option>
-                  <option value="4">Class 4</option>
-                  <option value="5">Class 5</option>
-                  <option value="6">Class 6</option>
-                  <option value="7">Class 7</option>
-                  <option value="8">Class 8</option>
-                  <option value="9">Class 9</option>
-                  <option value="10">Class 10</option>
-                  <option value="11">Class 11</option>
-                  <option value="12">Class 12</option>
+                <select name="" id=" " onChange={(e) => handleClassChange(e)} >
+                  {distinctBookClass.map((bookDistinctClass) => ( 
+                    <option value={`${bookDistinctClass}`}>Class {bookDistinctClass}</option> 
+                  ) )}
                 </select>
               </th>
               {/* <th className='tableBorderRadiusRight' scope="col"  colSpan="4">
@@ -131,7 +140,7 @@ const School = () => {
                 <input onClick={handleSelectAll} type="checkbox" name="selectAll" id="" />
               </th>
             </tr>
-            {schoolBooks.map( (bookList, index) => ( 
+            {schoolBooksDoc.map( (bookList, index) => ( 
                 <tr>
                 <th scope="row">{index+1}</th>
                 <td>{bookList.title}</td>
@@ -140,7 +149,7 @@ const School = () => {
                 <td> &#8377; {bookList.price} </td>
                 <td>
                   {" "}
-                  <input type="checkbox" />{" "}
+                  <input checked={bookList.selected} type="checkbox" />{" "}
                 </td>
               </tr>
             ) )}
