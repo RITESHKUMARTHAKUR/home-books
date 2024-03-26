@@ -10,11 +10,22 @@ const School = () => {
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool/${id}`;
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchoolBooks/${id}`;
   const [schoolInfo, setSchoolInfo] = useState([]);
-  const [schoolBooks, setSchoolBooks] = useState([]);
-  const [schoolBooksDoc, setSchoolBooksDoc] = useState([]);
+  const [selectAllValue,setSelectAllValue] = useState(false);
+
+  //All Books List
+  const [schoolBooks, setSchoolBooks] = useState([]);  
+  //Filtered Books
+  const [schoolBooksDoc, setSchoolBooksDoc] = useState([]); 
+
+  //Selected Books
   const [selectedBooks,setSelectedBooks] = useState([]);
+
+  //Selected Class For Filter
   const [selectedBookClass,setSelectedBookClass] = useState("1");
+
+  //Distinct Class List 
   const [distinctBookClass,setDistinctBookClass] = useState([]);
+
   const [boxVisible,setBoxVisible] = useState(false);
 
   const fetchSchool = async () => {
@@ -47,28 +58,86 @@ const School = () => {
           setDistinctBookClass(disttClass);
           let booksList = responseDoc.filter((x) => x.bookClass === "1" )
           setSchoolBooksDoc(booksList);
-          console.log(schoolBooksDoc);
         }
         )
     });
   }
 
-  const handleSelectAll = () => {
-    // console.log("All books selected!!");
-    console.log(schoolBooks);
-    // const selectedId = schoolBooks.map((x) => x._id  );
-    // setSelectedBooks(selectedId);
+  const handleSelectAllBtn = (docList) => {
+   
+    docList.map(x => {
+      if(x.selected === false ) {
+        setSelectAllValue(false);
+      }
+      else{
+        setSelectAllValue(!selectAllValue);
+      }
+
+    })
   }
-  const handleBuyNow = () => {
+
+
+  const showFilteredBooks = () => {
+    let booksList = schoolBooks.filter((x) => x.bookClass === selectedBookClass )
+    setSchoolBooksDoc(booksList);
+
+    handleSelectAllBtn(booksList);
+  }
+
+  const handleSelectAll = () => {
+    setSelectAllValue(!selectAllValue);
+    const selectedId = schoolBooksDoc.map((x) => x._id  );
+    const updatedArray = schoolBooks.map(obj => {
+      if(selectedId.includes(obj._id)){
+        obj.selected = !obj.selected;
+      }
+      return obj;
+    });
+    setSchoolBooks(updatedArray);
+  }
+
+  const handleSelect = (bookId) => {
+    let bookIndex = schoolBooks.findIndex(obj => obj._id === bookId );
+    let bookDocIndex = schoolBooksDoc.findIndex( obj => obj._id === bookId );
+
+    if(bookIndex !== -1) {
+      const updatedObject = {...schoolBooks[bookIndex]};
+      updatedObject.selected = !updatedObject.selected;
+
+      const updatedSchoolBooksArray = [...schoolBooks];
+      updatedSchoolBooksArray[bookIndex] = updatedObject;
+      setSchoolBooks(updatedSchoolBooksArray);
+
+      const updatedBookDocsArray = [...schoolBooksDoc];
+      updatedBookDocsArray[bookDocIndex] = updatedObject;
+      setSchoolBooksDoc(updatedBookDocsArray);
+
+      handleSelectAllBtn(updatedBookDocsArray);
+    }
+  }
+
+  const handleCancel = () => {
     setBoxVisible(!boxVisible)
   }
 
+  const handleConfirm = () => {
+    selectedBooks.map( book => {
+      console.log(book.title);
+    } )
+  }
+  const handleBuyNow = () => {
+    let selectedList = schoolBooks.filter( book => ( book.selected === true ));
+    setSelectedBooks(selectedList);
+    setBoxVisible(!boxVisible);
+  }
+
+  
+
   useEffect(()=> {
-    let booksList = schoolBooks.filter((x) => x.bookClass === selectedBookClass )
-    setSchoolBooksDoc(booksList);
-    console.log(booksList);
+    showFilteredBooks();
   },[selectedBookClass]);
 
+  
   const handleClassChange = (e) => {  
     setSelectedBookClass(e.target.value);
   }
@@ -80,7 +149,7 @@ const School = () => {
   
   return (
     <div className="schoolContainer">
-      <OrderBox boxVisible={boxVisible}  cancelBtn={handleBuyNow} />
+      <OrderBox boxVisible={boxVisible}  cancelBtn={handleCancel} confirmBtn={handleConfirm} />
       <div className="schoolBannerContainer">
         <div className="schoolImgBanner">
           <img src={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`} alt="" />
@@ -106,7 +175,7 @@ const School = () => {
           </div>
         </div>
       </div>
-      {selectedBookClass}
+      {/* {selectAllValue + 1} */}
       <div className="schoolBooksContainer">
         {schoolBooks.length>0 ? 
         <>
@@ -137,7 +206,7 @@ const School = () => {
               <th scope="col">Price</th>
               <th className="borderRight" scope="col">
                 <label htmlFor="selectAll"></label>
-                <input onClick={handleSelectAll} type="checkbox" name="selectAll" id="" />
+                <input onClick={handleSelectAll} checked={selectAllValue} type="checkbox" name="selectAll" id="" />
               </th>
             </tr>
             {schoolBooksDoc.map( (bookList, index) => ( 
@@ -149,7 +218,7 @@ const School = () => {
                 <td> &#8377; {bookList.price} </td>
                 <td>
                   {" "}
-                  <input checked={bookList.selected} type="checkbox" />{" "}
+                  <input checked={bookList.selected} onClick={ (e) =>  handleSelect(bookList._id) } type="checkbox" />{" "}
                 </td>
               </tr>
             ) )}

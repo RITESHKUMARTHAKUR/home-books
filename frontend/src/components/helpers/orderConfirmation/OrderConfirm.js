@@ -27,10 +27,10 @@ const OrderConfirm = (props) => {
                 <textarea value={props.userAddress} name='userAddress' rows={5} type="text" />
             </div>
             <div className="orderButtonBox">
-                <button className='cancelOrderButton' onClick={props.cancelBtn}>
+                <button className='cancelOrderButton' onClick={props.cancelBtn} >
                     Cancel
                 </button>
-                <button className='confirmOrderButton' >
+                <button className='confirmOrderButton' onClick={props.confirmBtn} >
                     Confirm
                 </button>
             </div>
