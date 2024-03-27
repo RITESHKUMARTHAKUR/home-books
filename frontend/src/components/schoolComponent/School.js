@@ -152,7 +152,8 @@ const School = () => {
       <OrderBox boxVisible={boxVisible}  cancelBtn={handleCancel} confirmBtn={handleConfirm} />
       <div className="schoolBannerContainer">
         <div className="schoolImgBanner">
-          <img src={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`} alt="" />
+          {/* <img src={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`} alt="" /> */}
+          <img src={`${schoolInfo.schoolImg}`} alt="" />
         </div>
         <div className="schoolContent">
           <div className="schoolContentUp">

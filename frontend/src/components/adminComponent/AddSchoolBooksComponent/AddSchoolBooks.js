@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./AddSchoolBooks.css";
+import {getDownloadURL, ref,uploadBytesResumable} from 'firebase/storage'
+import {storage} from '../../../firebase';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -48,6 +50,23 @@ const AddSchoolBooks = () => {
     })
   };
 
+  const fileTypes = [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+  ];
+
+  const handleChange = (e) => {
+    const fileUpload = e.target.files[0];
+    if (fileUpload && fileTypes.includes(fileUpload.type) ){
+      setFiles(e.target.files[0]);
+    }else {
+      setFiles(null);
+      toast.error('use only specified file type!');
+    }
+  }
+
+
   useEffect(() => {
     if(currentUser) {
         setUserDoc(currentUser);
@@ -55,10 +74,29 @@ const AddSchoolBooks = () => {
     }else {
         Navigate("/login");
     }
-},[currentUser]);
+  },[currentUser]);
+
+
+  const getFileName = () => {
+    let splitName = files.name.split('.');
+    let fileName = splitName[0].replace(/\s/g, '').toLowerCase();
+
+    let dateTime = new Date();
+
+    let time = dateTime.toLocaleTimeString().split(" ");
+    let formattedTime = time[0].split(":").join("");
+
+    let currDate = dateTime.toLocaleDateString().split(" ");
+    let formattedDate = currDate[0].split("/").join("");
+
+    let newName = fileName +"_"+formattedDate +"_" + formattedTime + time[1][0].toLowerCase() + "."+ splitName[1];
+
+    return newName;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const data = new FormData();
     data.set('title', title);
     data.set('bookPublication', bookPublication);
@@ -73,23 +111,40 @@ const AddSchoolBooks = () => {
     data.set('discount', discount);
     data.set('elementType', elementType);
     data.set('bookDesc', bookDesc);
-    data.set('bookImg', files[0]);
+    // data.set('bookImg', files[0]);
 
     if(title !== '' && bookPublication !== '' && author !== '' && edition !== ''&& pubDate !== '' && language !== '' && schoolName !== '' && subject !== '' && bookClass !== '' && price !== '' && bookDesc !== '' && files !== null ) {
-      const bookDoc = await fetch(postBook, {
-        method: 'POST',
-        body: data
-      });
-      if (bookDoc.ok) {
-        toast.success("Book added!");
-        // setTimeout(
-        //   window.location.reload()
-        // , 1500)
-        
-      }else {
-        toast.error("Failed to add book!")
+    // if(files !== null ) {
+
+      const storageRef = ref(storage, 'books/' + getFileName());
+      const fileUpload = await uploadBytesResumable(storageRef, files);
+  
+      if(fileUpload.state === "success") {
+
+        await getDownloadURL(storageRef).then((downloadURL) => {
+          data.set('bookImg', downloadURL);
+        })
+        .then( async () => {
+            const bookDoc = await fetch(postBook, {
+            method: 'POST',
+            body: data
+          });
+          if (bookDoc.ok) {
+            toast.success("Book added!");
+            // setTimeout(
+            //   window.location.reload()
+            // , 1500)
+          } else {
+            toast.error("Failed to add book!")
+          }
+        });
+
+      }else{
+        toast.error("error in uploading image!");
       }
-    }else {
+      
+    }
+    else {
       toast.error("Missing Some Data", {
         autoClose: 2000
       })
@@ -132,7 +187,7 @@ const AddSchoolBooks = () => {
                     ))}
                 </select>
                 <textarea className='addBooksInp addBookDesc' onChange={e => setBookDesc(e.target.value) } name="bookDesc" id="" rows="4" placeholder='book description'></textarea>
-                <input className='addBooksInp addBooksFile' onChange={(e) => setFiles(e.target.files)} placeholder='no image' name='bookImg'  type="file" />
+                <input className='addBooksInp addBooksFile' onChange={handleChange} placeholder='no image' name='bookImg'  type="file" />
                     
                 <button onClick={handleSubmit} className='addBookBtn' >Submit</button>
             </form>

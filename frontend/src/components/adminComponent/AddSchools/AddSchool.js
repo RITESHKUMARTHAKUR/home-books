@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./AddSchool.css"
+import {getDownloadURL,ref,uploadBytesResumable} from "firebase/storage";
+import {storage} from '../../../firebase';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,6 +32,38 @@ const AddSchool = () => {
         }
     },[currentUser]);
 
+    const getFileName = () => {
+        let splitName = files.name.split('.');
+        let fileName = splitName[0].replace(/\s/g, '').toLowerCase();
+    
+        let dateTime = new Date();
+    
+        let time = dateTime.toLocaleTimeString().split(" ");
+        let formattedTime = time[0].split(":").join("");
+    
+        let currDate = dateTime.toLocaleDateString().split(" ");
+        let formattedDate = currDate[0].split("/").join("");
+    
+        let newName = fileName +"_"+formattedDate +"_" + formattedTime + time[1][0].toLowerCase() + "."+ splitName[1];
+    
+        return newName;
+    }
+    const fileTypes = [
+        "image/png",
+        "image/jpg",
+        "image/jpeg",
+    ];
+
+    const handleChange = (e) => {
+        const fileUpload = e.target.files[0];
+        if (fileUpload && fileTypes.includes(fileUpload.type) ){
+          setFiles(e.target.files[0]);
+        }else {
+          setFiles(null);
+          toast.error('use only specified file type!');
+        }
+    }
+
 
     
     const submitSchool = async (event) => {
@@ -44,24 +78,38 @@ const AddSchool = () => {
         schoolData.set('pincode',pinCode);
         schoolData.set('affilated',affilated);
         schoolData.set('medium',medium);
-        schoolData.set('schoolImg',files[0]);
+        // schoolData.set('schoolImg',files[0]);
 
-        if(schoolName !== '' && location !== '' && area !== '' && district !== '' && schoolState !== '' && pinCode !== '' && affilated !== '' && medium !== '' && files !== ''){
-            const schoolDoc = await fetch(addSchoolUrl, {
-                method: 'POST',
-                body: schoolData
-            });
-            if(schoolDoc.ok) {
-                toast.success('School Added!',{
-                    autoClose: 1000
-                });
+        if(schoolName !== '' && location !== '' && area !== '' && district !== '' && schoolState !== '' && pinCode !== '' && affilated !== '' && medium !== '' && files !== null){
+            const storageRef = ref(storage, 'schools/' + getFileName());
+            const fileUpload = await uploadBytesResumable(storageRef, files);
+            
+            if(fileUpload.state === "success") {
+                await getDownloadURL(storageRef).then((downloadURL) => {
+                    schoolData.set('schoolImg',downloadURL);
+                })
+                .then(async () => {
+                    const schoolDoc = await fetch(addSchoolUrl, {
+                        method: 'POST',
+                        body: schoolData
+                    });
+                    if(schoolDoc.ok) {
+                        toast.success('School Added!',{
+                            autoClose: 1000
+                        });
+                    }else {
+                        toast.success('Failed to add School!',{
+                            autoClose: 1000
+                        });
+                    }
+                })
+
             }else {
-                toast.success('Failed to add School!',{
-                    autoClose: 1000
-                });
+                toast.error("error in uploading image!");
             }
 
-        }else {
+        }
+        else {
             toast.error("Please Fill all the details!", {
                 autoClose:1000
             });
@@ -83,7 +131,7 @@ const AddSchool = () => {
                 <input className='addSchoolInp' name="pincode"     onChange={(e) => setPincode(e.target.value)}     type="number" placeholder='pincode'/>
                 <input className='addSchoolInp' name="affilated"   onChange={(e) => setAffilated(e.target.value)}   type="text" placeholder='affilated'/>
                 <input className='addSchoolInp' name="medium"      onChange={(e) => setMedium(e.target.value)}      type="text" placeholder='medium'/>
-                <input className='addSchoolInp addSchoolFile' onChange={(e) => setFiles(e.target.files)} name='schoolImg' type="file" />
+                <input className='addSchoolInp addSchoolFile' onChange={handleChange} name='schoolImg' type="file" />
 
                 <button onClick={submitSchool} className='addSchoolBtn'>Submit</button>
             </form>

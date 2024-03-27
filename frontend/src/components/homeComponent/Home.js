@@ -36,6 +36,17 @@ const Home = () => {
   var settingsProducts = {
     dots: false,
     infinite: true,
+    slidesToShow: 4 ,
+    // slidesToShow: 4 ,
+    slidesToScroll: 1,
+    autoplay: false,
+    speed: 200,
+    autoplaySpeed: 1500,
+    cssEase: "linear",
+  };
+  var settingsSchools = {
+    dots: false,
+    infinite: true,
     slidesToShow: schoolDoc.length === 3 ? 3:4 ,
     // slidesToShow: 4 ,
     slidesToScroll: 1,
@@ -287,17 +298,18 @@ const Home = () => {
         </Slider>
       </div>
 
-{/* ---------------------- School Slider ---------------------- */}
+{/* ---------------------- School Slider Starts ---------------------- */}
       <div className="homeSectionFourth">
         <h3 className="sectionHeader">
           {" "}
           <FaSchool />
           &nbsp; Schools
         </h3>
-        <Slider {...settingsProducts}>
+        <Slider {...settingsSchools}>
           {schoolDoc && schoolDoc.map((schoolInfo,index) => (
             <SchoolCard
-            img={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`}
+            // img={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`}
+            img={schoolInfo.schoolImg}
             link={`/school/${schoolInfo._id}`}
             title={schoolInfo.schoolName}
             address={schoolInfo.area}
@@ -306,7 +318,7 @@ const Home = () => {
           
         </Slider>
       </div>
-{/* ---------------------- School Slider ---------------------- */}
+{/* ---------------------- School Slider Ends ---------------------- */}
 
       <div className="homeSectionThird">
         <BenefitCard

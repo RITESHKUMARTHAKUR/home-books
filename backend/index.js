@@ -57,10 +57,12 @@ app.get("/getProfile", getProfile);
 //School Api Endpoints
 app.get("/getSchool", getSchool);
 app.get("/getSchool/:id", getSchoolInfo);
-app.post("/addSchool", upload.single('schoolImg') , addSchool);
+app.post("/addSchool", addSchool);
+// app.post("/addSchool", upload.single('schoolImg') , addSchool);
 
 //Book Api Endpoints
 app.get("/getSchoolBooks/:id", getSchoolBooks);
-app.post("/addBook", upload.single('bookImg') , addBook);
+app.post("/addBook", addBook);
+// app.post("/addBook", upload.single('bookImg') , addBook);
 
 
