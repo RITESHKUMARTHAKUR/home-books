@@ -2,6 +2,7 @@ import React from 'react'
 import {Routes,Route} from 'react-router-dom'
 import Home from './homeComponent/Home';
 import Orders from './ordersComponent/Orders';
+import SingleOrder from './ordersComponent/SingleOrder/SingleOrder';
 import Cart from './cartComponent/Cart';
 import Profile from './profileComponent/Profile';
 import Contact from './contactComponent/Contact';
@@ -21,6 +22,7 @@ const MainComponent = () => {
       <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/orders' element={<Orders/>} />
+          <Route path='/order/:orderId' element={<SingleOrder/>} />
           <Route path='/cart' element={<Cart/>} />
           <Route path='/profile' element={<Profile/>} />
           <Route path='/contact-us' element={<Contact/>} />

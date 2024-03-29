@@ -1,6 +1,8 @@
 .orderConfirmContainer {
     /* border: 2px solid var(--bs-secondary); */
     width: 60%;
+    height: 90vh;
+    overflow: auto;
     border-radius: 5px;
     padding: 0.5rem 2rem;
     position: fixed;
@@ -72,4 +74,53 @@
 }
 .hideOrderBox {
     display: none;
+}
+.selectedBooksTableContainer {
+    border-radius: 10px;
+    box-shadow: var(--bs-theme-box-shadow);
+    margin-bottom: 2em;
+    /* padding: 10px 10px 0; */
+}
+.selectedBooksTableContainer .selectedBooksTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.selectedBooksTable .selectedBooksTableHead{
+    background: var(--bs-white);  
+}
+.selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr{
+    color: var(--bs-theme-secondary);
+}
+.selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr th:first-child{
+    padding: 10px;
+}
+.selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr th:not(:first-child){
+    text-align: left;
+}
+.selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr th:last-child{
+    text-align: center;
+}
+
+.selectedBooksTable .selectedBooksTableBody{
+    background: var(--bs-white);
+}
+
+.selectedBooksTable .selectedBooksTableBody .selectedBooksTableBodyTr{
+    font-weight: 500;
+}
+.selectedBooksTable .selectedBooksTableBody tr:nth-child(odd){
+    background: #e6e6fa;
+}
+.selectedBooksTable .selectedBooksTableBody .selectedBooksTableBodyTr td:last-child{
+    text-align: center;
+}
+.booksAddBtn, .booksSubBtn {
+    align-items: center;
+    background: #0000;
+    /* border: 2px solid var(--bs-theme-secondary); */
+    border: none;
+    border-radius: 5px;
+    color: var(--bs-theme-secondary);
+    display: inline-flex;
 }

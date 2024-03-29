@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./School.css";
+import {toast} from 'react-toastify';
+import {useAuth} from "../../contexts/AuthContext";
 import OrderBox from "../helpers/orderConfirmation/OrderConfirm";
 // import SchoolImg from "../../images/school.jpg";
 
 
 const School = () => {
   const { id } = useParams();
+  const {currentUser} = useAuth();
+  const Navigate = useNavigate();
+
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool/${id}`;
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchoolBooks/${id}`;
+
+  const createOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/createOrder`;
+  
+  const[userDoc,setUserDoc] = useState({
+    address: "",
+    contact: "",
+    email:"",
+    name:""
+  });
+
   const [schoolInfo, setSchoolInfo] = useState([]);
   const [selectAllValue,setSelectAllValue] = useState(false);
 
@@ -64,16 +79,26 @@ const School = () => {
   }
 
   const handleSelectAllBtn = (docList) => {
-   
-    docList.map(x => {
-      if(x.selected === false ) {
+    if(docList.length === 0) {
+      setSelectAllValue(false);
+    }
+    else{
+      const hasFalse = docList.some(x => x.selected === false );
+      if (hasFalse) {
         setSelectAllValue(false);
       }
       else{
-        setSelectAllValue(!selectAllValue);
+        setSelectAllValue(true);
       }
-
-    })
+    }
+    
+    // docList.map(x => {
+    //   if(x.selected === false ) {
+    //     setSelectAllValue(false);
+    //   }else{
+    //     setSelectAllValue(true);
+    //   }
+    // })
   }
 
 
@@ -85,15 +110,47 @@ const School = () => {
   }
 
   const handleSelectAll = () => {
-    setSelectAllValue(!selectAllValue);
     const selectedId = schoolBooksDoc.map((x) => x._id  );
-    const updatedArray = schoolBooks.map(obj => {
-      if(selectedId.includes(obj._id)){
-        obj.selected = !obj.selected;
-      }
-      return obj;
+    setSelectAllValue((prevSelectAllValue) => {
+      
+      const updatedSelectAllValue = !prevSelectAllValue;
+
+      
+      const updatedArray = schoolBooks.map((obj) => {
+          
+          if (selectedId.includes(obj._id)) {
+              if(updatedSelectAllValue === false) {
+                obj.selected = false;
+              }else{
+                obj.selected = true;
+              }
+            
+          }
+          return obj;
+      });
+
+      setSchoolBooks(updatedArray);
+      // console.log(updatedArray);
+     
+      return updatedSelectAllValue;
     });
-    setSchoolBooks(updatedArray);
+
+    // const selectedId = schoolBooksDoc.map((x) => x._id  );
+    // const updatedArray = schoolBooks.map(obj => {
+    //   if(selectedId.includes(obj._id)){
+    //     console.log(selectAllValue);
+    //     if(selectAllValue === false) {
+    //       obj.selected = false;
+    //     }else{
+    //       obj.selected = true;
+    //     }
+    //   }
+    //   return obj;
+    // });
+    // setSchoolBooks(updatedArray);
+    // console.log(updatedArray);
+
+
   }
 
   const handleSelect = (bookId) => {
@@ -120,15 +177,39 @@ const School = () => {
     setBoxVisible(!boxVisible)
   }
 
-  const handleConfirm = () => {
-    selectedBooks.map( book => {
-      console.log(book.title);
-    } )
+  const handleConfirm = async (selectedArray,orderTotal,) => {
+    const orderResponse = await fetch(createOrderUrl,{
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userDoc,selectedArray,orderTotal}) 
+    });
+
+    if(orderResponse.status === 200 ){
+      toast.success("Order Created!");
+      
+    }else {
+      toast.error("Failed to Create Order!")
+    }
+  
+
   }
+
+
   const handleBuyNow = () => {
-    let selectedList = schoolBooks.filter( book => ( book.selected === true ));
-    setSelectedBooks(selectedList);
-    setBoxVisible(!boxVisible);
+    if(currentUser) {
+      setUserDoc(currentUser);
+
+      let selectedList = schoolBooks.filter( book => ( book.selected === true ));
+      setSelectedBooks(selectedList);
+      setBoxVisible(!boxVisible);
+      // console.log(currentUser);
+    }else {
+      Navigate("/login");
+    }
+    
   }
 
   
@@ -142,6 +223,12 @@ const School = () => {
     setSelectedBookClass(e.target.value);
   }
 
+
+  const handleUserAddressChange = (addValue) => {
+      const updatedUserDetails = {...userDoc, address: addValue };
+      setUserDoc(updatedUserDetails);
+  };
+
   useEffect(() => {
       fetchSchool();
       fetchSchoolBooks();
@@ -149,7 +236,18 @@ const School = () => {
   
   return (
     <div className="schoolContainer">
-      <OrderBox boxVisible={boxVisible}  cancelBtn={handleCancel} confirmBtn={handleConfirm} />
+      <OrderBox 
+        boxVisible={boxVisible}  
+        userName={userDoc.name} 
+        userEmail={userDoc.email} 
+        userContact={userDoc.contact} 
+        userAddress={userDoc.address} 
+        userBooks={selectedBooks}
+        onUserAddressChange={handleUserAddressChange} 
+        cancelBtn={handleCancel} 
+        confirmBtn={handleConfirm} 
+      />
+     
       <div className="schoolBannerContainer">
         <div className="schoolImgBanner">
           {/* <img src={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`} alt="" /> */}
@@ -176,7 +274,7 @@ const School = () => {
           </div>
         </div>
       </div>
-      {/* {selectAllValue + 1} */}
+      {selectAllValue + 1 === 1? "false": "true" }
       <div className="schoolBooksContainer">
         {schoolBooks.length>0 ? 
         <>

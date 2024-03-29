@@ -1,0 +1,116 @@
+.singleOrderContainer {
+    background: var(--bs-white);
+    box-shadow: var(--bs-theme-box-shadow);
+    border-radius: 5px;
+    width: 70%;
+    margin: 1rem auto;
+    /* padding: 1rem; */
+}
+.singleOrderContainer .singleOrderDivHeader {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+.singleOrderDivHeader .singleOrderInvoice,.singleOrderDownload {
+    background: transparent;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+}
+.singleOrderDivHeader .singleOrderInvoice {
+    border: 2px solid var(--bs-secondary);
+    border-radius: 5px;
+    color: var(--bs-theme-secondary);
+}
+.singleOrderDivHeader .singleOrderInvoice:hover {
+    border: 2px solid var(--bs-theme-secondary);
+    border-radius: 5px;
+    box-shadow: var(--bs-theme-box-shadow);
+    background-color: var(--bs-theme-secondary);
+    color: var(--bs-secondary);
+}
+.singleOrderDivHeader .singleOrderDownload {
+    border-radius: 5px;
+    margin-left: 1rem;
+    border: 2px solid var(--bs-secondary);
+    background-color: var(--bs-secondary);
+    color: var(--bs-theme-secondary);
+}
+.singleOrderDivHeader .singleOrderDownload:hover {
+    box-shadow: var(--bs-theme-box-shadow);
+    border: 2px solid var(--bs-theme-secondary);
+    background-color: var(--bs-theme-secondary);
+    color: var(--bs-secondary);
+}
+.singleOrderNav .singleNavBtn {
+    padding: 0 1rem;
+}
+.singleNavBtn .singleOrderSummaryBtn,.singleOrderDeliveryBtn {
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+}
+.singleOrderBorderNone{
+    border: none;
+    color: var(--bs-gray-600);
+}
+.singleOrderBorderBottom{
+    border: none;
+    font-size: 20px;
+    color: var(--bs-theme-secondary);
+    font-weight: bold;
+    border-bottom: 4px solid var(--bs-theme-secondary);
+}
+.showSection .showSectionDelivery {
+    height: 40vh;
+}
+.showSection .showSectionDelivery .showDelivery{
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+.statusPending{
+    border:4px solid lightgray;
+    color: darkgray;
+}
+.statusProcessing{
+    border:4px solid #FFA500;
+    color: #FF8C00;
+}
+.statusDelivered{
+    border:4px solid lightgreen;
+    color: green;
+}
+
+.showSection .showSectionDelivery .showDelivery,.deliveryCircle{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* .deliveryCircle {
+    display: flex;
+    align-items: center;
+} */
+.singleOrderDivBodyContainer .singleOrderNav .showSection {
+    padding: 1rem;
+    background-color: var(--bs-theme-bg);
+}
+
+
+.singleOrderTotalDiv {
+    padding: 0 1rem;
+}
+.singleOrderTotalContainer .singleOrderTotal{
+    display: flex;
+    padding: 1rem 0rem;
+    justify-content: space-between;
+}
+.singleOrderTotalContainer .singleOrderSum {
+    background: var(--bs-secondary);
+    padding: 1rem 1rem;
+    color: var(--bs-theme-secondary);
+    border-radius: 0 0 5px 5px ;
+}

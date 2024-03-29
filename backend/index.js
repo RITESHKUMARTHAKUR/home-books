@@ -46,6 +46,10 @@ const {profile,getProfile} = require('./routes/User/profile');
 const {addSchool,getSchool,getSchoolInfo} = require('./routes/School/School');
 const addBook = require('./routes/Books/addBook');
 const getSchoolBooks = require('./routes/Books/getSchoolBooks');
+const createOrder = require('./routes/Orders/createOrder');
+const getOrders = require('./routes/Orders/getOrder');
+const getSingleOrder = require('./routes/Orders/getSingleOrder');
+
 
 // Api Endpoints
 app.post("/signup", signup);
@@ -57,12 +61,25 @@ app.get("/getProfile", getProfile);
 //School Api Endpoints
 app.get("/getSchool", getSchool);
 app.get("/getSchool/:id", getSchoolInfo);
-// app.post("/addSchool", addSchool);
 app.post("/addSchool", upload.single('schoolImg') , addSchool);
+// app.post("/addSchool", addSchool);
 
-//Book Api Endpoints
+//<------- Book Api Endpoints ------->
 app.get("/getSchoolBooks/:id", getSchoolBooks);
-// app.post("/addBook", addBook);
 app.post("/addBook", upload.single('bookImg') , addBook);
+// app.post("/addBook", addBook);
+//<------- Book Api Endpoints ------->
+
+//<------- Order Api Endpoints ------->
+app.post("/createOrder", createOrder);
+app.get("/getOrders/:email", getOrders);
+app.get("/getOrder/:orderId",getSingleOrder);
+
+//<------- Order Api Endpoints ------->
+
+
+
+
+
 
 

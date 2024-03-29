@@ -1,10 +1,35 @@
 import React from 'react';
 import "./OrderCard.css";
+import {Link} from 'react-router-dom'
 
 const OrderCard = (props) => {
+  const orderStatus = props.orderStatus;
+
+
+  const getOrderStatus = () => {
+    const orderCodes = ["Pending","Processing","Delivered"];
+    return orderCodes[orderStatus-1];
+  }
+
+  const getOrderStatusColor = () => {
+    switch (orderStatus) {
+      case 1:
+          return "gray"; // Set color for pending status
+      case 2:
+          return "orange"; // Set color for processing status
+      case 3:
+          return "green"; // Set color for delivered status
+      default:
+          return "black"; // Set default color
+    }
+  }
+ 
   return (
-    <div className="orderContainerBox">
-        <p className='orderId'> Order: <span >{props.orderId}</span> </p>
+    <Link to={props.link} className="orderContainerBox">
+        <div className='orderContainerBoxHeader'>
+        <p className='orderId'> Order: #<span >{props.orderId}</span> </p>
+        <p>Status: <span style={{"color": `${getOrderStatusColor()}`,"fontWeight": "bold"}}  >{getOrderStatus()}</span> </p>
+        </div>
         <div className="orderContainer">
             <div className="orderImgContainer"> <img src={props.orderImg} alt="" /></div>
             <div className="orderDetailsContainer">
@@ -18,7 +43,7 @@ const OrderCard = (props) => {
                 <button>Download Bill</button>
             </div>
         </div>
-    </div>
+    </Link>
   )
 }
 
