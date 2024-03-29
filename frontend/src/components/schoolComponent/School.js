@@ -189,6 +189,7 @@ const School = () => {
 
     if(orderResponse.status === 200 ){
       toast.success("Order Created!");
+      Navigate("/orders");
       
     }else {
       toast.error("Failed to Create Order!")
