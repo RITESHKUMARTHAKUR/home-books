@@ -49,6 +49,8 @@ const getSchoolBooks = require('./routes/Books/getSchoolBooks');
 const getBooks = require('./routes/Books/getBooks'); //getAllBooks
 const getSingleBook = require('./routes/Books/getSingleBook'); //getAllBooks
 const createOrder = require('./routes/Orders/createOrder');
+const addCart = require('./routes/Orders/addCart');
+const getCart = require('./routes/Orders/getCart');
 const getOrders = require('./routes/Orders/getOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
 
@@ -76,6 +78,8 @@ app.post("/addBook", upload.single('bookImg') , addBook);
 
 //<------- Order Api Endpoints ------->
 app.post("/createOrder", createOrder);
+app.post("/addCart", addCart);
+app.get("/getCart/:email", getCart);
 app.get("/getOrders/:email", getOrders);
 app.get("/getOrder/:orderId",getSingleOrder);
 

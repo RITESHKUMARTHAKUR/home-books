@@ -24,7 +24,7 @@ const productCard = (props) => {
       </Link>
 
       <div className="productCardFourth">
-        <div> <strike>&#8377;{props.price}</strike> <b>&#8377; {props.price - props.discount}</b>    </div>
+        <div> <strike>&#8377;{props.price}</strike> <b>&#8377;{props.price - props.discount}</b>    </div>
         <button  onClick={handleCart} > <FaPlus/></button>
       </div>
 

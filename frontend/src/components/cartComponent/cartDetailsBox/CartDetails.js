@@ -16,7 +16,7 @@ const OrdersDetails = (props) => {
             </div>
             <div className="bookCartSecondary">
                 <div className="bookCartPrice">
-                    <p>{props.price}*{props.quantity}  &nbsp; &nbsp;</p>
+                    <p>&#8377;{props.price}*{props.quantity}  &nbsp; &nbsp;</p>
                     <p>&#8377;{props.quantity *  props.price}</p>
                 </div>
                 <div className="bookCartIncrease">

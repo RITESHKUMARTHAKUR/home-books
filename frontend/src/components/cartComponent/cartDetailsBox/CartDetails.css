@@ -11,6 +11,12 @@
 
 .cartDetailsBox .bookImg {
     width: 150px;
+    box-shadow: var(--bs-theme-box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-theme-bg);
+    padding: 0.2rem;
 }
 .cartDetailsBox .bookImg img{
     width: 100%;

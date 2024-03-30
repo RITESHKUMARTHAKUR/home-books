@@ -15,12 +15,13 @@ import { BiSupport } from "react-icons/bi";
 import ProductCard from "./productCard/ProductCard";
 import BenefitCard from "./benefitsCard/Benefit";
 import SchoolCard from "../schoolComponent/schoolCard/schoolCard";
-
+import {useAuth} from '../../contexts/AuthContext';
 import BookImg from "../../images/phys_book.jpg";
 import SchoolImg from "../../images/school.jpg";
 import { toast } from "react-toastify";
 
 const Home = () => {
+  const {currentUser} = useAuth();
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getBooks`;
   const addCartUrl = `${process.env.REACT_APP_API_BASE_URL}/addCart`;
@@ -118,8 +119,30 @@ const Home = () => {
     })
   };
 
-  const handleAddToCart = (productId) => {
-    console.log(productId);
+  const handleAddToCart = async (productId) => {
+    const bookId = productId;
+    if(currentUser){
+      const bookIndex = booksDoc.findIndex( obj => obj._id === bookId );
+      const bookDetails = booksDoc[bookIndex];
+    
+      const cartDoc = await fetch(addCartUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({bookDetails,currentUser})
+      });
+      if(cartDoc.status === 200 ){
+        toast.success("Added to Cart!");
+        
+      }else {
+        toast.error("Failed to add!");
+      }
+
+    }else{
+      toast.error("Login First!")
+    }
+  
   }
 
   const getTitle = (titleString) => {
@@ -254,6 +277,7 @@ const Home = () => {
             off={25}
             name={getTitle(booksDoc.title)}
             price={booksDoc.price}
+            discount={booksDoc.discount}
             cartFun={handleAddToCart}
             cartId={booksDoc._id}
             img={getImage(booksDoc.bookImg)}
@@ -277,6 +301,7 @@ const Home = () => {
             off={25}
             name={getTitle(booksDoc.title)}
             price={booksDoc.price}
+            discount={booksDoc.discount}
             cartFun={handleAddToCart}
             cartId={booksDoc._id}
             img={getImage(booksDoc.bookImg)}
@@ -298,6 +323,7 @@ const Home = () => {
             off={25}
             name={getTitle(booksDoc.title)}
             price={booksDoc.price}
+            discount={booksDoc.discount}
             cartFun={handleAddToCart}
             cartId={booksDoc._id}
             img={getImage(booksDoc.bookImg)}
