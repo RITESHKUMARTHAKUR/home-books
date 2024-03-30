@@ -93,7 +93,7 @@ const SingleOrder = () => {
                       productTitle={orderProduct.title} 
                       productType={orderProduct.elementType} 
                       productPrice={orderProduct.price} 
-                      productImg={bookImg}
+                      productImg={orderProduct.bookImg}
                       productCount={orderProduct.bookQuantity} 
                       />
                     ))

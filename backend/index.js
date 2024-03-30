@@ -46,6 +46,8 @@ const {profile,getProfile} = require('./routes/User/profile');
 const {addSchool,getSchool,getSchoolInfo} = require('./routes/School/School');
 const addBook = require('./routes/Books/addBook');
 const getSchoolBooks = require('./routes/Books/getSchoolBooks');
+const getBooks = require('./routes/Books/getBooks'); //getAllBooks
+const getSingleBook = require('./routes/Books/getSingleBook'); //getAllBooks
 const createOrder = require('./routes/Orders/createOrder');
 const getOrders = require('./routes/Orders/getOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
@@ -66,6 +68,8 @@ app.post("/addSchool", upload.single('schoolImg') , addSchool);
 
 //<------- Book Api Endpoints ------->
 app.get("/getSchoolBooks/:id", getSchoolBooks);
+app.get("/getBooks", getBooks);
+app.get("/getSingleBook/:id", getSingleBook);
 app.post("/addBook", upload.single('bookImg') , addBook);
 // app.post("/addBook", addBook);
 //<------- Book Api Endpoints ------->

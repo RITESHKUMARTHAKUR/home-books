@@ -22,7 +22,17 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
+  const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getBooks`;
+  const addCartUrl = `${process.env.REACT_APP_API_BASE_URL}/addCart`;
+
   const [schoolDoc,setSchoolDoc] = useState([]);
+  const [booksDoc,setBooksDoc] = useState([]);
+
+  const [booksTwelve,setBooksTwelve] = useState([]);
+  const [booksEleven,setBooksEleven] = useState([]);
+  const [booksTen,setBooksTen] = useState([]);
+  const [booksNine,setBooksNine] = useState([]);
+
   var settingsOffers = {
     dots: true,
     infinite: true,
@@ -55,6 +65,42 @@ const Home = () => {
     autoplaySpeed: 1500,
     cssEase: "linear",
   };
+
+  const setBooks = (booksInfo) => {
+    const twelveBooks = booksInfo.filter(books => books.bookClass === "2" );
+    setBooksTwelve(twelveBooks);
+
+    const elevenBooks = booksInfo.filter(books => books.bookClass === "3" );
+    setBooksEleven(elevenBooks);
+
+    const tenBooks = booksInfo.filter(books => books.bookClass === "10" );
+    setBooksTen(tenBooks);
+
+    const nineBooks = booksInfo.filter(books => books.bookClass === "9" );
+    setBooksNine(nineBooks);
+
+  }
+
+
+  const fetchBooks = async () => {
+
+    await fetch(getSchoolBooksUrl, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      if (response.status !== 200) {
+          toast("No school found!");
+      }else {
+          response.json().then(booksInfo => {
+            setBooksDoc(booksInfo);
+            setBooks(booksInfo);
+          })
+      }
+    })
+  };
+
   const fetchSchools = () => {
     fetch(getSchoolUrl, {
       method: 'GET',
@@ -72,8 +118,30 @@ const Home = () => {
     })
   };
 
+  const handleAddToCart = (productId) => {
+    console.log(productId);
+  }
+
+  const getTitle = (titleString) => {
+    if(titleString.length > 16){
+      return titleString.slice(0,16)+ "...";
+    }else{
+      return titleString
+    }
+  } 
+
+  const getImage = (productImage) => {
+    if(productImage.slice(0,1) === "u") {
+      return BookImg;
+    }
+    else {
+      return productImage;
+    }
+  }
+
   useEffect(() => {
     fetchSchools();
+    fetchBooks();
   },[]);
   
 
@@ -156,34 +224,21 @@ const Home = () => {
           &nbsp;CLass 12
         </h3>
         <Slider {...settingsProducts}>
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
+          {booksTwelve && booksTwelve.map(booksDoc => (
+            <ProductCard
+            link={`/product/${booksDoc._id}`}
+            off={25}
+            name={getTitle(booksDoc.title)}
+            price={booksDoc.price}
+            discount={booksDoc.discount}
+            cartFun={handleAddToCart}
+            cartId={booksDoc._id}
+            img={getImage(booksDoc.bookImg)}
+            />
+          ))}
+          
+          
+          
         </Slider>
       </div>
       <div className="homeSectionSecond">
@@ -193,34 +248,20 @@ const Home = () => {
           &nbsp;CLass 11
         </h3>
         <Slider {...settingsProducts}>
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
+          {booksEleven && booksEleven.map(booksDoc => (
+            <ProductCard
+            link={`/product/${booksDoc._id}`}
+            off={25}
+            name={getTitle(booksDoc.title)}
+            price={booksDoc.price}
+            cartFun={handleAddToCart}
+            cartId={booksDoc._id}
+            img={getImage(booksDoc.bookImg)}
+            />
+          ))}
+          
+         
+          
         </Slider>
       </div>
       <div className="homeSectionSecond">
@@ -230,34 +271,18 @@ const Home = () => {
           &nbsp;CLass 10
         </h3>
         <Slider {...settingsProducts}>
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
+          {booksTen && booksTen.map(booksDoc => (
+            <ProductCard
+            link={`/product/${booksDoc._id}`}
+            off={25}
+            name={getTitle(booksDoc.title)}
+            price={booksDoc.price}
+            cartFun={handleAddToCart}
+            cartId={booksDoc._id}
+            img={getImage(booksDoc.bookImg)}
+            />
+          ))} 
+
         </Slider>
       </div>
       <div className="homeSectionSecond">
@@ -267,34 +292,17 @@ const Home = () => {
           &nbsp;CLass 9
         </h3>
         <Slider {...settingsProducts}>
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
-          <ProductCard
-            link={`/product/${id}`}
-            off={40}
-            name={"Book"}
-            price={200}
-            img={BookImg}
-          />
+          {booksNine && booksNine.map(booksDoc => (
+            <ProductCard
+            link={`/product/${booksDoc._id}`}
+            off={25}
+            name={getTitle(booksDoc.title)}
+            price={booksDoc.price}
+            cartFun={handleAddToCart}
+            cartId={booksDoc._id}
+            img={getImage(booksDoc.bookImg)}
+            />
+          ))}
         </Slider>
       </div>
 

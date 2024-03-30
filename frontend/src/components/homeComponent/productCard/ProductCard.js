@@ -4,21 +4,31 @@ import { FaPlus,FaRegHeart,FaHeart  } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 const productCard = (props) => {
+  const handleCart = () => {
+    props.cartFun(props.cartId);
+  }
+
+
   return (
-    <Link to={props.link} className='productCard'>
+    <div className='productCard'>
+
+      <Link to={props.link} className='productCardLink' >
         <div className="productCardFirst">
             <div className='cardDiscount'>{props.off}% off</div>
-            <button>  <FaRegHeart/> </button>
+            {/* <button>  <FaRegHeart/> </button> */}
         </div>
         <div className="productCardSecond">
             <img src={props.img} alt="_product_img" />
         </div>
         <div className="productCardThird">{props.name}</div>
-        <div className="productCardFourth">
-            <div> &#8377;{props.price}</div>
-            <button> <FaPlus/></button>
-        </div>
-    </Link >
+      </Link>
+
+      <div className="productCardFourth">
+        <div> <strike>&#8377;{props.price}</strike> <b>&#8377; {props.price - props.discount}</b>    </div>
+        <button  onClick={handleCart} > <FaPlus/></button>
+      </div>
+
+    </div >
   )
 }
 
