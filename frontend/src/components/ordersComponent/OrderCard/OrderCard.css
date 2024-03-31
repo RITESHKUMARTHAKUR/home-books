@@ -11,6 +11,7 @@
 }
 .orderContainerBox .orderContainerBoxHeader {
     display: flex;
+    color: var(--bs-theme-secondary);
     padding: 10px 0 10px;
     justify-content: space-between;
 }
