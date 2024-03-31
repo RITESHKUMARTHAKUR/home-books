@@ -51,6 +51,7 @@ const getSingleBook = require('./routes/Books/getSingleBook'); //getAllBooks
 const createOrder = require('./routes/Orders/createOrder');
 const createCartOrder = require('./routes/Orders/createCartOrder');
 const addCart = require('./routes/Orders/addCart');
+const removeCart = require('./routes/Orders/removeCart');
 const getCart = require('./routes/Orders/getCart');
 const getOrders = require('./routes/Orders/getOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
@@ -78,12 +79,13 @@ app.post("/addBook", upload.single('bookImg') , addBook);
 //<------- Book Api Endpoints ------->
 
 //<------- Order Api Endpoints ------->
-app.post("/createOrder", createOrder);
-app.post("/createCartOrder", createCartOrder);
-app.post("/addCart", addCart);
-app.get("/getCart/:email", getCart);
-app.get("/getOrders/:email", getOrders);
-app.get("/getOrder/:orderId",getSingleOrder);
+app.post("/createOrder", createOrder);         //Bulk Order Api
+app.post("/createCartOrder", createCartOrder); //Create Order from Cart Api
+app.post("/addCart", addCart);                 //Add Single Item To Cart Api
+app.delete("/removeCart", removeCart);                 //Remove Single Item from Cart Api
+app.get("/getCart/:email", getCart);           //Get All Cart Items Api
+app.get("/getOrders/:email", getOrders);       //Get All Orders Api
+app.get("/getOrder/:orderId",getSingleOrder);  //Get Single Order
 
 //<------- Order Api Endpoints ------->
 

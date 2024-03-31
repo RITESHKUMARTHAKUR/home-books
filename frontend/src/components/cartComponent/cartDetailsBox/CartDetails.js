@@ -10,6 +10,9 @@ const OrdersDetails = (props) => {
     const handleDecrease = () => {
         props.decreaseFun(props.pID);
     }
+    const handleRemoveFunction = () => {
+        props.removeFun(props.pID);
+    }
 
   return (
     <div className='cartDetailsBox'>
@@ -19,7 +22,7 @@ const OrdersDetails = (props) => {
         <div className="bookCartDetails">
             <div className="bookCartPrimary">
                 <p>{props.title}</p>
-                <button className=""> <ImCross/> </button>
+                <button onClick={handleRemoveFunction}  className=""> <ImCross/> </button>
             </div>
             <div className="bookCartSecondary">
                 <div className="bookCartPrice">

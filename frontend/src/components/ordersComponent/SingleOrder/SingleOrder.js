@@ -122,7 +122,7 @@ const SingleOrder = () => {
                       <SingleOrderCard 
                       productTitle={orderProduct.title} 
                       productType={orderProduct.elementType} 
-                      productPrice={orderProduct.price} 
+                      productPrice={orderProduct.price-orderProduct.discount} 
                       productImg={orderProduct.bookImg}
                       productCount={orderProduct.bookQuantity} 
                       />

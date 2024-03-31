@@ -118,6 +118,7 @@
 .booksAddBtn, .booksSubBtn {
     align-items: center;
     background: #0000;
+    cursor: pointer;
     /* border: 2px solid var(--bs-theme-secondary); */
     border: none;
     border-radius: 5px;

@@ -19,6 +19,9 @@ const Cart = () => {
 
   const getCartUrl = `${process.env.REACT_APP_API_BASE_URL}/getCart/${currentUser.email}`;
   const createCartOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/createCartOrder`;
+  const deleteItemUrl = `${process.env.REACT_APP_API_BASE_URL}/removeCart`;
+
+
   const[userDoc,setUserDoc] = useState({
     address: "",
     contact: "",
@@ -86,6 +89,27 @@ const Cart = () => {
     }
   
   }
+  const handleRemove = async (productID) => {
+    try {
+      const deleteReq =  await fetch(deleteItemUrl,{
+        method: "DELETE",
+        headers : {
+          "Content-type" : "application/json"
+        },
+        body: JSON.stringify({productID,currentUser})
+      });
+     
+      if(deleteReq.status === 200 ){
+        toast.success("Product Removed", {
+          autoClose: 2000
+        });
+        fetchCart();
+      }
+      // setValues(values.filter((todo) => todo._id !== id));
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   const handleUserAddressChange = (addValue) => {
     const updatedUserDetails = {...userDoc, address: addValue };
@@ -125,7 +149,7 @@ const Cart = () => {
   }
 
   useEffect(() => {
-      getTotal();
+    getTotal();
   },[cartDoc])
 
   useEffect(() => {
@@ -145,11 +169,8 @@ const Cart = () => {
         orderTotal={cartTotalNum}
         cancelBtn={handleCancel} 
         confirmBtn={handleConfirm} 
-
-
-
-
       />
+
       {cartDoc.length>0 ? 
         <>
           <div className="cartDetailsContainer">
@@ -158,9 +179,10 @@ const Cart = () => {
                 title={cartProd.productDetails.title} 
                 price={cartProd.productDetails.price-cartProd.productDetails.discount} 
                 quantity={cartProd.productQuantity}
-                increaseFun={handladd}
                 pID={cartProd._id}
+                increaseFun={handladd}
                 decreaseFun={handlSub}
+                removeFun={handleRemove}
                 img={cartProd.productDetails.bookImg}
               />
             ))}

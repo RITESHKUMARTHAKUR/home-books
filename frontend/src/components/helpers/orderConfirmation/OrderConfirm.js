@@ -8,7 +8,7 @@ const OrderConfirm = (props) => {
     const [orderTotal,setOrderTotal] = useState(0);
 
     const calculateOrderTotal = (bookArray) => {
-        let booksTotal = bookArray.reduce((accumulator,currentValue) => accumulator+ (currentValue.price*currentValue.bookQuantity) , 0 );  
+        let booksTotal = bookArray.reduce((accumulator,currentValue) => accumulator+ ( (currentValue.price - currentValue.discount)*currentValue.bookQuantity) , 0 );  
         setOrderTotal(booksTotal);
     }
 
@@ -102,7 +102,7 @@ const OrderConfirm = (props) => {
                                 <tr className='selectedBooksTableBodyTr'>
                                     <th>{index+1}</th>
                                     <td>{bookList.title}</td>
-                                    <td> &#8377; {bookList.price}</td>
+                                    <td> &#8377; {bookList.price-bookList.discount}</td>
                                     <td> <button className='booksAddBtn' onClick={() => handleQuantityAdd(bookList._id)}> <FaCirclePlus/> </button> &nbsp;  {bookList.bookQuantity<10 ?0: "" }{bookList.bookQuantity}&nbsp; <button className='booksSubBtn' onClick={() => handleQuantitySub(bookList._id)}> <FaCircleMinus /> </button></td>
                                 </tr>
                             ))}
@@ -118,7 +118,7 @@ const OrderConfirm = (props) => {
 
 
             <div className="orderButtonBox">
-                <p>Total : {orderTotal}</p>
+                <p> <b>Order Total: &#8377;{orderTotal}</b> </p>
                 <button className='cancelOrderButton' onClick={props.cancelBtn} >
                     Cancel
                 </button>

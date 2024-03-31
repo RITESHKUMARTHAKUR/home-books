@@ -226,8 +226,8 @@ const School = () => {
 
 
   const handleUserAddressChange = (addValue) => {
-      const updatedUserDetails = {...userDoc, address: addValue };
-      setUserDoc(updatedUserDetails);
+    const updatedUserDetails = {...userDoc, address: addValue };
+    setUserDoc(updatedUserDetails);
   };
 
   useEffect(() => {
