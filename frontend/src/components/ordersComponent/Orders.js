@@ -66,7 +66,7 @@ const Orders = () => {
   return (
     <div className='ordersContainer'>
       {orderDoc && orderDoc.map((orders,index) => (
-        <OrderCard orderImg={OrderImg} link={`/order/${orders._id}`} orderId={getOrderId(orders._id)} date={getDate(orders.createdAt)} title={firstProduct[index].title} pay={orders.orderTotal} orderStatus={orders.orderStatus} items={orders.itemsCount} />
+        <OrderCard orderImg={firstProduct[index].bookImg} link={`/order/${orders._id}`} orderId={getOrderId(orders._id)} date={getDate(orders.createdAt)} title={firstProduct[index].title} pay={orders.orderTotal} orderStatus={orders.orderStatus} items={orders.itemsCount} />
       ))}
       
     </div>

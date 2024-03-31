@@ -21,6 +21,7 @@
 }
 .orderContainerBox .orderContainer {
     display: flex;
+    gap: 1rem;
 }
 .orderContainerBox .orderContainer .orderDetailsContainer {
     flex-grow: 1;
@@ -61,8 +62,12 @@
 /* .orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(4) {} */
 
 .orderContainerBox .orderContainer .orderImgContainer {
-    width: 200px;
+    width: 150px;
+    box-shadow: var(--bs-theme-box-shadow);
+    padding: 10px;
 }
 .orderContainerBox .orderContainer .orderImgContainer img{
     width: 100%;
+    object-fit: cover;
+    height: 100%;
 }

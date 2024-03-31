@@ -1,9 +1,8 @@
 .schoolCardContainer {
     box-shadow: var(--bs-theme-box-shadow);
     display: flex;
-    height: 310px;
     text-decoration: none;
-    padding: 0.5em 1em  1em 1em;
+    padding: 0.5em 0.5em  1em 0.5em;/* padding: 0em 0  1em 0; */
     border-radius: 10px;
     margin: 10px 10px ;
     color: var(--bs-theme-secondary);
@@ -13,11 +12,15 @@
     justify-content: center;
 }
 .schoolCardContainer div{
-    width: 300px;
+    width: 100%;
+    height: 200px;
     margin-bottom: 20px;
 }
 .schoolCardContainer img{
     width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
     border-radius: 10px;
 }
 .schoolCardContainer h3,p{
@@ -25,7 +28,7 @@
 }
 
 .schoolCardContainer .schoolCardContainerTitle {
-    height: 70px;
+    /* height: 70px; */
     font-size: 20px;
     /* text-align: center; */
 }

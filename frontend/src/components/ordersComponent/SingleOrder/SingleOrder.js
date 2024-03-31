@@ -85,8 +85,38 @@ const SingleOrder = () => {
                   <div className={`showDelivery ${getDeliveryColor(orderData.orderStatus)}`}>
                     Order Status: {getDeliveryStatus(orderData.orderStatus)}  <span className="deliveryCircle"> <FaCircle /></span>
                   </div>
+
+                  <div className='deliveryContainer'>
+                    <table className='deliveryContainerTable'>
+                      <thead>
+                        <tr>
+                          <td> 
+                            <p className='deliveryTableHeader'><b>Deliver to:</b> </p>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody className='deliveryTableBody'>
+                          <tr>
+                            <td>Name</td>
+                            <td>: {orderData.userName}</td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td>: {orderData.userEmail}</td>
+                          </tr>
+                          <tr>
+                            <td>Contact</td>
+                            <td>: {orderData.userContact}</td>
+                          </tr>
+                          <tr>
+                            <td>Address</td>
+                            <td>: {orderData.userAddress}</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div> :
-                <div> 
+                <div className='showSectionSummary'> 
                   {
                     orderProducts && orderProducts.map(orderProduct => (
                       <SingleOrderCard 

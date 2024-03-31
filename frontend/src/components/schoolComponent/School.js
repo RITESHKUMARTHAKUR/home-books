@@ -177,7 +177,7 @@ const School = () => {
     setBoxVisible(!boxVisible)
   }
 
-  const handleConfirm = async (selectedArray,orderTotal,) => {
+  const handleConfirm = async (selectedArray,orderTotal) => {
     const orderResponse = await fetch(createOrderUrl,{
       method: 'POST',
       credentials: "include",
@@ -275,7 +275,7 @@ const School = () => {
           </div>
         </div>
       </div>
-      {selectAllValue + 1 === 1? "false": "true" }
+      {/* {selectAllValue + 1 === 1? "false": "true" } */}
       <div className="schoolBooksContainer">
         {schoolBooks.length>0 ? 
         <>

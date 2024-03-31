@@ -4,6 +4,13 @@ import { ImCross } from "react-icons/im";
 import { FaPlus,FaMinus } from "react-icons/fa6";
 
 const OrdersDetails = (props) => {
+    const handleIncrease = () => {
+        props.increaseFun(props.pID);
+    }
+    const handleDecrease = () => {
+        props.decreaseFun(props.pID);
+    }
+
   return (
     <div className='cartDetailsBox'>
         <div className='bookImg'>
@@ -20,8 +27,8 @@ const OrdersDetails = (props) => {
                     <p>&#8377;{props.quantity *  props.price}</p>
                 </div>
                 <div className="bookCartIncrease">
-                    <button className=""> <FaPlus/> </button>
-                    <button className=""> <FaMinus/> </button>
+                    <button onClick={handleIncrease} className=""> <FaPlus/> </button>
+                    <button onClick={handleDecrease} className=""> <FaMinus/> </button>
                 </div>
             </div>
         </div>

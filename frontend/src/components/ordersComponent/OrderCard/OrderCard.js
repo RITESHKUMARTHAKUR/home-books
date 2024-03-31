@@ -31,7 +31,9 @@ const OrderCard = (props) => {
         <p>Status: <span style={{"color": `${getOrderStatusColor()}`,"fontWeight": "bold"}}  >{getOrderStatus()}</span> </p>
         </div>
         <div className="orderContainer">
-            <div className="orderImgContainer"> <img src={props.orderImg} alt="" /></div>
+            <div className="orderImgContainer"> 
+              <img src={props.orderImg} alt="" />
+            </div>
             <div className="orderDetailsContainer">
                 <div>
                     <p>{props.title}</p>

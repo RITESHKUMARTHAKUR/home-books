@@ -68,11 +68,14 @@
 }
 .schoolContainer .schoolImgBanner {
     height: 40vh;
+    width: 40%;
     margin-right: 3em;
 }
 
 .schoolContainer .schoolImgBanner img{
     height: 100%;
+    object-fit: cover;
+    object-position: center;
     border-radius: 10px;
     width: 100%;
 
