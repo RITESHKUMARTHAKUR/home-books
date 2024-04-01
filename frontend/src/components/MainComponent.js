@@ -10,10 +10,12 @@ import School from './schoolComponent/School';
 import Product from "./productComponent/Product";
 import Login from "./registerComponent/loginComponent/login";
 import Signup from "./registerComponent/signupComponent/signup";
+
 import Admin from "./adminComponent/Admin";
 import AddSchoolBooks from './adminComponent/AddSchoolBooksComponent/AddSchoolBooks';
 import AddExamBooks from './adminComponent/AddExamBooksComponent/AddExamBooks';
 import AddSchool from './adminComponent/AddSchools/AddSchool';
+import ViewOrders from './adminComponent/ViewOrders/ViewOrder';
 
 
 const MainComponent = () => {
@@ -35,6 +37,8 @@ const MainComponent = () => {
           <Route path='/admin/addSchoolBooks' element={<AddSchoolBooks/>} />
           <Route path='/admin/addSchool' element={<AddSchool/>} />
           <Route path='/admin/addExamBooks' element={<AddExamBooks/>} />
+          <Route path='/admin/viewOrders' element={<ViewOrders/>} />
+          <Route path='/admin/viewOrder/:orderId' element={<SingleOrder/>} />
       </Routes>
   )
 }

@@ -54,6 +54,8 @@ const addCart = require('./routes/Orders/addCart');
 const removeCart = require('./routes/Orders/removeCart');
 const getCart = require('./routes/Orders/getCart');
 const getOrders = require('./routes/Orders/getOrder');
+const getAllOrders = require('./routes/Orders/getAllOrders');
+const updateOrder = require('./routes/Orders/updateOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
 
 
@@ -84,7 +86,9 @@ app.post("/createCartOrder", createCartOrder); //Create Order from Cart Api
 app.post("/addCart", addCart);                 //Add Single Item To Cart Api
 app.delete("/removeCart", removeCart);                 //Remove Single Item from Cart Api
 app.get("/getCart/:email", getCart);           //Get All Cart Items Api
-app.get("/getOrders/:email", getOrders);       //Get All Orders Api
+app.get("/getOrders/:email", getOrders);       //Get Orders of User Api
+app.get("/getAllOrders", getAllOrders);       //Get All Orders Api
+app.put("/updateOrder/:orderId", updateOrder);       //Get All Orders Api
 app.get("/getOrder/:orderId",getSingleOrder);  //Get Single Order
 
 //<------- Order Api Endpoints ------->

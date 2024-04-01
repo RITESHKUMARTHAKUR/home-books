@@ -1,10 +1,11 @@
 .adminContainer {
     /* height: 80vh; */
-    margin:0 0 5em; 
+    margin:0 0 5rem; 
 }
 .adminBtns {
     display: grid;
     align-items: stretch;
+    row-gap:  2rem;
     justify-items: center;
     grid-template-columns: repeat(3,1fr);
 }

@@ -1,38 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import "./SingleOrder.css";
 import { FaCircle } from "react-icons/fa6";
+import {useAuth} from '../../../contexts/AuthContext';
 import bookImg from "../../../images/phys_book.jpg";
+import {toast} from 'react-toastify';
 import SingleOrderCard from './SingleOrderProductCard/SingleOrderCard';
 import { useParams } from 'react-router-dom';
 
 const SingleOrder = () => {
   const { orderId } = useParams();
+  const {currentUser} = useAuth();
+
   const getSingleOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/getOrder/${orderId}`;
+  const updateOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/updateOrder/${orderId}`;
+
+
   const [showState,setShowState] = useState(false);
   const [orderData,setOrderData] = useState({});
+  const [orderStatusValue,setOrderStatusValue] = useState("Pending");
+  const [orderStatusColorValue,setOrderStatusColorValue] = useState("statusPending");
+  const [newStatus,setNewStatus] = useState(1);
   const [orderProducts,setOrderProducts] = useState([]);
 
   const getDeliveryColor = (orderStatus) => {
     switch (orderStatus) {
       case 1:
-        return "statusPending";
+        setOrderStatusColorValue("statusPending");
+        break;
       case 2:
-        return "statusProcessing";
+        setOrderStatusColorValue("statusProcessing");
+        break;
       case 3:
-        return "statusDelivered";
+        setOrderStatusColorValue("statusDelivered");
+        break;
     
       default:
         break;
     }
   }
+
   const getDeliveryStatus = (orderStatus) => {
     switch (orderStatus) {
       case 1:
-        return "Pending";
+        setOrderStatusValue("Pending");
+        break;
       case 2:
-        return "Processing";
+        setOrderStatusValue("Processing");
+        break;
       case 3:
-        return "Delivered";
+        setOrderStatusValue("Delivered");
+        break;
     
       default:
         break;
@@ -49,13 +66,48 @@ const SingleOrder = () => {
     .then(response => {
         response.json().then(orderDoc => {
           setOrderData(orderDoc);
+          getDeliveryStatus(orderDoc.orderStatus);
+          getDeliveryColor(orderDoc.orderStatus);
 
           const {orderProducts} = orderDoc ;
           setOrderProducts(orderProducts);
+
         })
     });
   };
+  const handleStatusChange = (e) => {
+    setNewStatus(Number(e.target.value));
+  }
+  const handleStatusSave = async () => {
+    try {
+      const response = await fetch(updateOrderUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ updateFieldValue: newStatus }),
+      });
 
+      if(response.status === 200 ){
+        getDeliveryStatus(newStatus);  
+        getDeliveryColor(newStatus);
+        toast.success("Order Updated!")
+      }
+      else {
+        toast.error("Cannot update order!");
+      }
+    
+
+
+    } catch (error) {
+      toast.error("Cannot update order!");
+      console.error(error);
+    }
+
+   
+  }
+
+  // console.log(orderStatusValue);
   useEffect(() => {
     getSingleOrder();
   },[]);
@@ -82,9 +134,24 @@ const SingleOrder = () => {
             <div className='showSection'>
               { showState ? 
                 <div className='showSectionDelivery'>
-                  <div className={`showDelivery ${getDeliveryColor(orderData.orderStatus)}`}>
-                    Order Status: {getDeliveryStatus(orderData.orderStatus)}  <span className="deliveryCircle"> <FaCircle /></span>
+                  <div className={`showDelivery ${orderStatusColorValue}`}>
+                    Order Status: {orderStatusValue}  <span className="deliveryCircle"> <FaCircle /></span>
                   </div>
+                  { currentUser.accType === 1 ?
+                  <div className='orderStatusContainer'>
+                    <p className='orderStatusHeader'> <b> Change Order Status: </b> </p>
+                    
+                    <div className='orderStatusChangeContainer'>
+                      <select className="orderStatusChange" onChange={handleStatusChange} name="" id="">
+                        <option className='orderStatusChangeValue' value="">---------- Change Status ----------</option>
+                        <option className='orderStatusChangeValue' value="1">Pending</option>
+                        <option className='orderStatusChangeValue' value="2">Processing</option>
+                        <option className='orderStatusChangeValue' value="3">Delivered</option>
+                      </select>
+                      <button onClick={handleStatusSave} className='orderStatusSaveBtn'>Save</button>
+                    </div>
+                  
+                  </div> : null  }
 
                   <div className='deliveryContainer'>
                     <table className='deliveryContainerTable'>
