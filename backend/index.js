@@ -57,6 +57,8 @@ const getOrders = require('./routes/Orders/getOrder');
 const getAllOrders = require('./routes/Orders/getAllOrders');
 const updateOrder = require('./routes/Orders/updateOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
+const userMessage = require('./routes/Messages/userMessage');
+const getAllMessage = require('./routes/Messages/getAllMessages');
 
 
 // Api Endpoints
@@ -90,8 +92,12 @@ app.get("/getOrders/:email", getOrders);       //Get Orders of User Api
 app.get("/getAllOrders", getAllOrders);       //Get All Orders Api
 app.put("/updateOrder/:orderId", updateOrder);       //Get All Orders Api
 app.get("/getOrder/:orderId",getSingleOrder);  //Get Single Order
-
 //<------- Order Api Endpoints ------->
+
+//<------- Message Api Endpoints ------->
+app.post("/userMessage", userMessage);
+app.post("/getAllMessage", getAllMessage);
+//<------- Message Api Endpoints ------->
 
 
 

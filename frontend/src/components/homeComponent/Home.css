@@ -80,6 +80,9 @@
     gap: 2em;
     grid-template-columns: repeat(4,1fr);
 }
+.homeContainer .homeSectionFourth {
+    margin-top: 2rem;
+}
 
 .homeContainer .homeSectionFourth h3{
     display:flex;

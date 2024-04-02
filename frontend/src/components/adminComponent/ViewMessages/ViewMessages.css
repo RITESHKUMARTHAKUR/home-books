@@ -1,0 +1,28 @@
+.userMessageContainer {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 2rem;
+}
+.viewMessageContainer {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.viewMessageContainer .viewMessageHeader {
+    display: flex;
+    justify-content: space-between;
+}
+.viewMessageContainer .viewMessageBody {
+    display: flex;
+    flex-direction: column;
+}
+.userMessageContainer .viewMessageContainer:nth-child(4n + 1), .messagesListCont .messages .singleMessage:nth-child(4n + 4) {
+    background-color: var(--bs-secondary);
+    color: var(--bs-theme-secondary);
+}
+  
+.userMessageContainer .viewMessageContainer:nth-child(even) {
+    background-color: var(--bs-gray-400);
+    /* border: 2px solid var(--bs-theme-secondary); */
+    /* color: #7E41B3; */
+    color: var(--bs-theme-secondary);
+}

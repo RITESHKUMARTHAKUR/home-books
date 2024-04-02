@@ -172,6 +172,7 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
+
       <div className="homeSectionFirst">
         <div className="categoriesBar">
           <Link>
@@ -240,6 +241,28 @@ const Home = () => {
         </div>
       </div>
 
+      {/* ---------------------- School Slider Starts ---------------------- */}
+        <div className="homeSectionFourth">
+          <h3 className="sectionHeader">
+            {" "}
+            <FaSchool />
+            &nbsp; Schools
+          </h3>
+          <Slider {...settingsSchools}>
+            {schoolDoc && schoolDoc.map((schoolInfo,index) => (
+              <SchoolCard
+              // img={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`}
+              img={schoolInfo.schoolImg}
+              link={`/school/${schoolInfo._id}`}
+              title={schoolInfo.schoolName}
+              address={schoolInfo.area}
+            />
+            ) )}
+            
+          </Slider>
+        </div>
+      {/* ---------------------- School Slider Ends ---------------------- */}
+
       <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
@@ -264,6 +287,7 @@ const Home = () => {
           
         </Slider>
       </div>
+
       <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
@@ -288,6 +312,7 @@ const Home = () => {
           
         </Slider>
       </div>
+
       <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
@@ -310,6 +335,7 @@ const Home = () => {
 
         </Slider>
       </div>
+
       <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
@@ -331,28 +357,6 @@ const Home = () => {
           ))}
         </Slider>
       </div>
-
-{/* ---------------------- School Slider Starts ---------------------- */}
-      <div className="homeSectionFourth">
-        <h3 className="sectionHeader">
-          {" "}
-          <FaSchool />
-          &nbsp; Schools
-        </h3>
-        <Slider {...settingsSchools}>
-          {schoolDoc && schoolDoc.map((schoolInfo,index) => (
-            <SchoolCard
-            // img={`${process.env.REACT_APP_API_BASE_URL + "/" + schoolInfo.schoolImg}`}
-            img={schoolInfo.schoolImg}
-            link={`/school/${schoolInfo._id}`}
-            title={schoolInfo.schoolName}
-            address={schoolInfo.area}
-          />
-          ) )}
-          
-        </Slider>
-      </div>
-{/* ---------------------- School Slider Ends ---------------------- */}
 
       <div className="homeSectionThird">
         <BenefitCard

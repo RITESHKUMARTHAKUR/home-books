@@ -17,6 +17,9 @@ import AddExamBooks from './adminComponent/AddExamBooksComponent/AddExamBooks';
 import AddSchool from './adminComponent/AddSchools/AddSchool';
 import ViewOrders from './adminComponent/ViewOrders/ViewOrder';
 
+import viewMessages from './adminComponent/ViewMessages/ViewMessages';
+import ViewMessages from './adminComponent/ViewMessages/ViewMessages';
+
 
 const MainComponent = () => {
   return (
@@ -39,6 +42,7 @@ const MainComponent = () => {
           <Route path='/admin/addExamBooks' element={<AddExamBooks/>} />
           <Route path='/admin/viewOrders' element={<ViewOrders/>} />
           <Route path='/admin/viewOrder/:orderId' element={<SingleOrder/>} />
+          <Route path='/admin/viewMessages' element={<ViewMessages/>} />
       </Routes>
   )
 }

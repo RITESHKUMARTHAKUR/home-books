@@ -15,23 +15,27 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     let acctype = 3;
     event.preventDefault();
-    const userData = {name,email,contact,password, acctype, address};
 
-    const response = await fetch( signupUrl , {
-      method: 'POST',
-      body : JSON.stringify(userData),
-      headers : {'Content-Type': 'application/json'}
-    });
-
-    if(response.status  === 200) {
-      toast.success("Signup Successful",{
-        autoClose: 2000
+    if(name !== '',email !== '',contact !== '',password !== '', address !== ''){
+      const userData = {name,email,contact,password, acctype, address};
+      const response = await fetch( signupUrl , {
+        method: 'POST',
+        body : JSON.stringify(userData),
+        headers : {'Content-Type': 'application/json'}
       });
+      if(response.status  === 200) {
+        toast.success("Signup Successful",{
+          autoClose: 2000
+        });
+      }else {
+        toast.error("Signup Unsuccessful",{
+          autoClose: 2000
+        });
+      }
     }else {
-      toast.error("Signup Unsuccessful",{
-        autoClose: 2000
-      });
+        toast.error("Please fill all the details!")
     }
+    
 
 
   }

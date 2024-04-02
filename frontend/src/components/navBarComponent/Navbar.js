@@ -93,12 +93,18 @@ const Navbar = () => {
                 <Link to="/" >
                     Home
                 </Link>
-                <Link to="/orders" >
-                    Orders
-                </Link>
-                <Link to="/cart" >
-                    Cart
-                </Link>
+                {currentUser !== null ? 
+                    <>
+                        <Link to="/orders" >
+                            Orders
+                        </Link>
+                        <Link to="/cart" >
+                            Cart
+                        </Link>
+                    </>
+                    
+                : null }
+                
                 <Link to="/contact-us" >
                     Contact
                 </Link>
