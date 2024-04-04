@@ -16,6 +16,7 @@ const Admin = () => {
                 <Link className='adminLinks' to="/admin/addExamBooks">Add Exam Books</Link>
                 <Link className='adminLinks' to="/admin/viewOrders">View Orders</Link>
                 <Link className='adminLinks' to="/admin/viewMessages">View Messages</Link>
+                <Link className='adminLinks' to="/admin/promotions">Promotions</Link>
             </div>
         </div>
     )

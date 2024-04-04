@@ -14,6 +14,10 @@
 .innerFooterContainer .footerSectionFirst,.footerSectionSecond, .footerSectionThird, .footerSectionFourth{
     width: calc(100%*1/4);
 }
+/* .innerFooterContainer .footerSectionFirst .firstSection{ 
+    display: flex;
+    flex-direction: column;
+} */
 .innerFooterContainer .footerSectionFirst img{
  display: block;
  width: 200px;
@@ -52,6 +56,9 @@
 .innerFooterContainer .footerSectionFourth  .fourthSectionLinks div{
     margin-bottom: 1em;
 }
+.footerMargin{
+    margin-bottom: 0;
+}
 /* .innerFooterContainer .footerSectionFourth  .fourthSectionLinks a{
     display: flex;
     text-decoration: none;
@@ -63,3 +70,21 @@
     transition: all  ease-in-out  0.35s;
     
 } */
+@media only screen and (max-width: 992px) { 
+    .footerContainer .innerFooterContainer {
+        flex-direction: column;
+    }
+    /* .innerFooterContainer .footerSectionFirst img{ 
+        align-self: center;
+    } */
+    
+    .innerFooterContainer .footerSectionFirst,.footerSectionSecond, .footerSectionThird, .footerSectionFourth{
+        width: 100%;
+    }
+    .innerFooterContainer .footerSectionFirst img{
+       align-self: center;
+    }
+    .innerFooterContainer .footerSectionFirst .footerLinks{
+        align-self: center;
+    }
+ }

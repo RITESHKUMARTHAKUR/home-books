@@ -1,0 +1,62 @@
+.promotionInputBorder {
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.promotionInputTitle{
+    margin: 0;
+}
+.promotionContainer .promotionHeader {
+    color: var(--bs-theme-secondary);
+}
+.promotionContainer .promotionCreate {
+    border: 2px solid var(--bs-theme-secondary);
+    padding: 1rem 1rem;
+    /* background: var(--bs-white); */
+    border-radius: 5px;
+    color: var(--bs-theme-secondary);
+}
+.promotionCreate .promotionCreateHeading {
+    color: var(--bs-theme-secondary);
+}
+.promotionContainer .promotionCreate .promotionForm {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+}
+.promotionContainer .promotionCreate .promotionForm .promotionInputGroup{ 
+    display: flex;
+    flex-direction: column;
+}
+.promotionContainer .promotionCreate .promotionForm .promotionDesc .promotionInputDescription { 
+    border: 2px solid var(--bs-theme-secondary);
+    color: var(--bs-theme-secondary) !important;
+    outline: none;
+    font-family: "Poppins";
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+.promotionCreate .promotionForm .promotionInputGroup .promotionInputImage {
+    background-color: var(--bs-white);
+}
+.promotionForm .promotionDesc,.promotionSubmitBtn,.promotionImageContainer {
+    grid-column: span 3;
+}
+.promotionForm .promotionSubmitBtn {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    color: var(--bs-theme-secondary);
+    background-color: var(--bs-secondary);
+    border: 2px solid var(--bs-secondary);
+    transition: all 0.2s ease-in-out;
+
+}
+.promotionForm .promotionSubmitBtn:hover { 
+    color: var(--bs-theme-bg);
+    border: 2px solid var(--bs-theme-secondary);
+    background-color: var(--bs-theme-secondary);
+}

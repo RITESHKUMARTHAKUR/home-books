@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' })
 
 
 const PORT = process.env.PORT || 5000;
-const origin = ['https://homebooks.in', 'http://localhost:3000'];
+const origin = ['https://homebooks.in', 'http://localhost:3000', 'http://192.168.29.234:3000'];
 
 
 app.use(cors({credentials: true, origin: origin }));
@@ -59,6 +59,7 @@ const updateOrder = require('./routes/Orders/updateOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
 const userMessage = require('./routes/Messages/userMessage');
 const getAllMessage = require('./routes/Messages/getAllMessages');
+const addPromotion = require('./routes/Promotions/addPromotions');
 
 
 // Api Endpoints
@@ -99,6 +100,9 @@ app.post("/userMessage", userMessage);
 app.post("/getAllMessage", getAllMessage);
 //<------- Message Api Endpoints ------->
 
+//<------- Promotion Api Endpoints ------->
+app.post("/addPromotion", addPromotion);
+//<------- Promotion Api Endpoints ------->
 
 
 

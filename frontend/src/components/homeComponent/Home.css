@@ -95,3 +95,9 @@
     font-size: 30px;
 }
 
+@media only screen and (max-width: 992px) { 
+    
+    .homeContainer .homeSectionThird {
+        grid-template-columns: repeat(1,1fr);
+    }
+}

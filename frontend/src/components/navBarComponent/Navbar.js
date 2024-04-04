@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Navbar.css';
-import Logo from '../../images/Logo.png'
-import {Link} from 'react-router-dom'
+import Logo from '../../images/Logo.png';
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import {Link} from 'react-router-dom';
 import { FaUser,FaBorderAll,FaAngleDown } from "react-icons/fa6";
 import { IoBag } from "react-icons/io5";
 import { useAuth } from '../../contexts/AuthContext';
@@ -44,14 +45,25 @@ const Navbar = () => {
   return (
     <div className='navBarContainer'>
         <div className="navSection1">
-
+            <div className="hamburger">
+                <div className={"line line1 "}></div>
+                <div className={"line line2 "}></div>
+                <div className={"line line3 "}></div>
+            </div>
             <Link to="/" className="logo">
                 <img src={Logo} alt="" />
             </Link>
 
-            <div className="searchInput">
-                <input type="text" placeholder='Search and hit enter...' />
-            </div>
+            <div className='searchContainer'>
+                <div className="searchInput">
+                    {
+                        window.innerWidth < 993 ?
+                            null
+                        :
+                        <input type="text" placeholder='Search and hit enter...' />
+                    }
+                    
+                </div>
 
             {/* {currentUser && (
                 <div style={{"display": "flex"}} >
@@ -71,7 +83,7 @@ const Navbar = () => {
                 <Link to="/profile" className='usericons'><FaUser /></Link>
                 {/* <button onClick={logout} >Logout</button> */}
                 <p>{currentUser.name}</p>
-            </div>
+                </div>
             ): (
                 <div className="regBtn">
                     <Link to="/login" > Login </Link>
@@ -79,6 +91,7 @@ const Navbar = () => {
                </div>
             )
             }
+            </div>
            
             
 
@@ -86,9 +99,9 @@ const Navbar = () => {
 
         </div>
         <div className="navSection2">
-            <div className="categoriesButton">
+            {/* <div className="categoriesButton">
                 <button> <FaBorderAll /> Categories <FaAngleDown /> </button>
-            </div>
+            </div> */}
             <div className="pageLinks">
                 <Link to="/" >
                     Home

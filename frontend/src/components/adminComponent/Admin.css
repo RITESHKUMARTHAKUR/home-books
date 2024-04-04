@@ -12,6 +12,8 @@
 .adminBtns .adminLinks {
     padding: 0.5em 1em;
     font-weight: 600;
+    width: 60%;
+    text-align: center;
     background: white;
     text-decoration: none;
     color: var(--bs-theme-secondary);
