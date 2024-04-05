@@ -42,7 +42,7 @@ const Signup = () => {
   return (
     <div className='signupContainer'>
       <h2>Sign Up</h2>
-      <form action="#" onSubmit={handleSubmit} >
+      <form action="#" className='signUpForm' onSubmit={handleSubmit} >
         <input    className='signupInp' type="text"   onChange={(e) => setName (e.target.value)} placeholder='name'/>
         <input    className='signupInp' type="email"  onChange={(e) => setEmail(e.target.value)} placeholder='email'/>
         <input    className='signupInp' type="number" onChange={(e) => setContact(e.target.value)} placeholder='phone no.'/>

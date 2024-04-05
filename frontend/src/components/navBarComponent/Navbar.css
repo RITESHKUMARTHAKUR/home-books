@@ -73,6 +73,7 @@
 
 .navBarContainer .navSection2{
     width: 90%;
+    transition: all 0.2s ease-in-out;
     padding: 0 0 10px;
     display: flex;
     margin: auto;
@@ -112,6 +113,15 @@
 .navBarContainer .hamburger {
     display: none;
 }
+.showNavMenu{
+    left: 0 !important;
+}
+.hideNavMenu{
+    left: -200vw !important;
+}
+.hamburgerZindex {
+    z-index: 1010;
+}
 
 @media only screen and (max-width: 992px) {
     .navBarContainer .navSection1 .logo{
@@ -130,7 +140,6 @@
         -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
         cursor: pointer;
-        z-index: 1001;
     }
     .navBarContainer .hamburger .line{
         height: 3px;
@@ -142,6 +151,19 @@
     }
     .navSection1 .regBtn a:nth-child(2) {
         display: none;
+    }
+
+    .navBarContainer .navSection2{ 
+        width: 100%;
+        position: fixed;
+        background-color: var(--bs-white);
+        height: 100vh;
+        z-index: 1009;
+        top: 0;
+    }
+    .navBarContainer .navSection2 .pageLinks{ 
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 
 }

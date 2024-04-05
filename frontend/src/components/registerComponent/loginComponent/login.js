@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className='loginContainer'>
         <h2>Login</h2>
-        <form action="#" onSubmit={handleSubmit} >
+        <form action="#" className='loginForm' onSubmit={handleSubmit} >
             <input className='loginInp' type="text" onChange={ (e)=> setEmail(e.target.value) } placeholder='email'/>
             <input className='loginInp' type="password" onChange={ (e)=> setPassword(e.target.value) } placeholder='password'/>
             <button className='loginBtn'>Login</button>

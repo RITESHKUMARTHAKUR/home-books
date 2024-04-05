@@ -31,14 +31,18 @@
 }
 .cartButtonBox {
     display: flex;
-    gap: 2rem;
-    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 1rem;
 }
+.cartButtonBox .cartTotal{
+    font-size: 15px;
+} 
 .confirmCartButton {
-    padding: 10px 0;
+    padding: 10px 60px;
     cursor: pointer;
-    width: 30%;
+    width: 100%;
     transition: all 0.2s ease-in-out;
     font-weight: 600;
     border: 2px solid #7E41B3;
@@ -50,9 +54,9 @@
     background: #7E41B3;
 }
 .cancelCartButton{
-    padding: 10px 0;
+    padding: 10px 60px;
     cursor: pointer;
-    width: 30%;
+    width: 100%;
     transition: all 0.2s ease-in-out;
     font-weight: 600;
     border: 2px solid #7E41B3;
@@ -79,6 +83,7 @@
     border-radius: 10px;
     box-shadow: var(--bs-theme-box-shadow);
     margin-bottom: 2em;
+    overflow-x: auto;
     /* padding: 10px 10px 0; */
 }
 .selectedBooksTableContainer .selectedBooksTable {
@@ -132,4 +137,21 @@
     border-radius: 5px;
     color: var(--bs-theme-secondary);
     display: inline-flex;
+}
+@media only screen and (max-width: 992px) {
+    .cartConfirmContainer { 
+        width: 90%;
+        padding: 0rem 2rem;
+    }
+    .selectedBooksTableContainer .selectedBooksTable {
+        border-collapse: collapse;
+        width: max-content;
+    }
+    .confirmCartButton, .cancelCartButton{
+        padding: 10px 15px;
+    }
+    /* .selectedBooksTable .selectedBooksTableBody .selectedBooksTableBodyTr td:nth-child(2) {
+       
+        width: 20px;
+    } */
 }

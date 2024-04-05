@@ -65,10 +65,26 @@
 .orderContainerBox .orderContainer .orderImgContainer {
     width: 150px;
     box-shadow: var(--bs-theme-box-shadow);
-    padding: 10px;
+    padding: 5px;
 }
 .orderContainerBox .orderContainer .orderImgContainer img{
     width: 100%;
     object-fit: cover;
     height: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+    .orderContainerBox { 
+        width: 100%;
+    }
+    .orderContainerBox .orderContainer .orderDetailsContainer p:nth-child(1) {
+        font-size: 1em;
+        
+    }
+    .orderContainerBox .orderContainer .orderDetailsContainer {
+        width: 80%;
+    }
+    /* .orderContainerBox .orderContainerBoxHeader {
+        font-size: 1rem;
+    } */
 }

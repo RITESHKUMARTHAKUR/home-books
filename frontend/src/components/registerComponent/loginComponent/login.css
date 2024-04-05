@@ -1,7 +1,10 @@
 .loginContainer {
     width: 50%;
-    margin: 3em auto  5em;
+    margin: 3em auto  3em;
     text-align: center;
+}
+.loginForm {
+    margin:  3rem 0;
 }
 .loginContainer form .loginInp {
     border-radius: 5px;
@@ -14,12 +17,14 @@
 } */
 .loginContainer form .loginInp,.loginBtn {
     display: block;
-    margin:  1em 0;
+    margin:  1rem 0 0;
     width: 100%;
 }
 
 .loginContainer form .loginBtn {
     padding: 10px 0;
+    margin: 2rem 0;
+    letter-spacing: 2px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
     border: none;
@@ -29,4 +34,13 @@
 }
 .loginContainer form .loginBtn:hover {
     background: #8d73dd;
+}
+@media only screen and (max-width: 992px) { 
+    .loginContainer {
+        width: 100%;
+        text-align: center;
+    }
+    .loginContainer form .loginBtn { 
+        font-size: 1rem;
+    }  
 }

@@ -143,7 +143,7 @@ const SingleOrder = () => {
                     
                     <div className='orderStatusChangeContainer'>
                       <select className="orderStatusChange" onChange={handleStatusChange} name="" id="">
-                        <option className='orderStatusChangeValue' value="">---------- Change Status ----------</option>
+                        <option className='orderStatusChangeValue' value=""> -- Change Status -- </option>
                         <option className='orderStatusChangeValue' value="1">Pending</option>
                         <option className='orderStatusChangeValue' value="2">Processing</option>
                         <option className='orderStatusChangeValue' value="3">Delivered</option>
@@ -157,7 +157,7 @@ const SingleOrder = () => {
                     <table className='deliveryContainerTable'>
                       <thead>
                         <tr>
-                          <td> 
+                          <td colSpan={3}> 
                             <p className='deliveryTableHeader'><b>Deliver to:</b> </p>
                           </td>
                         </tr>

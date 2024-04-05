@@ -76,3 +76,13 @@
     background-color: #7E41B3;
     color: var(--bs-gray-400);
 }
+
+@media only screen and (max-width: 992px) { 
+    .contactSecond {
+        flex-direction: column;
+        width: 100%;
+    }
+    .contactSecond .contactRight, .contactLeft {
+        width: 100%;
+    }
+}  

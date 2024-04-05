@@ -83,6 +83,7 @@
 }
 .selectedBooksTableContainer .selectedBooksTable {
     border-collapse: collapse;
+    overflow-x: auto;
     width: 100%;
 }
 
@@ -124,4 +125,13 @@
     border-radius: 5px;
     color: var(--bs-theme-secondary);
     display: inline-flex;
+}
+
+@media only screen and (max-width: 992px) {
+    .orderConfirmContainer { 
+        width: 90%;
+    }
+    .selectedBooksTableContainer .selectedBooksTable {
+        width: max-content;
+    }
 }

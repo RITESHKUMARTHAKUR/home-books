@@ -33,6 +33,7 @@
 }
 .cartDetailsBox .bookCartDetails .bookCartPrimary{
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     /* height: 50%; */
 }
@@ -51,9 +52,11 @@
 .cartDetailsBox .bookCartDetails .bookCartSecondary{
     display: flex;
     height: 50%;
+    margin: 1rem 0 0;
+    flex-direction: column;
     /* background: lightcyan; */
     justify-content: space-between;
-    align-items: flex-end;
+    
 }
 .cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartPrice{
     display: flex;
@@ -66,6 +69,7 @@
 
 .cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease{
     display: flex;
+    align-self: flex-end;
 }
 .cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease button{
     /* box-shadow: var(--bs-theme-box-shadow); */
@@ -79,4 +83,9 @@
     border: 2px solid var(--bs-gray-400);
     align-items: center;
 
+}
+@media only screen and (max-width: 992px) {
+    .cartDetailsBox { 
+        width: 100%;
+    }
 }

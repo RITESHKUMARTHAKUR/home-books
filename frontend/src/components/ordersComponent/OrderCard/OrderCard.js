@@ -27,8 +27,8 @@ const OrderCard = (props) => {
   return (
     <Link to={props.link} className="orderContainerBox">
         <div className='orderContainerBoxHeader'>
-        <p className='orderId'> Order: #<span >{props.orderId}</span> </p>
-        <p>Status: <span style={{"color": `${getOrderStatusColor()}`,"fontWeight": "bold"}}  >{getOrderStatus()}</span> </p>
+          <p className='orderId'> Order: #<span >{props.orderId}</span> </p>
+          <p>Status: <span style={{"color": `${getOrderStatusColor()}`,"fontWeight": "bold"}}  >{getOrderStatus()}</span> </p>
         </div>
         <div className="orderContainer">
             <div className="orderImgContainer"> 

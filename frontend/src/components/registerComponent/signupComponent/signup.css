@@ -3,6 +3,9 @@
     margin: 0 auto 5em;
     text-align: center;
 }
+.signUpForm {
+    margin: 2rem 0;
+}
 .signupContainer form .signupInp{
     border-radius: 5px;
     border: none;
@@ -26,6 +29,7 @@
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
     border: none;
+    margin: 2rem 0 0;
     cursor: pointer;
     background: var(--bs-secondary);
     font-weight: 600; 
@@ -33,3 +37,15 @@
 .signupContainer form .signUpsubmitBtn:hover {
     background: #8d73dd;
 }
+
+@media only screen and (max-width: 992px) { 
+    .signupContainer {
+        width: 100%;
+        margin: 0 auto 5em;
+        text-align: center;
+    }
+    .signupContainer form .signUpsubmitBtn { 
+            font-size: 1rem;
+    }
+
+ }

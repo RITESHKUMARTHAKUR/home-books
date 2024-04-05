@@ -50,15 +50,15 @@
     background: transparent;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-
 }
 .singleOrderBorderNone{
     border: none;
+    font-size: 1rem;
     color: var(--bs-gray-600);
 }
 .singleOrderBorderBottom{
     border: none;
-    font-size: 20px;
+    font-size: 1rem;
     color: var(--bs-theme-secondary);
     font-weight: bold;
     border-bottom: 4px solid var(--bs-theme-secondary);
@@ -182,4 +182,28 @@
     padding: 1rem 1rem;
     color: var(--bs-theme-secondary);
     border-radius: 0 0 5px 5px ;
+}
+@media only screen and (max-width: 992px) {
+    .singleOrderContainer {
+        width: 100%;
+    } 
+    .singleOrderContainer .singleOrderDivHeader {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .deliveryContainer .deliveryContainerTable .deliveryTableBody{
+        font-size:0.8rem;
+    }
+    .showSection .showSectionDelivery .showDelivery{
+        font-size: 15px;
+    }
+    .singleOrderDivBodyContainer .singleOrderNav .showSection {
+        padding: 1rem 0;
+    }
+    .showSection .showSectionSummary {
+        padding: 0 1rem;
+    }
+    
+    
+
 }

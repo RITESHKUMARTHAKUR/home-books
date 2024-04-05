@@ -40,7 +40,7 @@ const CartConfirm = (props) => {
             </div>
             <div className="cartInputBox">
                 <label htmlFor="userAddress">Shipping Address</label>
-                <textarea value={userAdd} onChange={(e) => handleValueChange(e.target.value) }  name='userAddress' rows={5} type="text" />
+                <textarea value={userAdd} onChange={(e) => handleValueChange(e.target.value) }  name='userAddress' rows={4} type="text" />
             </div>
 
             <div className='selectedBooksTableContainer'>
@@ -60,7 +60,7 @@ const CartConfirm = (props) => {
                                     <td style={{"textAlign": "center"}} ><b>{index+1}</b></td>
                                     <td>{bookList.productDetails.title}</td>
                                     <td> &#8377; {bookList.productDetails.price}</td>
-                                    <td> &#8377; {bookList.productQuantity}</td>
+                                    <td>{bookList.productQuantity}</td>
 
                                     {/* <td> <button className='booksAddBtn' onClick={() => handleQuantityAdd(bookList._id)}> <FaCirclePlus/> </button> &nbsp;  {bookList.bookQuantity<10 ?0: "" }{bookList.bookQuantity}&nbsp; <button className='booksSubBtn' onClick={() => handleQuantitySub(bookList._id)}> <FaCircleMinus /> </button></td> */}
                                 </tr>
@@ -77,13 +77,17 @@ const CartConfirm = (props) => {
 
 
             <div className="cartButtonBox">
-                <p>Total : {props.orderTotal}</p>
+                
+                <p className='cartTotal'>Total : {props.orderTotal}</p>
+            
+                <div style={{"display": "flex", "gap" : "10px"}}>
                 <button className='cancelCartButton' onClick={props.cancelBtn} >
                     Cancel
                 </button>
                 <button className='confirmCartButton' onClick={props.confirmBtn} >
                     Confirm
                 </button>
+                </div>
             </div>
 
         </div>

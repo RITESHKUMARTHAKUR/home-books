@@ -77,3 +77,12 @@
     background: var(--bs-theme-secondary);
     color: var(--bs-white);
 }
+@media only screen and (max-width: 992px) { 
+    .productCard .productCardSecond{ 
+        height: 100px;
+    }
+    .productCard .productCardThird{ 
+        font-size: 10px;
+    }
+
+ }
