@@ -78,11 +78,27 @@
     color: var(--bs-white);
 }
 @media only screen and (max-width: 992px) { 
+    .homeContainer .categoriesBar { 
+        display: none;
+    }
+
     .productCard .productCardSecond{ 
         height: 100px;
     }
     .productCard .productCardThird{ 
-        font-size: 10px;
+        font-size: 12px;
+    }
+
+    .productCard .productCardFourth{ 
+        margin: 10px 0 0;
+
+    }
+    .productCard .productCardFourth div{ 
+        font-size: 12px;
+    }
+    .productCard .productCardFourth button{ 
+        width: 40%;
+        display: none;
     }
 
  }

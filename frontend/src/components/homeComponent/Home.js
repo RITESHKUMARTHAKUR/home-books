@@ -44,27 +44,203 @@ const Home = () => {
     autoplaySpeed: 1500,
     cssEase: "linear",
   };
-  var settingsProducts = {
+
+  var settingsTwelve = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4 ,
+    slidesToScroll: 1 ,
+    autoplay: false,
+    speed: 200,
+    autoplaySpeed: 1500,
+    cssEase: "linear",
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4 ,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      }
+    ]
+    // dots: false,
+    // infinite: true,
+    // slidesToShow: 4 ,
+    // // slidesToShow: 4 ,
+    // slidesToScroll: 1,
+    // autoplay: false,
+    // speed: 200,
+    // autoplaySpeed: 1500,
+    // cssEase: "linear",
+  };
+  var settingsEleven = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4 ,
+    slidesToScroll: 1 ,
+    autoplay: false,
+    speed: 200,
+    autoplaySpeed: 1500,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4 ,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      }
+    ]
+    // dots: false,
+    // infinite: true,
+    // slidesToShow: 4 ,
+    // // slidesToShow: 4 ,
+    // slidesToScroll: 1,
+    // autoplay: false,
+    // speed: 200,
+    // autoplaySpeed: 1500,
+    // cssEase: "linear",
+  };
+  var settingsTen = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4 ,
+    slidesToScroll: 1 ,
+    autoplay: false,
+    speed: 400,
+    autoplaySpeed: 1000,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4 ,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: booksTen.length >9 ? false: true
+        }
+      }
+    ]
+    // dots: false,
+    // infinite: true,
+    // slidesToShow: 4 ,
+    // // slidesToShow: 4 ,
+    // slidesToScroll: 1,
+    // autoplay: false,
+    // speed: 200,
+    // autoplaySpeed: 1500,
+    // cssEase: "linear",
+  };
+  var settingsNine = {
     dots: false,
     infinite: true,
     slidesToShow: 4 ,
-    // slidesToShow: 4 ,
-    slidesToScroll: 1,
+    slidesToScroll: 1 ,
     autoplay: false,
     speed: 200,
     autoplaySpeed: 1500,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4 ,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: booksNine.length >9 ? false: true,
+        }
+      }
+    ]
+    // dots: false,
+    // infinite: true,
+    // slidesToShow: 4 ,
+    // // slidesToShow: 4 ,
+    // slidesToScroll: 1,
+    // autoplay: false,
+    // speed: 200,
+    // autoplaySpeed: 1500,
+    // cssEase: "linear",
   };
+
   var settingsSchools = {
     dots: false,
     infinite: true,
+    speed: 500,
     slidesToShow: schoolDoc.length === 3 ? 3:4 ,
-    // slidesToShow: 4 ,
-    slidesToScroll: 1,
+    slidesToScroll: 1 ,
     autoplay: false,
     speed: 200,
     autoplaySpeed: 1500,
     cssEase: "linear",
+    initialSlide: 3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: schoolDoc.length === 3 ? 3:4 ,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          autoplay: booksNine.length > 9 ? true: false,
+          speed: 200,
+          autoplaySpeed: 150,
+          slidesToScroll: 1,
+          infinite: true,
+          initialSlide: 3,
+          dots: true
+        }
+      }
+    ]
   };
 
   const setBooks = (booksInfo) => {
@@ -258,7 +434,7 @@ const Home = () => {
               address={schoolInfo.area}
             />
             ) )}
-            
+          
           </Slider>
         </div>
       {/* ---------------------- School Slider Ends ---------------------- */}
@@ -269,7 +445,7 @@ const Home = () => {
           <FaBolt />
           &nbsp;CLass 12
         </h3>
-        <Slider {...settingsProducts}>
+        <Slider {...settingsTwelve}>
           {booksTwelve && booksTwelve.map(booksDoc => (
             <ProductCard
             link={`/product/${booksDoc._id}`}
@@ -294,7 +470,7 @@ const Home = () => {
           <FaBolt />
           &nbsp;CLass 11
         </h3>
-        <Slider {...settingsProducts}>
+        <Slider {...settingsEleven}>
           {booksEleven && booksEleven.map(booksDoc => (
             <ProductCard
             link={`/product/${booksDoc._id}`}
@@ -319,7 +495,7 @@ const Home = () => {
           <FaBolt />
           &nbsp;CLass 10
         </h3>
-        <Slider {...settingsProducts}>
+        <Slider {...settingsTen}>
           {booksTen && booksTen.map(booksDoc => (
             <ProductCard
             link={`/product/${booksDoc._id}`}
@@ -342,7 +518,7 @@ const Home = () => {
           <FaBolt />
           &nbsp;CLass 9
         </h3>
-        <Slider {...settingsProducts}>
+        <Slider {...settingsNine}>
           {booksNine && booksNine.map(booksDoc => (
             <ProductCard
             link={`/product/${booksDoc._id}`}

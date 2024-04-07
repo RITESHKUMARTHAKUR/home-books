@@ -32,4 +32,14 @@
     font-size: 20px;
     /* text-align: center; */
 }
+@media only screen and (max-width: 992px) { 
+    .schoolCardContainer div{
+        height: 120px;
+        width: 100%;
+    }
+    .schoolCardContainer h3,p{
+        font-size: 14px !important;
+    }
+}
+
 

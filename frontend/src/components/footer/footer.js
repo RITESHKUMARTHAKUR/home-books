@@ -13,13 +13,14 @@ const footer = () => {
                     <img src={logo} alt="_homeBooks_logo" />
                     <div className="footerLinks">
                         <a href=""><FaFacebookF /></a>
-                        <a href=""><FaInstagram /></a>
+                        <a href="https://www.instagram.com/homebooks.in/"><FaInstagram /></a>
                         <a href=""><FaXTwitter /></a>
-                        <a href=""><FaYoutube /></a>
+                        {/* <a href=""><FaYoutube /></a> */}
                     </div>
                 </div>
             
             </div>
+            
         <div className="footerSectionSecond">
             <h2 className='footerMargin'>About Us</h2>
             <div className="secondSectionLinks">

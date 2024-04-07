@@ -29,6 +29,7 @@
 }
 .innerFooterContainer .footerSectionFirst .footerLinks a{
   font-size: 1.5em;
+  color: var(--bs-theme-secondary);
 }
 
 .innerFooterContainer .footerSectionSecond  .secondSectionLinks a{
@@ -71,6 +72,9 @@
     
 } */
 @media only screen and (max-width: 992px) { 
+    .innerFooterContainer .footerSectionFirst img{
+        width: 180px;
+    }
     .footerContainer .innerFooterContainer {
         flex-direction: column;
     }

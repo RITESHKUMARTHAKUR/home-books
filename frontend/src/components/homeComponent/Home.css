@@ -38,7 +38,7 @@
     background: var(--bs-white);
     border-radius: 5px;
     box-sizing: border-box;
-    padding: 2em 2.5em;
+    padding: 2rem 2.5rem;
     width: calc(100% - (20% + 2em));
     box-shadow: var(--bs-theme-box-shadow);
 }
@@ -47,9 +47,6 @@
     padding: 0 1em;
     /* background: #E1F6F7; */
 }
-/* .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivImg{
-    width: 200px;
-} */
 .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent h1{
     margin: 0;
     line-height: 1em;
@@ -57,7 +54,7 @@
 }
 .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent button{
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     margin: 1.5em 0;
     color: var(--bs-white);
@@ -89,14 +86,45 @@
     margin: 0;
     /* align-items: center; */
 }
-
- .slick-prev:before,.slick-next:before  {
+.slick-next, .slick-prev {
+    width: unset;
+}
+.slick-prev:before,.slick-next:before  {
     color: var(--bs-theme-secondary);
     font-size: 30px;
 }
 
-@media only screen and (max-width: 992px) { 
-    
+@media only screen and (max-width: 992px) {
+    .homeContainer .productSlider {
+        width: 100%;
+        padding: 1.8rem 0;
+    }
+    .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent{ 
+        font-size: 10px;
+    }
+    .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent h1{
+        font-size: 1.1rem;
+    }
+    .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent p{ 
+        display: none;
+    }
+    .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivImg{
+        width: 150px;
+    }
+    .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivContent button{ 
+        font-size: 11px;
+        margin: 2em 0;
+    }
+
+    .slick-prev:before,.slick-next:before  {
+        display: none;
+    } 
+    .homeSectionFourth .slick-slider .slick-list .slick-track {
+        width: 3500px !important; 
+    }
+    /* .homeSectionFourth .slick-slider .slick-list .slick-track div {
+        width: unset !important;
+    } */
     .homeContainer .homeSectionThird {
         grid-template-columns: repeat(1,1fr);
     }
