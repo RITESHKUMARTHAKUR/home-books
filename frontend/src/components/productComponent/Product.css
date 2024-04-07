@@ -115,9 +115,14 @@
     }    
     .productContainer .productContainerSecond .productBio{ 
         width: auto;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .productContainer .productContainerSecond .productButtons { 
         width: 100%;
+        grid-template-columns: repeat(1,1fr);
+        gap: 0.5rem;
+    }
+    .productContainer .productContainerSecond .productButtons button {
+        font-size: 1rem;
     }
 }

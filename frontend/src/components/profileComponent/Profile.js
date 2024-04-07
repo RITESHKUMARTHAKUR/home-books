@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
+import {toast} from 'react-toastify';
 import ProfileImg from "../../images/Profile.jpg";
 import { FaPhone } from "react-icons/fa6";
 import ProductImg from "../../images/phys_book.jpg";
@@ -12,7 +13,9 @@ const Profile = () => {
 
   const Navigate = useNavigate();
 
+  const getCartUrl = `${process.env.REACT_APP_API_BASE_URL}/getCart/${currentUser.email}`;
   const logOutUrl = `${process.env.REACT_APP_API_BASE_URL}/logout`;
+  const [cartDoc,setCartDoc] = useState([]);
 
   const logout = () => {
     fetch(logOutUrl, {
@@ -22,8 +25,35 @@ const Profile = () => {
       setCurrentUser(null);
       Navigate("/");
     })
-
   }
+
+  const fetchCart = async () => {
+
+    await fetch(getCartUrl,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+
+        if(response.status === 200 ){
+          response.json().then(cartData => {
+            setCartDoc(cartData);
+          });
+
+        }else{
+          toast.error("No Products Found")
+        }
+
+      });
+  };
+  
+  useEffect(() => {
+    fetchCart();
+  },[]);
+
+
+
   return (
     <div className="profileContainer">
       <div className="profileContainerFirst">
@@ -42,14 +72,27 @@ const Profile = () => {
         </div>
       </div>
      <div className="profileContainerSecond">
-      <div className="containerSecondHeading"> Your favourites </div>
+      <div className="containerSecondHeading"> Your Cart Items </div>
       <hr />
       <div className="favoutatesContainer">
-        <ProductBox  off={"40"} img={ProductImg} name={"Simplified Physics"} price={"400"} />
-        <ProductBox  off={"40"} img={ProductImg} name={"Simplified Physics"} price={"400"} />
-        <ProductBox  off={"40"} img={ProductImg} name={"Simplified Physics"} price={"400"} />
-        <ProductBox  off={"40"} img={ProductImg} name={"Simplified Physics"} price={"400"} />
-        <ProductBox  off={"40"} img={ProductImg} name={"Simplified Physics"} price={"400"} />
+        {cartDoc.length>0 ? 
+          <>
+            {cartDoc.map(cartData => (
+              <ProductBox  
+                link={'/cart'}
+                off={"25"} 
+                img={cartData.productDetails.bookImg} 
+                name={cartData.productDetails.title} 
+                price={cartData.productDetails.price} 
+                discount={cartData.productDetails.discount}
+              />
+            ))}
+          </>
+        : 
+          <p>No items in your cart.</p>
+        }
+        
+       
       </div>
      </div>
     </div>
