@@ -110,6 +110,9 @@
 .selectedBooksTable .selectedBooksTableBody .selectedBooksTableBodyTr{
     font-weight: 500;
 }
+.selectedBooksTable .selectedBooksTableBody .selectedBooksTableBodyTr td{ 
+    padding: 15px 20px;
+}
 .selectedBooksTable .selectedBooksTableBody tr:nth-child(odd){
     background: #e6e6fa;
 }

@@ -283,9 +283,9 @@ const School = () => {
           <thead>
             <tr className="tableBorderRadius">
               <th className="tableBorderRadius" scope="col" colSpan="6">
-                <select name="" id=" " onChange={(e) => handleClassChange(e)} >
+                <select className="tableSelect" name="" id=" " onChange={(e) => handleClassChange(e)} >
                   {distinctBookClass.map((bookDistinctClass) => ( 
-                    <option value={`${bookDistinctClass}`}>Class {bookDistinctClass}</option> 
+                    <option className="tableSelect" value={`${bookDistinctClass}`}>Class {bookDistinctClass}</option> 
                   ) )}
                 </select>
               </th>
@@ -297,9 +297,7 @@ const School = () => {
           <div style={{ height: "1em" }}></div>
           <tbody>
             <tr>
-              <th className="borderLeft" scope="col">
-                S.No.
-              </th>
+              <th className="borderLeft" aria scope="col">S.No.</th>
               <th scope="col">Name</th>
               <th scope="col">Publication</th>
               <th scope="col">Author</th>
@@ -310,18 +308,20 @@ const School = () => {
               </th>
             </tr>
             {schoolBooksDoc.map( (bookList, index) => ( 
-                <tr>
+              <tr>
                 <th scope="row">{index+1}</th>
-                <td>{bookList.title}</td>
+                <td className="schoolTableBookTitle">{bookList.title}</td>
                 <td>{bookList.bookPublication}</td>
                 <td>{bookList.author}</td>
                 <td> &#8377; {bookList.price} </td>
                 <td>
-                  {" "}
-                  <input checked={bookList.selected} onClick={ (e) =>  handleSelect(bookList._id) } type="checkbox" />{" "}
-                </td>
+                  <input 
+                  checked={bookList.selected} 
+                  onClick={ (e) =>  handleSelect(bookList._id) } 
+                  type="checkbox" />
+                  </td>
               </tr>
-            ) )}
+            ))}
             
           </tbody>
         </table> 

@@ -97,6 +97,9 @@
 .selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr{
     color: var(--bs-theme-secondary);
 }
+.cartConfirmTd { 
+    padding: 15px 10px !important;
+}
 
 .selectedBooksTable .selectedBooksTableHead .selectedBooksTableHeadTr th:first-child{
     padding: 10px;
@@ -141,7 +144,7 @@
 @media only screen and (max-width: 992px) {
     .cartConfirmContainer { 
         width: 90%;
-        padding: 0rem 2rem;
+        padding: 0.5rem 2rem;
     }
     .selectedBooksTableContainer .selectedBooksTable {
         border-collapse: collapse;

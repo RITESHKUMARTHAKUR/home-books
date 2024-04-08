@@ -80,7 +80,6 @@
     width: 100%;
 
 }
-
 .schoolContainer h3 {
     text-align: center;
 }
@@ -145,6 +144,15 @@
     border-radius: 10px;
     box-shadow: var(--bs-theme-box-shadow);
 }
+.schoolContainer .schoolTable tbody tr td {
+    padding: 10px 0;
+}
+.schoolTableBookTitle {
+    padding: 10px 10px 10px 0 !important;
+}
+.schoolContainer .schoolTable tbody tr th {
+    padding: 10px 5px 10px 0;
+}
 .schoolContainer .schoolTable tr:first-child {
     color:  var(--bs-theme-secondary);
     text-align: left;
@@ -161,12 +169,14 @@
     background-color:  #E6E6FA;
     font-weight: 500;
 }
-
-
 .schoolContainer .schoolTable tbody tr th input {
     height: 20px;
 }
-.schoolContainer
+.tableSelect {
+    background: transparent;
+}
+
+
 .schoolContainer .schoolTable tbody tr:nth-last-child(1) th {
     /* background: red; */
     border-radius: 0 0 0 10px;
@@ -181,4 +191,33 @@
 .borderRight {
     border-radius: 0px 10px 0px 0px;
 }
+.tablepadding{
+    padding: 10px 20px;
+}
 
+@media only screen and (max-width: 992px) { 
+    .schoolBannerContainer { 
+        flex-direction: column;
+        
+    }
+    .schoolContainer .schoolImgBanner {
+        width: 100%;
+        padding: 5px;
+        height: unset;
+    }
+    .schoolContent {
+        width: 100%;
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        font-size: 14px;
+    }
+    .schoolContainer .schoolBooksContainer { 
+        overflow-x: auto;
+        padding: 10px 5px 0 5px;
+    }
+    .schoolContainer .schoolTable { 
+        width: 100%;
+    }
+    .schoolContainer .schoolTable tbody {  
+        font-size: 12px;
+    }
+}
