@@ -342,9 +342,6 @@ const Home = () => {
     fetchSchools();
     fetchBooks();
   },[]);
-  
-
-  const id = "rrsheuf34hd";
 
   return (
     <div className="homeContainer">

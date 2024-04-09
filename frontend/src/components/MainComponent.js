@@ -10,6 +10,7 @@ import School from './schoolComponent/School';
 import Product from "./productComponent/Product";
 import Login from "./registerComponent/loginComponent/login";
 import Signup from "./registerComponent/signupComponent/signup";
+import SearchBar from "./searchComponent/Search";
 
 import Admin from "./adminComponent/Admin";
 import AddSchoolBooks from './adminComponent/AddSchoolBooksComponent/AddSchoolBooks';
@@ -28,6 +29,7 @@ const MainComponent = () => {
           <Route path='/orders' element={<Orders/>} />
           <Route path='/order/:orderId' element={<SingleOrder/>} />
           <Route path='/cart' element={<Cart/>} />
+          <Route path='/search' element={<SearchBar/>} />
           <Route path='/profile' element={<Profile/>} />
           <Route path='/contact-us' element={<Contact/>} />
           <Route path='/school/:id' element={<School/>} />

@@ -122,10 +122,18 @@
 .hamburgerZindex {
     z-index: 1010;
 }
+.mobileNavSearch {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
 @media only screen and (max-width: 992px) {
     .navBarContainer .navSection1 .logo{
         width: 100px;
+    }
+    .navBarContainer .navSection2 .pageLinks a:not(:first-child) {
+        margin-left: unset;
     }
     .navBarContainer .hamburger {
         /* display: block; */

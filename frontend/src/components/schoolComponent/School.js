@@ -71,7 +71,8 @@ const School = () => {
           setSchoolBooks(responseDoc);
           let disttClass = [...new Set(responseDoc.map(book => book.bookClass))];
           setDistinctBookClass(disttClass);
-          let booksList = responseDoc.filter((x) => x.bookClass === disttClass[0] )
+          let newArray = disttClass.sort((a,b) => a - b );
+          let booksList = responseDoc.filter((x) => x.bookClass === newArray[0] )
           setSchoolBooksDoc(booksList);
         }
         )

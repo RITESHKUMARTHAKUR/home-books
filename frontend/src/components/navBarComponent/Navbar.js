@@ -72,7 +72,10 @@ const Navbar = () => {
                         window.innerWidth < 993 ?
                             null
                         :
-                        <input type="text" placeholder='Search and hit enter...' />
+                        <Link to="/search" > 
+                            <input type="text" placeholder='Search here...' />
+                        </Link>
+                        
                     }
                     
                 </div>
@@ -115,6 +118,13 @@ const Navbar = () => {
                 <button> <FaBorderAll /> Categories <FaAngleDown /> </button>
             </div> */}
             <div className="pageLinks">
+                {window.innerWidth < 993 ?   <Link to="/search" onClick={toggleNav} >
+                    <div className="mobileNavSearch">
+                        Search <FaMagnifyingGlass />
+                    </div>
+                </Link> : 
+                    null
+                }
                 <Link to="/" onClick={toggleNav} >
                     Home
                 </Link>
