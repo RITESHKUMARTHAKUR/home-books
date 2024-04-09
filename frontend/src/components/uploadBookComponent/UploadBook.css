@@ -1,0 +1,30 @@
+.uploadBookListComponent {
+    width: 80%;
+    margin: 0 auto 1rem;
+}
+.uploadBookListComponent .uploadBookFormContainer {
+    border: 2px solid var(--bs-theme-secondary);
+    padding: 2rem;
+}
+.uploadBookListComponent .uploadBookForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.uploadBookListComponent .uploadBookForm .uploadBookListGroup {
+    display: flex;
+    flex-direction: column;
+}
+.uploadBookListComponent .uploadBookForm .uploadBookListGroup .uploadBookInputImg{
+   width: 100%;
+   background: var(--bs-white);
+   border: 1px solid var(--bs-dark);
+
+}
+.uploadBooksInput{
+    padding: 10px 0;
+}
+.uploadBookListComponent .uploadBookBtn {
+    width: 100%;
+    margin: 1rem 0 0;
+}

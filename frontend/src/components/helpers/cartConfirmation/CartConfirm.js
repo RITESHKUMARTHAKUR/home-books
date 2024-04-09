@@ -78,7 +78,7 @@ const CartConfirm = (props) => {
 
             <div className="cartButtonBox">
                 
-                <p className='cartTotal'>Total : {props.orderTotal}</p>
+                <p className='cartTotal'>Total : &#8377;{props.orderTotal}</p>
             
                 <div style={{"display": "flex", "gap" : "10px"}}>
                 <button className='cancelCartButton' onClick={props.cancelBtn} >

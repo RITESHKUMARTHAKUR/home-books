@@ -175,7 +175,7 @@ const Search = () => {
                     placeholder='search for books or schools'
                     onChange={(e) => searchObjects(e.target.value)}
                 />
-                <Link className='searchUpload' to="/" >
+                <Link className='searchUpload' to="/uploadBookList" >
                     {window.innerWidth < 992 ? 
                         <FaFileImage />
                         :   
