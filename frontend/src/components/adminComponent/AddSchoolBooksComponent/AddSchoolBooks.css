@@ -9,7 +9,8 @@
     grid-template-columns: repeat(2,1fr);
 }
 .addBooksForm .addBooksInp{
-    padding: 0.5em 1em;
+    padding: 0.4em 1em;
+    font-size: 1rem;
     outline: none;
     border-radius: 5px;
     border:  2px solid var(--bs-secondary);
@@ -38,4 +39,13 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-}   
+} 
+@media only screen and (max-width: 992px) {
+    .addBooksForm { 
+        width: 90%;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .addBookBtn ,.addBookDesc,.addBooksFile {
+        grid-column: unset;
+    }
+}

@@ -1,7 +1,8 @@
 .userMessageContainer {
     display: grid;
+    margin: 2rem 0;
     grid-template-columns: repeat(2,1fr);
-    column-gap: 2rem;
+    gap: 2rem;
 }
 .viewMessageContainer {
     padding: 10px 20px;
@@ -25,4 +26,10 @@
     /* border: 2px solid var(--bs-theme-secondary); */
     /* color: #7E41B3; */
     color: var(--bs-theme-secondary);
+}
+@media only screen and (max-width: 992px) {
+    .userMessageContainer  { 
+        grid-template-columns: repeat(1,1fr);
+
+    }
 }

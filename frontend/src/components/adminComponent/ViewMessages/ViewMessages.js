@@ -46,6 +46,10 @@ const ViewMessages = () => {
 
   return (
     <div className='userMessageContainer'>
+        {/* <center>
+        <h3>Messages</h3>
+        </center> */}
+        
         {messages.length>0?
             <>
                 {messages.map(userMessage => (

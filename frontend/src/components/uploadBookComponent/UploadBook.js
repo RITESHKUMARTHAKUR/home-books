@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UploadBook.css';
 import {useAuth} from "../../contexts/AuthContext";
 
 const UploadBook = () => {
   const {currentUser} = useAuth();
+  const [files,setFiles] = useState(null);
 
   return (
     <div className='uploadBookListComponent'>
-      <center> <h2>Upload Book List</h2> </center>
+      <div className="uploadBooksHeader">
+          Upload Book List
+      </div>
       <form action="#" className='uploadBookFormContainer' >
         <div className="uploadBookForm">
           <div className="uploadBookListGroup">
             <label htmlFor="">Name</label>
-            <input className='uploadBooksInput' value={currentUser.name} type="text" />
+            <input disabled className='uploadBooksInput' value={currentUser.name} type="text" />
           </div>
           <div className="uploadBookListGroup">
             <label htmlFor="">Email</label>
-            <input className='uploadBooksInput' value={currentUser.email} type="text" />
+            <input disabled className='uploadBooksInput' value={currentUser.email} type="text" />
           </div>
           <div className="uploadBookListGroup">
             <label htmlFor="">Contact</label>
-            <input className='uploadBooksInput' value={currentUser.contact} type="text" />
+            <input disabled className='uploadBooksInput' value={currentUser.contact} type="text" />
           </div>
           <div className="uploadBookListGroup">
             <label htmlFor="">Shipping Address</label>

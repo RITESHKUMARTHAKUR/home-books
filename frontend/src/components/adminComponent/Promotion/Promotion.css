@@ -6,12 +6,16 @@
 .promotionInputTitle{
     margin: 0;
 }
+.promotionContainer {
+    width: 80%;
+    margin: 2rem auto;
+}
 .promotionContainer .promotionHeader {
     color: var(--bs-theme-secondary);
 }
 .promotionContainer .promotionCreate {
     border: 2px solid var(--bs-theme-secondary);
-    padding: 1rem 1rem;
+    padding: 1rem 2rem;
     /* background: var(--bs-white); */
     border-radius: 5px;
     color: var(--bs-theme-secondary);
@@ -59,4 +63,18 @@
     color: var(--bs-theme-bg);
     border: 2px solid var(--bs-theme-secondary);
     background-color: var(--bs-theme-secondary);
+}
+@media only screen and (max-width: 992px) {
+    .promotionContainer .promotionCreate .promotionForm { 
+        grid-template-columns: repeat(1,1fr);
+    }
+    .promotionForm .promotionDesc,.promotionSubmitBtn,.promotionImageContainer {
+        grid-column: unset;
+    }
+    .promotionContainer {
+        width: 90%;
+    }
+    .promotionContainer .promotionCreate {
+        padding: 2rem 1rem;
+    }
 }

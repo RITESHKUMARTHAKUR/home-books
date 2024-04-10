@@ -27,3 +27,8 @@
     color: var(--bs-theme-bg);
     background-color: var(--bs-theme-secondary);
 }
+@media only screen and (max-width: 992px) {
+    .adminBtns { 
+        grid-template-columns: repeat(1,1fr);
+    }
+}
