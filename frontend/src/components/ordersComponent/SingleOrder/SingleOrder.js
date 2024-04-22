@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "./SingleOrder.css";
 import { FaCircle } from "react-icons/fa6";
 import {useAuth} from '../../../contexts/AuthContext';
-import bookImg from "../../../images/phys_book.jpg";
 import {toast} from 'react-toastify';
 import SingleOrderCard from './SingleOrderProductCard/SingleOrderCard';
-import { useParams } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
 const SingleOrder = () => {
   const { orderId } = useParams();
   const {currentUser} = useAuth();
@@ -114,7 +112,9 @@ const SingleOrder = () => {
 
   return (
     <div className='singleOrderContainer' >
-      <div className='singleOrderDivHeader'>
+      {(currentUser.accType === 1) ? 
+          <>
+          <div className='singleOrderDivHeader'>
         <div>
           Order: {orderData._id}
         </div>
@@ -122,9 +122,9 @@ const SingleOrder = () => {
           <button className='singleOrderInvoice'  >Invoice</button>
           <button className='singleOrderDownload' >Download</button>
         </div>
-      </div>
-      <div className="singleOrderDivBody">
-        <div className='singleOrderDivBodyContainer' >
+          </div>
+          <div className="singleOrderDivBody">
+            <div className='singleOrderDivBodyContainer' >
           <div className="singleOrderNav">
             <div className="singleNavBtn">
               <button className={`singleOrderSummaryBtn ${showState ? 'singleOrderBorderNone' : 'singleOrderBorderBottom'} `} onClick={() => setShowState(!showState) } >Summary</button>
@@ -222,8 +222,19 @@ const SingleOrder = () => {
               
             </div>
           </div>
+            </div>
+          </div>
+          </>
+        : 
+        <div className='notPermission'>
+          <center>
+            <h2>You Don't have Admin Permissions</h2>
+          </center>
+          <center>
+            <Link to="/" className='backHome'>Back to Home</Link>
+          </center>
         </div>
-      </div>
+      }
     </div>
   )
 }

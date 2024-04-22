@@ -25,11 +25,7 @@ const AddSchool = () => {
     const [files,setFiles] = useState(null);
     
     useEffect(() => {
-        if(currentUser) {
-            setUserDoc(currentUser);
-        }else {
-            Navigate("/login");
-        }
+        setUserDoc(currentUser);
     },[currentUser]);
 
     const getFileName = () => {

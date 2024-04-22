@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, Router} from 'react-router-dom'
 import Home from './homeComponent/Home';
 import Orders from './ordersComponent/Orders';
 import SingleOrder from './ordersComponent/SingleOrder/SingleOrder';
@@ -21,32 +21,32 @@ import ViewOrders from './adminComponent/ViewOrders/ViewOrder';
 import ViewMessages from './adminComponent/ViewMessages/ViewMessages';
 import Promotions from './adminComponent/Promotion/Promotion';
 
+import PrivateRoute from '../PrivateRoute';
 
 const MainComponent = () => {
   return (
-    
       <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/orders' element={<Orders/>} />
-          <Route path='/order/:orderId' element={<SingleOrder/>} />
-          <Route path='/cart' element={<Cart/>} />
+          <Route path='/orders'  element={<PrivateRoute Component={Orders} />}/>
+          <Route path='/order/:orderId'  element={<PrivateRoute Component={SingleOrder} />}/>
+          <Route path='/cart'  element={<PrivateRoute Component={Cart} />}/>
           <Route path='/search' element={<SearchBar/>} />
           <Route path='/uploadBookList' element={<UploadBook/>} />
-          <Route path='/profile' element={<Profile/>} />
+          <Route path='/profile'  element={<PrivateRoute Component={Profile} />}/>
           <Route path='/contact-us' element={<Contact/>} />
           <Route path='/school/:id' element={<School/>} />
           <Route path='/product/:id' element={<Product/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
 
-          <Route path='/admin' element={<Admin/>} />
-          <Route path='/admin/addSchoolBooks' element={<AddSchoolBooks/>} />
-          <Route path='/admin/addSchool' element={<AddSchool/>} />
-          <Route path='/admin/addExamBooks' element={<AddExamBooks/>} />
-          <Route path='/admin/viewOrders' element={<ViewOrders/>} />
-          <Route path='/admin/viewOrder/:orderId' element={<SingleOrder/>} />
-          <Route path='/admin/viewMessages' element={<ViewMessages/>} />
-          <Route path='/admin/promotions' element={<Promotions/>} />
+          <Route path='/admin'  element={<PrivateRoute Component={Admin} />}/>
+          <Route path='/admin/addSchoolBooks' element={<PrivateRoute Component={AddSchoolBooks} />} />
+          <Route path='/admin/addSchool' element={<PrivateRoute Component={AddSchool} />} />
+          <Route path='/admin/addExamBooks' element={<PrivateRoute Component={AddExamBooks} />} />
+          <Route path='/admin/viewOrders' element={<PrivateRoute Component={ViewOrders} />} />
+          <Route path='/admin/viewOrder/:orderId' element={<PrivateRoute Component={SingleOrder} />} />
+          <Route path='/admin/viewMessages' element={<PrivateRoute Component={ViewMessages} />} />
+          <Route path='/admin/promotions' element={<PrivateRoute Component={Promotions} />} />
       </Routes>
   )
 }

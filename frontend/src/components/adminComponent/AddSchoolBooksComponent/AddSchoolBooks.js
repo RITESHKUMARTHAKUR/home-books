@@ -4,12 +4,11 @@ import {getDownloadURL, ref,uploadBytesResumable} from 'firebase/storage'
 import {storage} from '../../../firebase';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../../contexts/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AddSchoolBooks = () => {
   const {currentUser} = useAuth();
   const [userDoc,setUserDoc] = useState([]);
-  const Navigate = useNavigate();
 
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
   const postBook = `${process.env.REACT_APP_API_BASE_URL}/addBook`;
@@ -68,12 +67,8 @@ const AddSchoolBooks = () => {
 
 
   useEffect(() => {
-    if(currentUser) {
-        setUserDoc(currentUser);
-        fetchSchools();
-    }else {
-        Navigate("/login");
-    }
+    setUserDoc(currentUser);
+    fetchSchools();
   },[currentUser]);
 
 

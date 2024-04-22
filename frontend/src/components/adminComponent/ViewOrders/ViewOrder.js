@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ViewOrder.css';
+import {useAuth} from '../../../contexts/AuthContext' ;
 import OrderCard from '../../ordersComponent/OrderCard/OrderCard';
-
+import { Link } from 'react-router-dom';
 const ViewOrder = () => {
+    const {currentUser} = useAuth();
   const getOrdersUrl = `${process.env.REACT_APP_API_BASE_URL}/getAllOrders`;
-
   const [ordersDoc,setOrdersDoc] = useState([]);
   const [firstProduct,setFirstProduct] = useState([]);
 
@@ -60,18 +61,30 @@ const ViewOrder = () => {
 
   return (
     <div className='viewOrdersContainer'>
-        {ordersDoc && ordersDoc.map((orders,index) => (
-            <OrderCard 
-                orderImg={firstProduct[index].bookImg} 
-                link={`/admin/viewOrder/${orders._id}`} 
-                orderId={getOrderId(orders._id)} 
-                date={getDate(orders.createdAt)} 
-                title={firstProduct[index].title} 
-                pay={orders.orderTotal} 
-                orderStatus={orders.orderStatus} 
-                items={orders.itemsCount} 
-            />
-      ))}
+        {(currentUser.accType === 1 ) ? <>
+                {ordersDoc && ordersDoc.map((orders,index) => (
+                    <OrderCard 
+                        orderImg={firstProduct[index].bookImg} 
+                        link={`/admin/viewOrder/${orders._id}`} 
+                        orderId={getOrderId(orders._id)} 
+                        date={getDate(orders.createdAt)} 
+                        title={firstProduct[index].title} 
+                        pay={orders.orderTotal} 
+                        orderStatus={orders.orderStatus} 
+                        items={orders.itemsCount} 
+                    />
+                ))} </>
+        : 
+            <div className='notPermission'>
+                <center>
+                    <h2>You Don't have Admin Permissions</h2>
+                </center>
+                <center>
+                    <Link to="/" className='backHome'>Back to Home</Link>
+                </center>
+        </div> 
+        }
+        
     </div>
   )
 }
