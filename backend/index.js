@@ -4,8 +4,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const env = require('dotenv').config();
 const connectDB = require("./db/connect");
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
 
 
 
@@ -18,7 +16,6 @@ app.use(cors({credentials: true, origin: origin }));
 // app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 const start = async () => {
@@ -72,15 +69,13 @@ app.get("/getProfile", getProfile);
 //School Api Endpoints
 app.get("/getSchool", getSchool);
 app.get("/getSchool/:id", getSchoolInfo);
-app.post("/addSchool", upload.single('schoolImg') , addSchool);
-// app.post("/addSchool", addSchool);
+app.post("/addSchool", addSchool);
 
 //<------- Book Api Endpoints ------->
 app.get("/getSchoolBooks/:id", getSchoolBooks);
 app.get("/getBooks", getBooks);
 app.get("/getSingleBook/:id", getSingleBook);
-app.post("/addBook", upload.single('bookImg') , addBook);
-// app.post("/addBook", addBook);
+app.post("/addBook", addBook);
 //<------- Book Api Endpoints ------->
 
 //<------- Order Api Endpoints ------->

@@ -1,5 +1,4 @@
 const SchoolModel = require('../../models/School');
-// const fs = require('fs');
 
 const addSchool = async (req,res) => {
 

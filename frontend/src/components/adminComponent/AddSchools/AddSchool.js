@@ -65,44 +65,46 @@ const AddSchool = () => {
     const submitSchool = async (event) => {
         event.preventDefault();
 
-        const schoolData = new FormData();
-        schoolData.set('schoolName',schoolName);
-        schoolData.set('location',location);
-        schoolData.set('area',area);
-        schoolData.set('district',district);
-        schoolData.set('schoolState',schoolState);
-        schoolData.set('pincode',pinCode);
-        schoolData.set('affilated',affilated);
-        schoolData.set('medium',medium);
-        // schoolData.set('schoolImg',files[0]);
-
         if(schoolName !== '' && location !== '' && area !== '' && district !== '' && schoolState !== '' && pinCode !== '' && affilated !== '' && medium !== '' && files !== null){
-            const storageRef = ref(storage, 'schools/' + getFileName());
-            const fileUpload = await uploadBytesResumable(storageRef, files);
+            const promise = new Promise(async (reslove,reject) => {
+                const storageRef = ref(storage, 'schools/' + getFileName());
+                const fileUpload = await uploadBytesResumable(storageRef, files);
+                
+                if(fileUpload.state === "success") {
+                    await getDownloadURL(storageRef).then(async (downloadURL) => {
+                        const schoolDoc = await fetch(addSchoolUrl, {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                schoolName,
+                                location,
+                                area,
+                                district,
+                                schoolState,
+                                pincode: pinCode,
+                                affilated,
+                                medium,
+                                schoolImg: downloadURL})
+                        });
+                        if(schoolDoc.ok) {
+                            reslove('School Added!');
+                        }else {
+                            reject('Failed to add School!');
+                        }
+                    })
+    
+                }else {
+                    toast.error("error in uploading image!");
+                }
+            });
+            toast.promise(promise, {
+                pending: "Saving data...",
+                success: "School added successfully",
+                error: "Error adding school!!",
+              });
             
-            if(fileUpload.state === "success") {
-                await getDownloadURL(storageRef).then((downloadURL) => {
-                    schoolData.set('schoolImg',downloadURL);
-                })
-                .then(async () => {
-                    const schoolDoc = await fetch(addSchoolUrl, {
-                        method: 'POST',
-                        body: schoolData
-                    });
-                    if(schoolDoc.ok) {
-                        toast.success('School Added!',{
-                            autoClose: 1000
-                        });
-                    }else {
-                        toast.success('Failed to add School!',{
-                            autoClose: 1000
-                        });
-                    }
-                })
-
-            }else {
-                toast.error("error in uploading image!");
-            }
 
         }
         else {

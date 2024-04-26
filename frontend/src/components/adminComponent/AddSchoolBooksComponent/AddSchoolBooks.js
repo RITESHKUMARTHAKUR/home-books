@@ -91,52 +91,53 @@ const AddSchoolBooks = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const data = new FormData();
-    data.set('title', title);
-    data.set('bookPublication', bookPublication);
-    data.set('author', author);
-    data.set('edition', edition);
-    data.set('pubDate', pubDate);
-    data.set('language', language);
-    data.set('schoolName', schoolName);
-    data.set('subject', subject);
-    data.set('bookClass', bookClass);
-    data.set('price', price);
-    data.set('discount', discount);
-    data.set('elementType', elementType);
-    data.set('bookDesc', bookDesc);
-    // data.set('bookImg', files[0]);
-
     if(title !== '' && bookPublication !== '' && author !== '' && edition !== ''&& pubDate !== '' && language !== '' && schoolName !== '' && subject !== '' && bookClass !== '' && price !== '' && bookDesc !== '' && files !== null ) {
-    // if(files !== null ) {
-
-      const storageRef = ref(storage, 'books/' + getFileName());
-      const fileUpload = await uploadBytesResumable(storageRef, files);
-  
-      if(fileUpload.state === "success") {
-
-        await getDownloadURL(storageRef).then((downloadURL) => {
-          data.set('bookImg', downloadURL);
-        })
-        .then( async () => {
+      const promise = new Promise(async (resolve,reject) => {
+        const storageRef = ref(storage, 'books/' + getFileName());
+        const fileUpload = await uploadBytesResumable(storageRef, files);
+    
+        if(fileUpload.state === "success") {
+          await getDownloadURL(storageRef).then( async (downloadURL) => {
+            // data.set('bookImg', downloadURL);
             const bookDoc = await fetch(postBook, {
-            method: 'POST',
-            body: data
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                title,
+                bookPublication,
+                author,
+                edition,
+                pubDate,
+                language,
+                schoolName,
+                subject,
+                bookClass,
+                price,
+                discount,
+                elementType,
+                bookDesc,
+                bookImg: downloadURL })
+            });
+            if (bookDoc.ok) {
+              resolve("Book added!");
+            } else {
+              reject("Failed to add book!")
+            }
+  
           });
-          if (bookDoc.ok) {
-            toast.success("Book added!");
-            // setTimeout(
-            //   window.location.reload()
-            // , 1500)
-          } else {
-            toast.error("Failed to add book!")
-          }
-        });
-
-      }else{
-        toast.error("error in uploading image!");
-      }
+  
+        }else{
+          toast.error("error in uploading image!");
+        }
+      });
+      toast.promise(promise, {
+        pending: "Saving data...",
+        success: "Book added successfully",
+        error: "Failed to add book!",
+      });
+      
       
     }
     else {
@@ -154,7 +155,7 @@ const AddSchoolBooks = () => {
           <>
             <center><h2>Add Books</h2></center>
             <form action="#" className='addBooksForm' >
-                <input className='addBooksInp' name='title'       onChange={e => setTitle(e.target.value) } type="text" placeholder='title'/>
+                <input className='addBooksInp' name='title'       onChange={(e) => setTitle(e.target.value) } type="text" placeholder='title'/>
                 <input className='addBooksInp' name='author'      onChange={e => setAuthor(e.target.value) } type="text" placeholder='author'/>
                 <input className='addBooksInp' name='publication' onChange={e => setBookPublication(e.target.value) } type="text" placeholder='publication'/>
                 <input className='addBooksInp' name='pubDate'     onChange={e => setPubDate(e.target.value) } type="text" placeholder='publication date'/>

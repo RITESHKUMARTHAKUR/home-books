@@ -1,4 +1,3 @@
-// const fs = require('fs');
 const BookModel = require('../../models/Books');
 
 const addBook = async (req,res) => {
@@ -6,13 +5,19 @@ const addBook = async (req,res) => {
         pubDate,language,schoolName,subject,
         bookClass,price,discount,elementType,bookDesc,bookImg} = req.body;
 
-    const bookDoc = await BookModel.create({
-        title,bookPublication,author,edition,pubDate,language,schoolName,subject,
-        bookClass,price,discount,bookDesc,
-        bookImg,elementType,bookStatus: 1
-    });
+    try {
+        const bookDoc = await BookModel.create({
+            title,bookPublication,author,edition,pubDate,language,schoolName,subject,
+            bookClass,price,discount,bookDesc,
+            bookImg,elementType,bookStatus: 1
+        });
+        res.status(200).json(bookDoc);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+    
 
-    res.json(bookDoc);
+   
     // const {originalname,path} = req.file;
     // const parts = originalname.split('.');
     // const exten = parts[parts.length - 1];
