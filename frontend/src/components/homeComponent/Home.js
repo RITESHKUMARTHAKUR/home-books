@@ -279,20 +279,31 @@ const Home = () => {
   };
 
   const fetchSchools = () => {
-    fetch(getSchoolUrl, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(response => {
-      if (response.status !== 200) {
-          toast("No school found!");
-      }else {
-          response.json().then(schoolInfo => {
+    const promise = new Promise( async (resolve,reject) => {
+      fetch(getSchoolUrl, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(response => {
+        if (response.status !== 200) {
+            toast("No school found!");
+            reject("Server Error!")
+        }else {
+            response.json().then(schoolInfo => {
               setSchoolDoc(schoolInfo);
-          })
-      }
-    })
+              resolve("Done!")
+            });
+            
+        }
+      })
+    }); 
+    toast.promise(promise, {
+      pending: "loading...",
+      // success: "Done!",
+      error: "Error !",
+    });
+    
   };
 
   const handleAddToCart = async (productId) => {
