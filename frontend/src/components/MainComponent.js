@@ -22,6 +22,7 @@ import ViewMessages from './adminComponent/ViewMessages/ViewMessages';
 import Promotions from './adminComponent/Promotion/Promotion';
 
 import PrivateRoute from '../PrivateRoute';
+import PDFFile from './pdfComponent/PDFFile';
 
 const MainComponent = () => {
   return (
@@ -38,6 +39,7 @@ const MainComponent = () => {
           <Route path='/product/:id' element={<Product/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
+          <Route path='/pdf' element={<PDFFile/>} />
 
           <Route path='/admin'  element={<PrivateRoute Component={Admin} />}/>
           <Route path='/admin/addSchoolBooks' element={<PrivateRoute Component={AddSchoolBooks} />} />

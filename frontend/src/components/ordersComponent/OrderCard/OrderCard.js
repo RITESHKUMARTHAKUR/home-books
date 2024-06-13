@@ -23,6 +23,9 @@ const OrderCard = (props) => {
           return "black"; // Set default color
     }
   }
+  // const handleDownload = () => {
+  //   props.pdfDownload();
+  // }
  
   return (
     <Link to={props.link} className="orderContainerBox">
@@ -42,7 +45,7 @@ const OrderCard = (props) => {
                     <p>Total: &#8377; {props.pay}</p>
                 </div>
                 
-                <button>Download Bill</button>
+                {/* <button onClick={() => handleDownload() }>Download Bill</button> */}
             </div>
         </div>
     </Link>

@@ -1,0 +1,90 @@
+.pdffile-container {
+    width: 95%;
+    margin: auto;
+    font-family: 'Poppins';
+    padding: 0.5rem 1rem;
+    box-shadow: 1px 2px 10px gray;
+}
+.pdffile-container .pdffile-header {
+    margin: 1rem 0;
+}
+
+.pdffile-bottom {
+    border-bottom: 1px solid gray;
+}
+.pdffile-textHeading { 
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 0;
+}
+.pdffile-textSubHeading { 
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin: 0;
+}
+.pdffile-textDesc { 
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+}
+.pdffile-textSubColor {
+    color: rgb(107 114 128);
+}
+.pdffile-textCenter {
+    text-align: center;
+}
+.pdffile-textLeft {
+    text-align: left;
+}
+.pdffile-textRight {
+    text-align: right;
+}
+
+.pdffile-container .pdffile-header {
+    display:  flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pdffile-container .pdffile-header .pdffile-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.pdffile-container .pdffile-header .recipt-logo {
+    width: 4rem; 
+}   
+.pdffile-container .pdffile-header .recipt-logo .reciptlogoimg {
+    width: 100%;
+}
+   
+
+.pdffile-container .pdffile-info {
+    display: flex;
+    margin: 1rem 0 0;
+    justify-content: space-between;
+    gap: 6rem;
+    text-align: left;
+}
+/* .pdffile-container .pdffile-info .customer-details,.delivery-details{ 
+    width: 50%;
+} */
+.pdffile-padding {
+    padding: 5px 0;
+}
+
+.pdffile-summary .pdffile-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.pdffile-summary .pdffile-table .pdffile-tableheaderrow {
+    text-align: left;
+}
+.pdffile-summary .pdffile-table .pdffile-tableheaderrow .pdffile-bookNameHeading{
+    width: 60%;
+}
+
+.pdffile-table .pdffile-totalContainer {
+    color: #000;
+}

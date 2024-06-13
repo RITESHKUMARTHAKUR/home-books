@@ -3,13 +3,16 @@ import './ViewOrder.css';
 import {useAuth} from '../../../contexts/AuthContext' ;
 import OrderCard from '../../ordersComponent/OrderCard/OrderCard';
 import { Link } from 'react-router-dom';
+// import PDFFile from '../../pdfComponent/PDFFile';
+// import { PDFDownloadLink } from '@react-pdf/renderer';
+
 const ViewOrder = () => {
-    const {currentUser} = useAuth();
+  const {currentUser} = useAuth();
   const getOrdersUrl = `${process.env.REACT_APP_API_BASE_URL}/getAllOrders`;
   const [ordersDoc,setOrdersDoc] = useState([]);
   const [firstProduct,setFirstProduct] = useState([]);
 
-    const getAllOrders = async () => {
+  const getAllOrders = async () => {
         await fetch(getOrdersUrl,{
             method: 'GET',
             headers: {
@@ -29,16 +32,14 @@ const ViewOrder = () => {
                         }
                     });
                 }
-               
-
             })  
         })
-    };
+  };
     
-    const getOrderId = (orderId) => {
-        return orderId.slice(-8);
-    }
-    const getDate = (orderDate) => {
+  const getOrderId = (orderId) => {
+      return orderId.slice(-8);
+  }
+  const getDate = (orderDate) => {
         const date = new Date(orderDate);
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
@@ -51,12 +52,17 @@ const ViewOrder = () => {
         const formattedDate = day + " " + months[month-1] + " " + year;
         return(formattedDate);
       
-      }
+  }
 
+  // const handleDownloadPdf = () => {
+  //     <PDFDownloadLink document={<PDFFile/>} fileName='orderBill' >
+  //         <button>Download</button>
+  //     </PDFDownloadLink>
+  // }
 
-    useEffect(() => {
-        getAllOrders();
-    },[])
+  useEffect(() => {
+      getAllOrders();
+  },[])
 
 
   return (
@@ -72,6 +78,7 @@ const ViewOrder = () => {
                         pay={orders.orderTotal} 
                         orderStatus={orders.orderStatus} 
                         items={orders.itemsCount} 
+                        // pdfDownload={handleDownloadPdf}
                     />
                 ))} </>
         : 
