@@ -171,7 +171,9 @@
     }
     .navBarContainer .navSection2 .pageLinks{ 
         flex-direction: column;
-        justify-content: space-evenly;
+        gap: 2.5rem;
+        padding: 3.5rem 0;
+        justify-content: flex-start;
     }
 
 }

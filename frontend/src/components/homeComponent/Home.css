@@ -66,8 +66,15 @@
 }
 .homeContainer .homeSectionSecond .sectionHeader {
     display: flex;
-    margin:  2em 0 0 0;
+    margin: 0;
+    /* margin:  2em 0 0 0; */
     align-items: center;
+}
+.homeContainer .homeSectionSecond .productDiv {
+  display: grid;
+  margin: 1rem 0 0;
+  column-gap:5px ;
+  grid-template-columns: repeat(5,1fr);   
 }
 
 
@@ -78,7 +85,7 @@
     grid-template-columns: repeat(4,1fr);
 }
 .homeContainer .homeSectionFourth {
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 .homeContainer .homeSectionFourth h3{
@@ -128,4 +135,8 @@
     .homeContainer .homeSectionThird {
         grid-template-columns: repeat(1,1fr);
     }
+
+    .homeContainer .homeSectionSecond .productDiv {
+        grid-template-columns: repeat(2,1fr);   
+      }
 }
