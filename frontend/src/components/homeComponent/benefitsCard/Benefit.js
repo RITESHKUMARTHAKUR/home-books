@@ -6,7 +6,7 @@ const Benefit = (props) => {
     <div className="benefitConatiner">
         <span className="benefitIcon">{props.icon}</span>
         <h4>{props.title}</h4>
-        <p>{props.desc}</p>
+        <p className='benefitDesc'>{props.desc}</p>
     </div>
   )
 }

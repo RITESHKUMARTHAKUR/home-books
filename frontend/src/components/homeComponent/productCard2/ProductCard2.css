@@ -26,8 +26,12 @@
 .productCards .productCardLinks .productCard-body .productCardSeconds{
     line-height: 20px;
 }
+/* .productCards .productCardLinks .productCard-body .productCardThirds{
+    margin: 1rem 0 0;
+} */
 .productCards .productCardLinks .productCard-body .productCardThirds,.productCardSeconds{ 
     text-decoration: none;
+    margin: 0.5rem 0 0;
     color: var(--bs-theme-secondary); 
 }
 

@@ -18,7 +18,9 @@ import SchoolCard from "../schoolComponent/schoolCard/schoolCard";
 import {useAuth} from '../../contexts/AuthContext';
 import BookImg from "../../images/phys_book.jpg";
 import SchoolImg from "../../images/school.jpg";
+import { IoLogoWhatsapp } from "react-icons/io";
 import ProdCard2 from "../homeComponent/productCard2/ProductCard2";
+import WhatsaapPng from "../../images/whatsapp.png";
 import { toast } from "react-toastify";
 
 const Home = () => {
@@ -358,7 +360,9 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
-
+      <Link to={"https://wa.me/+919302086706?text=Hi,%20I'm%20interested%20in%20your%20Books%20for%20sale!%20"} className="whatsaap-icon-container">
+        <img src={WhatsaapPng} className="whatsapp-icon" alt="" />
+      </Link>
       <div className="homeSectionFirst">
         <div className="categoriesBar">
           <Link>
@@ -605,28 +609,28 @@ const Home = () => {
           icon={<TbTruckDelivery />}
           title={"World Wide Delivery"}
           desc={
-            "We offer competitive prices on our 100 million plus product any range."
+            "Get your books delivered right to your doorstep, no matter where you are in the world!"
           }
         />
         <BenefitCard
           icon={<FaIdCard />}
           title={"Safe Payment"}
           desc={
-            "We offer competitive prices on our 100 million plus product any range."
+            "Secure transactions guaranteed: pay with confidence, every time!"
           }
         />
         <BenefitCard
           icon={<FaShieldHalved />}
           title={"Shop With Confidence"}
           desc={
-            "We offer competitive prices on our 100 million plus product any range."
+            "Buy with trust: our commitment to quality and customer satisfaction!"
           }
         />
         <BenefitCard
           icon={<BiSupport />}
           title={"24/7 Support"}
           desc={
-            "We offer competitive prices on our 100 million plus product any range."
+            "Need help? We're always here: 24/7 support for all your bookish needs!"
           }
         />
       </div>

@@ -6,7 +6,7 @@
     background: var(--bs-white);
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 1em 2em;
+    padding: 1rem 1rem;
 }
 
 .benefitConatiner .benefitIcon {
@@ -20,9 +20,15 @@
     padding: 20px;
 }
 
-.benefitConatiner p{
+.benefitConatiner .benefitDesc{
     font-size: 15px;
+    /* margin: 1rem 0; */
 }
 .benefitConatiner h4{
     margin-bottom: 0;
+}
+@media only screen and (max-width: 992px) { 
+    .benefitConatiner .benefitDesc{
+        margin: 1rem 0;
+    }
 }
