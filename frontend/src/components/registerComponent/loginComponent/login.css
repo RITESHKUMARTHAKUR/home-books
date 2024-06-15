@@ -12,18 +12,24 @@
     outline: 2px solid var(--bs-secondary);
     padding: 15px 20px;
 }
+.loginContainer form .signUp-text {
+    text-align: left;
+    margin: 2rem 0 15px;
+    color: var(--bs-theme-secondary);
+}
 /* .loginContainer form .loginInp:focus {
     outline: 2px solid var(--bs-secondary);
 } */
-.loginContainer form .loginInp,.loginBtn {
+.loginContainer form .loginInp {
     display: block;
     margin:  1rem 0 0;
     width: 100%;
 }
 
 .loginContainer form .loginBtn {
+    display: block;
+    width: 100%;
     padding: 10px 0;
-    margin: 2rem 0;
     letter-spacing: 2px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;

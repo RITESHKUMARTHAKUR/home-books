@@ -30,8 +30,8 @@ const OrdersDetails = (props) => {
                     <p>&#8377;{props.quantity *  props.price}</p>
                 </div>
                 <div className="bookCartIncrease">
-                    <button onClick={handleIncrease} className=""> <FaPlus/> </button>
-                    <button onClick={handleDecrease} className=""> <FaMinus/> </button>
+                    <button onClick={handleIncrease} className="bookCartIncrease-btn"> <FaPlus/> </button>
+                    <button onClick={handleDecrease} className="bookCartIncrease-btn"> <FaMinus/> </button>
                 </div>
             </div>
         </div>

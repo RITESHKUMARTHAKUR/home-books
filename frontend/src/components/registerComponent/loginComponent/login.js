@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {toast} from 'react-toastify';
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import "./login.css";
 import { useAuth } from '../../../contexts/AuthContext';
 
@@ -41,6 +41,7 @@ const Login = () => {
         <form action="#" className='loginForm' onSubmit={handleSubmit} >
             <input className='loginInp' type="text" onChange={ (e)=> setEmail(e.target.value) } placeholder='email'/>
             <input className='loginInp' type="password" onChange={ (e)=> setPassword(e.target.value) } placeholder='password'/>
+            <p className='signUp-text'>Don't have an account? <b> <Link to={"/signup"}>Sign up now!</Link> </b></p>
             <button className='loginBtn'>Login</button>
         </form>
     </div>

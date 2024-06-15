@@ -71,7 +71,7 @@
     display: flex;
     align-self: flex-end;
 }
-.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease button{
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease .bookCartIncrease-btn{
     /* box-shadow: var(--bs-theme-box-shadow); */
     margin-left: 1em;
     padding: 5px;
@@ -82,8 +82,13 @@
     background: transparent;
     border: 2px solid var(--bs-gray-400);
     align-items: center;
-
+    transition: all 0.3s ease-in-out;
 }
+.cartDetailsBox .bookCartDetails .bookCartSecondary .bookCartIncrease .bookCartIncrease-btn:hover {
+    background: var(--bs-theme-secondary);
+    color: var(--bs-white);
+}
+
 @media only screen and (max-width: 992px) {
     .cartDetailsBox { 
         width: 100%;

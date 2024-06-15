@@ -24,12 +24,16 @@
     border:  2px solid var(--bs-secondary);
     padding: 15px 20px;
 }
+.signupContainer form .login-text {
+    text-align: left;
+    margin: 2rem 0 15px;
+    color: var(--bs-theme-secondary);
+}
 .signupContainer form .signUpsubmitBtn {
     padding: 10px 0;  
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
     border: none;
-    margin: 2rem 0 0;
     cursor: pointer;
     background: var(--bs-secondary);
     font-weight: 600; 

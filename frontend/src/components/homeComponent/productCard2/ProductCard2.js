@@ -1,9 +1,12 @@
 import React from 'react';
 import "./ProductCard2.css";
 import { Link } from 'react-router-dom';
-import { FaRegHeart } from "react-icons/fa";
+import { FaPlus  } from "react-icons/fa6";
 
 const ProductCard2 = (props) => {
+  const handleCart = () => {
+    props.cartFun(props.cartId);
+  }
   return (
     <div className='productCards'>
       <Link to={props.link} className='productCardLinks'>
@@ -14,13 +17,12 @@ const ProductCard2 = (props) => {
         
         <div className="productCard-body">
           <p className="productCardSeconds">{props.name}</p>
-          <div className="productCardThirds">
-            <p> <strike>&#8377;{props.price}</strike> <b>&#8377;{props.price - props.discount}</b>    </p>
-          </div>
         </div>
-        
       </Link>
-
+      <div className="productCardThirds">
+        <p> <strike>&#8377;{props.price}</strike> <b>&#8377;{props.price - props.discount}</b>    </p>
+        <button className='product-cartBtn' onClick={handleCart} > <FaPlus/></button>
+      </div>
       <div className="productCardFourths">
           {/* <button className='cardWishlist'><FaRegHeart /></button> */}
           <p className='cardDiscounts'>{props.off}% off</p>

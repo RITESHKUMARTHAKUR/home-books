@@ -26,10 +26,31 @@
 .productCards .productCardLinks .productCard-body .productCardSeconds{
     line-height: 20px;
 }
-/* .productCards .productCardLinks .productCard-body .productCardThirds{
-    margin: 1rem 0 0;
-} */
-.productCards .productCardLinks .productCard-body .productCardThirds,.productCardSeconds{ 
+.productCards .productCardThirds{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    text-decoration: none;
+    margin: 0.5rem 0 0;
+    color: var(--bs-theme-secondary); 
+    /* align-items: center; */
+}
+.productCards .productCardThirds .product-cartBtn{
+    border: 2px solid var(--bs-theme-secondary);
+    background: transparent;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    color: var(--bs-theme-secondary);
+    align-items: center;
+}
+.productCards .productCardThirds .product-cartBtn:hover {
+    background: var(--bs-theme-secondary);
+    color: var(--bs-white);
+}
+.productCards .productCardLinks .productCard-body .productCardSeconds{ 
     text-decoration: none;
     margin: 0.5rem 0 0;
     color: var(--bs-theme-secondary); 

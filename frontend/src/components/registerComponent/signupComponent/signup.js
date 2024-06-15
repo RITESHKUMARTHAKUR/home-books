@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./signup.css";
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [name,setName] = useState("");
@@ -48,6 +49,7 @@ const Signup = () => {
         <input    className='signupInp' type="number" onChange={(e) => setContact(e.target.value)} placeholder='phone no.'/>
         <input    className='signupInp' type="password" onChange={(e) => setPassword(e.target.value)} placeholder='password'/>
         <textarea className='signupArea'  type="text"   onChange={(e) => setAddress(e.target.value)} placeholder='address' rows={4}/>
+        <p className='login-text'>Already have an account ? <b><Link to={"/login"}>Login</Link></b> </p>
         <button className='signUpsubmitBtn' >Submit</button>
       </form>
     </div>

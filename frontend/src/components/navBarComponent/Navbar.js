@@ -101,7 +101,7 @@ const Navbar = () => {
                 </div>
             ): (
                 <div className="regBtn">
-                    <Link to="/login" > Login </Link>
+                    {/* <Link to="/login" > Login </Link> */}
                     <Link to="/signup"> Sign up </Link>
                </div>
             )
@@ -146,12 +146,12 @@ const Navbar = () => {
                 { window.innerWidth < 992? 
                     <>
                     {currentUser === null ?  <> 
-                    <Link to="/login" onClick={toggleNav} >
-                    Login
-                </Link>
-                <Link to="/signup" onClick={toggleNav} >
-                    Signup
-                </Link> </>
+                        <Link to="/login" onClick={toggleNav} >
+                            Login
+                        </Link>
+                        <Link to="/signup" onClick={toggleNav} >
+                            Signup
+                        </Link> </>
                      : null }
                     </>
                     : null
