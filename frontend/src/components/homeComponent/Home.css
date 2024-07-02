@@ -64,6 +64,9 @@
 .homeContainer .homeSectionFirst  .productSlider .sliderDiv .sliderDivImg img{
     width: 100%;
 }
+/* .homeContainer .homeSectionSecond {
+    margin: 0 0 1.5rem;
+} */
 .homeContainer .homeSectionSecond .sectionHeader {
     display: flex;
     margin: 0;
@@ -155,9 +158,12 @@
     .homeContainer .homeSectionThird {
         grid-template-columns: repeat(1,1fr);
     }
-
+    .homeContainer .homeSectionSecond {
+        margin: 0 0 1.5rem;
+    }
     .homeContainer .homeSectionSecond .productDiv {
-        grid-template-columns: repeat(2,1fr);   
+        grid-template-columns: repeat(2,1fr);  
+        row-gap: 20px;
     }
 
     .whatsapp-icon {

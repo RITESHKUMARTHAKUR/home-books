@@ -31,7 +31,7 @@
     padding: 10px;
     justify-content: space-between;
     text-decoration: none;
-    margin: 0.5rem 0 0;
+    margin: 0.3rem 0 0;
     color: var(--bs-theme-secondary); 
     /* align-items: center; */
 }
