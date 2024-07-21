@@ -47,13 +47,14 @@
 }
 .searchSchoolContainer { 
     display: grid;
-    gap: 1rem;
+    gap: 16px;
     grid-template-columns: repeat(3,1fr);
 }
 .searchBooksContainer { 
     display: grid;
-    /* gap: 1rem; */
-    grid-template-columns: repeat(4,1fr);
+    margin: 1rem 0 0;
+    gap: 10px;
+    grid-template-columns: repeat(5,1fr);
  }
 
 @media only screen and (max-width: 992px) { 
@@ -64,7 +65,8 @@
         width: 100%;
     }
     .searchSchoolContainer { 
-        grid-template-columns: repeat(2,1fr);
+        gap: 0px;
+        grid-template-columns: repeat(1,1fr);
     }
     .searchBooksContainer { 
         display: grid;

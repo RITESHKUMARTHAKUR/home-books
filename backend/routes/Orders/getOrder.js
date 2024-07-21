@@ -4,7 +4,7 @@ const getOrder = async (req,res) => {
     const email = req.params.email;
 
     try{
-        const orderDoc = await orderModel.find({userEmail: email});
+        const orderDoc = await orderModel.find({userEmail: email}).sort({createdAt: -1});
         if (orderDoc){
             res.status(200).json(orderDoc);
         }else {

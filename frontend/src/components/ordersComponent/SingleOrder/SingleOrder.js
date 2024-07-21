@@ -8,6 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import PDFFile from '../../pdfComponent/PDFFile';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { Download } from 'lucide-react';
 
 const SingleOrder = () => {
   const { orderId } = useParams();
@@ -16,6 +17,8 @@ const SingleOrder = () => {
 
   const getSingleOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/getOrder/${orderId}`;
   const updateOrderUrl = `${process.env.REACT_APP_API_BASE_URL}/updateOrder/${orderId}`;
+  const sendOtpUrl = `${process.env.REACT_APP_API_BASE_URL}/otp-mail`;
+  const verifyOtpUrl = `${process.env.REACT_APP_API_BASE_URL}/otp-verify`;
 
 
   const [showState,setShowState] = useState(false);
@@ -25,6 +28,10 @@ const SingleOrder = () => {
   const [newStatus,setNewStatus] = useState(1);
   const [orderProducts,setOrderProducts] = useState([]);
 
+  const [otp,setOtp] = useState("");  
+  const [otpSent,setOtpSent] = useState(false)  
+
+ 
   const getDeliveryColor = (orderStatus) => {
     switch (orderStatus) {
       case 1:
@@ -81,19 +88,19 @@ const SingleOrder = () => {
   const handleStatusChange = (e) => {
     setNewStatus(Number(e.target.value));
   }
-  const handleStatusSave = async () => {
+  const handleStatusSave = async (orderStatus) => {
     try {
       const response = await fetch(updateOrderUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ updateFieldValue: newStatus }),
+        body: JSON.stringify({ updateFieldValue: orderStatus }),
       });
 
       if(response.status === 200 ){
-        getDeliveryStatus(newStatus);  
-        getDeliveryColor(newStatus);
+        getDeliveryStatus(orderStatus);  
+        getDeliveryColor(orderStatus);
         toast.success("Order Updated!")
       }
       else {
@@ -132,6 +139,55 @@ const SingleOrder = () => {
       console.log(error)
     }
   };
+  const handleOtp = (e) => {
+    setOtp(e.target.value)
+  }
+  const sendOtp = async (userEmail) => {
+    try {
+      const response = await fetch(sendOtpUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userEmail }),
+      });
+
+      if(response.ok) {
+        setOtpSent(!otpSent);
+        response.json().then(response => {
+          toast.success(response.msg);
+        })
+      }
+
+    } catch (error) {
+        console.log(error);
+    }
+  }
+  const verifyOtp = async (userEmail) => {
+      try {
+        const verifyDoc = await fetch(verifyOtpUrl,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({userEmail,otp})
+        });
+
+        if(verifyDoc.ok) {
+          await verifyDoc.json().then(response => {
+            toast.success(response.msg);
+          });
+          handleStatusSave(3);
+        }else{
+          verifyDoc.json().then(response => {
+            toast.error(response.msg);
+          });
+        }
+
+      } catch (error) {
+          console.log(error);
+      }
+  }
 
   // console.log(orderStatusValue);
   useEffect(() => {
@@ -140,7 +196,7 @@ const SingleOrder = () => {
 
   return (
     <div className="singleOrderContainer">
-      {currentUser.accType === 1 ? (
+      {currentUser.accType === 1 || currentUser.accType === 2 || currentUser.accType === 3 ?  (
         <>
           <div className='pdf-container'  ref={reciptRef} >
              {orderData && <PDFFile orderData={orderData} />} 
@@ -148,9 +204,9 @@ const SingleOrder = () => {
 
           <div className="singleOrderDivHeader">
             <div>Order: {orderData._id}</div>
-            <div>
-              <button className="singleOrderInvoice" onClick={() => handleReciptDownload() }>Invoice</button>
-              {/* <button className="singleOrderDownload">Invoice</button> */}
+            <div className='singleOrderDiv'>
+              <button className="singleOrderInvoice" onClick={() => handleReciptDownload() }>Invoice <Download /></button>
+              <button className={`showDelivery ${orderStatusColorValue}`}>{orderStatusValue}</button>
             </div>
           </div>
           <div className="singleOrderDivBody">
@@ -182,13 +238,6 @@ const SingleOrder = () => {
                 <div className="showSection">
                   {showState ? (
                     <div className="showSectionDelivery">
-                      <div className={`showDelivery ${orderStatusColorValue}`}>
-                        Order Status: {orderStatusValue}{" "}
-                        <span className="deliveryCircle">
-                          {" "}
-                          <FaCircle />
-                        </span>
-                      </div>
                       {currentUser.accType === 1 ? (
                         <div className="orderStatusContainer">
                           <p className="orderStatusHeader">
@@ -230,12 +279,41 @@ const SingleOrder = () => {
                               </option>
                             </select>
                             <button
-                              onClick={handleStatusSave}
+                              onClick={() => handleStatusSave(newStatus) }
                               className="orderStatusSaveBtn"
                             >
                               Save
                             </button>
                           </div>
+                        </div>
+                      ) : null}
+                      {currentUser.accType === 1 || currentUser.accType === 2 && orderStatusValue !== "Delivered" ? (
+                        <div className="orderDeliveryContainer">
+                          <p className="orderDeliveryHeader">
+                            <b> COMPLETE DELIVERY: </b>
+                          </p>
+                          
+                          <div className="orderDeliveryOtpContainer">
+                            { otpSent ? 
+                            (<div className="deliveryEnterOtpContainer">
+                              <input 
+                              className='deliveryUserOtp-enter'
+                                type="text" 
+                                placeholder='enter otp'
+                                maxLength={6}
+                                onChange={handleOtp}
+                              />
+                              <button className='deliveryUserSubmit' onClick={() => verifyOtp(orderData.userEmail) }>Submit </button>
+                            </div>) : 
+                            (<div className="deliveryOtpSendContainer">
+                              <div className='deliveryUserOtp'>
+                                {orderData.userEmail}
+                              </div>
+                              <button className='deliveryUserSend' onClick={() => sendOtp(orderData.userEmail)}>Send OTP</button>
+                            </div>)
+                            } 
+                          </div>
+
                         </div>
                       ) : null}
 

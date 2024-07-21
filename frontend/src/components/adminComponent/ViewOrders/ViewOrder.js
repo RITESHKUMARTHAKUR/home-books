@@ -76,6 +76,8 @@ const ViewOrder = () => {
                         date={getDate(orders.createdAt)} 
                         title={firstProduct[index].title} 
                         pay={orders.orderTotal} 
+                        phno={orders.userContact}
+                        email={orders.userEmail}
                         orderStatus={orders.orderStatus} 
                         items={orders.itemsCount} 
                         // pdfDownload={handleDownloadPdf}

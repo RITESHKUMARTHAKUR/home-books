@@ -45,6 +45,7 @@ const addBook = require('./routes/Books/addBook');
 const getSchoolBooks = require('./routes/Books/getSchoolBooks');
 const getBooks = require('./routes/Books/getBooks'); //getAllBooks
 const getSingleBook = require('./routes/Books/getSingleBook'); //getAllBooks
+
 const createOrder = require('./routes/Orders/createOrder');
 const createCartOrder = require('./routes/Orders/createCartOrder');
 const addCart = require('./routes/Orders/addCart');
@@ -54,10 +55,13 @@ const getOrders = require('./routes/Orders/getOrder');
 const getAllOrders = require('./routes/Orders/getAllOrders');
 const updateOrder = require('./routes/Orders/updateOrder');
 const getSingleOrder = require('./routes/Orders/getSingleOrder');
+
 const userMessage = require('./routes/Messages/userMessage');
 const getAllMessage = require('./routes/Messages/getAllMessages');
 const addPromotion = require('./routes/Promotions/addPromotions');
 
+const otpMail = require('./routes/Delivery/otpMail');
+const verifyOtp = require('./routes/Delivery/verifyOtp');
 
 // Api Endpoints
 app.post("/signup", signup);
@@ -88,6 +92,11 @@ app.get("/getOrders/:email", getOrders);       //Get Orders of User Api
 app.get("/getAllOrders", getAllOrders);       //Get All Orders Api
 app.put("/updateOrder/:orderId", updateOrder);       //Get All Orders Api
 app.get("/getOrder/:orderId",getSingleOrder);  //Get Single Order
+//<------- Order Api Endpoints ------->
+
+//<------- Order Api Endpoints ------->
+app.post("/otp-mail", otpMail);
+app.post("/otp-verify", verifyOtp);
 //<------- Order Api Endpoints ------->
 
 //<------- Message Api Endpoints ------->

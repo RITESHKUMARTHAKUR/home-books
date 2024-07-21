@@ -40,6 +40,8 @@ const OrderCard = (props) => {
             <div className="orderDetailsContainer">
                 <div>
                     <p>{props.title}</p>
+                    <p>{props.phno} &#x2022; {props.email} </p>
+                    {/* <p>{props.addr}</p> */}
                     <p>{props.date}</p>
                     <p>Items: {props.items}</p>
                     <p>Total: &#8377; {props.pay}</p>

@@ -66,7 +66,21 @@ const Orders = () => {
   return (
     <div className='ordersContainer'>
       {orderDoc.length > 0 ? orderDoc.map((orders,index) => (
-        <OrderCard orderImg={firstProduct[index].bookImg} link={`/order/${orders._id}`} orderId={getOrderId(orders._id)} date={getDate(orders.createdAt)} title={firstProduct[index].title} pay={orders.orderTotal} orderStatus={orders.orderStatus} items={orders.itemsCount} />
+        <OrderCard 
+        orderImg={firstProduct[index].bookImg} 
+        link={`/order/${orders._id}`} 
+        orderId={getOrderId(orders._id)} 
+        date={getDate(orders.createdAt)} 
+        title={
+          currentUser.accType === 1 ? orders.userName : firstProduct[index].title 
+        } 
+        phno={
+          orders.userContact 
+        }
+        email={currentUser.accType === 1 && orders.userEmail}
+        pay={orders.orderTotal} 
+        orderStatus={orders.orderStatus} 
+        items={orders.itemsCount} />
       )) :
        <p>No Orders Here</p>
     }

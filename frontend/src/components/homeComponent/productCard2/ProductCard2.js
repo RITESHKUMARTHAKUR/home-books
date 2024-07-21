@@ -21,7 +21,10 @@ const ProductCard2 = (props) => {
       </Link>
       <div className="productCardThirds">
         <p> <strike>&#8377;{props.price}</strike> <b>&#8377;{props.price - props.discount}</b>    </p>
+        {
+          !props.isProfile && 
         <button className='product-cartBtn' onClick={handleCart} > <FaPlus/></button>
+        }
       </div>
       <div className="productCardFourths">
           {/* <button className='cardWishlist'><FaRegHeart /></button> */}

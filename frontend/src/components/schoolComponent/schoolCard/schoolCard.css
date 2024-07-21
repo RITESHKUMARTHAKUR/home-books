@@ -4,7 +4,7 @@
     text-decoration: none;
     padding: 0.5em 0.5em  1em 0.5em;/* padding: 0em 0  1em 0; */
     border-radius: 10px;
-    margin: 10px 10px ;
+    margin: 10px 5px;
     color: var(--bs-theme-secondary);
     background: var(--bs-white);
     flex-direction: column;
@@ -33,6 +33,10 @@
     /* text-align: center; */
 }
 @media only screen and (max-width: 992px) { 
+    .schoolCardContainer {
+        margin: 10px 0px;
+        padding: 0em 0em 1em 0em;
+    }
     .schoolCardContainer div{
         height: 120px;
         width: 100%;

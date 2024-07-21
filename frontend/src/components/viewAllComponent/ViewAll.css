@@ -1,0 +1,5 @@
+.viewAllComponent .productDiv{
+    display: grid;
+    column-gap: 5px;
+    grid-template-columns: repeat(5,1fr);
+}

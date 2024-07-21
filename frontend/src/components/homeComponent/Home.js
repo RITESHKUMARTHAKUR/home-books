@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import { BookCopy,MoveRight  } from 'lucide-react';
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import Book from "../../images/phys_book.jpg";
+import NoteBookImg from "../../images/phys_book.jpg";
 import {
   FaBolt,
   FaBookOpen,
@@ -406,7 +407,7 @@ const Home = () => {
                 <button>Visit Collections</button>
               </div>
               <div className="sliderDivImg">
-                <img src={Book} alt="" />
+                <img src={NoteBookImg} alt="" />
               </div>
             </div>
             
@@ -423,7 +424,7 @@ const Home = () => {
                 <button>Visit Collections</button>
               </div>
               <div className="sliderDivImg">
-                <img src={Book} alt="" />
+                <img src={NoteBookImg} alt="" />
               </div>
             </div>
             
@@ -456,8 +457,11 @@ const Home = () => {
       <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
-          <FaBolt />
-          &nbsp;CLass 12
+          {/* <FaBolt /> */}
+        
+          <BookCopy/>
+          
+          &nbsp; Top Books
         </h3>
         <div className="productDiv">
           {booksTwelve && booksTwelve.map(booksDoc => (
@@ -492,7 +496,8 @@ const Home = () => {
         </Slider> */}
       </div>
 
-      <div className="homeSectionSecond">
+      {/* Section class 11 */}
+      {/* <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
           <FaBolt />
@@ -511,7 +516,7 @@ const Home = () => {
             img={getImage(booksDoc.bookImg)}
             />
           ))}
-        </div>
+        </div> */}
         {/* <Slider {...settingsEleven}>
           {booksEleven && booksEleven.map(booksDoc => (
             <ProductCard
@@ -525,13 +530,14 @@ const Home = () => {
             img={getImage(booksDoc.bookImg)}
             />
           ))}
-          
-         
-          
-        </Slider> */}
-      </div>
 
-      <div className="homeSectionSecond">
+        </Slider> */}
+      {/* </div> */}
+      {/* Section class 11 */}
+
+
+      {/* Section class 10 */}
+      {/* <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
           <FaBolt />
@@ -550,7 +556,7 @@ const Home = () => {
             img={getImage(booksDoc.bookImg)}
             />
           ))}
-        </div>
+        </div> */}
         {/* <Slider {...settingsTen}>
           {booksTen && booksTen.map(booksDoc => (
             <ProductCard
@@ -566,9 +572,10 @@ const Home = () => {
           ))} 
 
         </Slider> */}
-      </div>
+      {/* </div> */}
+      {/* Section class 10 */}
 
-      <div className="homeSectionSecond">
+      {/* <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
           <FaBolt />
@@ -587,7 +594,7 @@ const Home = () => {
             img={getImage(booksDoc.bookImg)}
             />
           ))}
-        </div>
+        </div> */}
         {/* <Slider {...settingsNine}>
           {booksNine && booksNine.map(booksDoc => (
             <ProductCard
@@ -602,12 +609,18 @@ const Home = () => {
             />
           ))}
         </Slider> */}
+      {/* </div> */}
+      {/* Section class 9 */}
+      <div className="section-viewall">
+        <Link to="/viewallBooks" className="viewall-btn">
+          View More <MoveRight/>
+        </Link>
       </div>
-
+      
       <div className="homeSectionThird">
         <BenefitCard
           icon={<TbTruckDelivery />}
-          title={"World Wide Delivery"}
+          title={"Nation Wide Delivery"}
           desc={
             "Get your books delivered right to your doorstep, no matter where you are in the world!"
           }

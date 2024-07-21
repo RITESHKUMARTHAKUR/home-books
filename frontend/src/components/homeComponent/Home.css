@@ -76,11 +76,30 @@
 .homeContainer .homeSectionSecond .productDiv {
   display: grid;
   margin: 1rem 0 0;
-  column-gap:5px ;
+  gap:5px ;
   grid-template-columns: repeat(5,1fr);   
 }
 
-
+.homeContainer .section-viewall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.homeContainer .section-viewall .viewall-btn{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 1rem;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-weight: 600;
+    border: 2px solid var(--bs-theme-secondary);
+    transition: 0.3s ease-out;
+}
+.homeContainer .section-viewall .viewall-btn:hover {
+    color: #F5F5F5;
+    background-color: var(--bs-theme-secondary);
+}
 .homeContainer .homeSectionThird {
     margin: 5em 0 3em;
     display: grid;

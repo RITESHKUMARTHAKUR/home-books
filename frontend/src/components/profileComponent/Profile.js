@@ -4,9 +4,10 @@ import {toast} from 'react-toastify';
 import ProfileImg from "../../images/Profile.jpg";
 import { FaPhone } from "react-icons/fa6";
 import ProductImg from "../../images/phys_book.jpg";
-import ProductBox from "../homeComponent/productCard/ProductCard";
+import ProductBox from "../homeComponent/productCard2/ProductCard2";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+
 
 const Profile = () => {
   const {setCurrentUser,currentUser} = useAuth();
@@ -85,6 +86,7 @@ const Profile = () => {
                 name={cartData.productDetails.title} 
                 price={cartData.productDetails.price} 
                 discount={cartData.productDetails.discount}
+                isProfile={true}
               />
             ))}
           </>

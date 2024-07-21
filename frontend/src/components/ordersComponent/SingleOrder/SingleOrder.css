@@ -22,17 +22,25 @@
     position: absolute;
     left: -150rem;
 }
+.singleOrderDivHeader .singleOrderDiv {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
 .singleOrderDivHeader .singleOrderInvoice {
     border: 2px solid var(--bs-secondary);
     border-radius: 5px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    align-items: center;
+    justify-content: space-evenly;
     color: var(--bs-theme-secondary);
 }
 .singleOrderDivHeader .singleOrderInvoice:hover {
-    border: 2px solid var(--bs-theme-secondary);
+    border: 2px solid var(--bs  -secondary);
     border-radius: 5px;
     box-shadow: var(--bs-theme-box-shadow);
-    background-color: var(--bs-theme-secondary);
-    color: var(--bs-secondary);
+    background-color: var(--bs-secondary);
+    color: var(--bs-theme-secondary);
 }
 .singleOrderDivHeader .singleOrderDownload {
     border-radius: 5px;
@@ -70,10 +78,12 @@
 .showSection .showSectionDelivery {
     height: 50vh;
 }
-.showSection .showSectionDelivery .showDelivery{
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
+.singleOrderContainer .singleOrderDivHeader .showDelivery{
+    font-weight: 500;
+    padding: 5px 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+    margin: 0 0 0 1rem;
 }
 .showSection .showSectionSummary {
     overflow: auto;
@@ -81,30 +91,103 @@
     padding: 0 2rem;
 }
 .statusPending{
-    border:4px solid lightgray;
-    color: darkgray;
+    border:2px solid lightgray;
+    background-color: lightgray;
+    color: gray;
 }
 .statusProcessing{
     border:4px solid #FFA500;
-    color: #FF8C00;
+    color: #bb5502;
+    background-color: #FFA500;
 }
 .statusDelivered{
     border:4px solid lightgreen;
+    background-color: lightgreen;
     color: green;
 }
 
-.showSection .showSectionDelivery .showDelivery,.deliveryCircle{
+/* .showSection .showSectionDelivery .showDelivery,.deliveryCircle{
     display: flex;
     align-items: center;
     gap: 10px;
-}
-.showSectionDelivery .orderStatusContainer {
+} */
+.showSectionDelivery .orderStatusContainer,.orderDeliveryContainer {
     margin: 1rem 0;
     border-radius: 5px;
     background: var(--bs-white);
     padding: 10px;
     border: 3px solid var(--bs-secondary);
 }  
+.orderDeliveryContainer .orderDeliveryOtpContainer{
+    display: flex;
+    gap: 2rem;
+    margin: 10px 0 5px 0;
+    justify-content: space-between;
+}
+.orderDeliveryOtpContainer .deliveryOtpSendContainer,.deliveryEnterOtpContainer {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+.orderDeliveryOtpContainer .deliveryOtpSendContainer .deliveryUserOtp{
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px 5px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    cursor: pointer;
+    background-color: lightgray;
+    color: gray;
+    font-weight: 600;
+    border: none;
+    /* border: 2px solid gray; */
+}
+.orderDeliveryOtpContainer .deliveryOtpSendContainer .deliveryUserSend{
+    flex-grow: 1;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 5px;
+    color: var(--bs-theme-bg);
+    font-weight: 600;
+    letter-spacing: 3px;
+    background-color: #7E41B3;
+}
+.orderDeliveryOtpContainer .deliveryOtpSendContainer .deliveryUserSend:hover{
+    background-color: var(--bs-theme-secondary);
+}
+.deliveryEnterOtpContainer .deliveryUserOtp-enter{
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px 5px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    cursor: pointer;
+    background-color: #e7d4ff;
+    color: #8b2eef;
+    font-weight: 600;
+    border: none;
+}
+.deliveryEnterOtpContainer .deliveryUserOtp-enter::placeholder{ 
+    color: #8b2eef;
+}
+.deliveryEnterOtpContainer .deliveryUserSubmit{
+    flex-grow: 1;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 5px;
+    color: var(--bs-theme-bg);
+    font-weight: 600;
+    letter-spacing: 3px;
+    background-color: #7E41B3;
+}
 .showSectionDelivery .orderStatusContainer .orderStatusChangeContainer {
     display: flex;
     gap: 2rem;
@@ -198,7 +281,7 @@
     .deliveryContainer .deliveryContainerTable .deliveryTableBody{
         font-size:0.8rem;
     }
-    .showSection .showSectionDelivery .showDelivery{
+    .singleOrderContainer .singleOrderDivHeader .showDelivery{
         font-size: 15px;
     }
     .singleOrderDivBodyContainer .singleOrderNav .showSection {
@@ -207,7 +290,15 @@
     .showSection .showSectionSummary {
         padding: 0 1rem;
     }
-    
+    .orderDeliveryOtpContainer .deliveryOtpSendContainer,.deliveryEnterOtpContainer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .orderDeliveryOtpContainer .deliveryOtpSendContainer .deliveryUserOtp{
+        width: 100%;
+    }.deliveryEnterOtpContainer .deliveryUserOtp-enter{
+        width: 100%;
+    }
     
 
 }

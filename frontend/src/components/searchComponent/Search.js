@@ -6,7 +6,7 @@ import { FaFileImage } from "react-icons/fa6";
 import BookImg from "../../images/phys_book.jpg";
 import {useAuth} from '../../contexts/AuthContext';
 import SchoolCard from '../schoolComponent/schoolCard/schoolCard';
-import BooksCard from '../homeComponent/productCard/ProductCard';
+import BooksCard from '../homeComponent/productCard2/ProductCard2';
 
 const Search = () => {
     const {currentUser} = useAuth();
@@ -38,7 +38,7 @@ const Search = () => {
           shuffledArray[randomIndex] = temporaryValue;
         }
         // Return the first 'count' elements from the shuffled array
-        setShowBooksDoc(shuffledArray.slice(0, 4));
+        setShowBooksDoc(shuffledArray.slice(0, 5));
     }
 
     function searchObjects(input) {

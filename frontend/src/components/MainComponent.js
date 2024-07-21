@@ -8,6 +8,7 @@ import Profile from './profileComponent/Profile';
 import Contact from './contactComponent/Contact';
 import School from './schoolComponent/School';
 import Product from "./productComponent/Product";
+import ViewAll from './viewAllComponent/ViewAll';
 import Login from "./registerComponent/loginComponent/login";
 import Signup from "./registerComponent/signupComponent/signup";
 import SearchBar from "./searchComponent/Search";
@@ -20,6 +21,8 @@ import AddSchool from './adminComponent/AddSchools/AddSchool';
 import ViewOrders from './adminComponent/ViewOrders/ViewOrder';
 import ViewMessages from './adminComponent/ViewMessages/ViewMessages';
 import Promotions from './adminComponent/Promotion/Promotion';
+
+import OrdersDelivery from "./deliveryComponent/ordersDelivery/OrdersDelivery";
 
 import PrivateRoute from '../PrivateRoute';
 import PDFFile from './pdfComponent/PDFFile';
@@ -37,6 +40,7 @@ const MainComponent = () => {
           <Route path='/contact-us' element={<Contact/>} />
           <Route path='/school/:id' element={<School/>} />
           <Route path='/product/:id' element={<Product/>} />
+          <Route path='/viewallBooks' element={<ViewAll/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/pdf' element={<PDFFile/>} />
@@ -49,6 +53,8 @@ const MainComponent = () => {
           <Route path='/admin/viewOrder/:orderId' element={<PrivateRoute Component={SingleOrder} />} />
           <Route path='/admin/viewMessages' element={<PrivateRoute Component={ViewMessages} />} />
           <Route path='/admin/promotions' element={<PrivateRoute Component={Promotions} />} />
+
+          <Route path='/delivery'  element={<PrivateRoute Component={OrdersDelivery} />}/>
       </Routes>
   )
 }

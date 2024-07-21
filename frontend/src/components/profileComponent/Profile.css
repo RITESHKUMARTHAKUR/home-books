@@ -44,7 +44,7 @@
 
 }
 .profileContainerSecond {
-    padding: 1em 1em;
+    padding: 1rem 0.5rem;
     background: var(--bs-white);
     border-radius: 5px;
     box-shadow: var(--bs-theme-box-shadow);
@@ -56,10 +56,12 @@
 .profileContainerSecond hr{
     height: 3px;
     border: none;
+    margin: 0 0 16px 0;
     background: var(--bs-secondary);
 }
 .profileContainerSecond .favoutatesContainer {
     display: grid;
+    gap: 1rem;
     grid-template-columns: repeat(4,1fr);
 }
 @media only screen and (max-width: 992px) { 
