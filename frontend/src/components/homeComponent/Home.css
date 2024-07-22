@@ -93,6 +93,7 @@
     border-radius: 5px;
     padding: 5px 15px;
     font-weight: 600;
+    color: var(--bs-theme-secondary);
     border: 2px solid var(--bs-theme-secondary);
     transition: 0.3s ease-out;
 }

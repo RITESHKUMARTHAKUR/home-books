@@ -168,14 +168,14 @@ const Navbar = () => {
                     
                 : null }
                 
-                {currentUser !== null ? 
+                {currentUser !== null ? currentUser.accType === 1 || currentUser.accType === 2 ?
                     <> 
-                    <hr className='sidenav-hr' />
-                    <Link to="/delivery" onClick={toggleNav} >
-                        <Truck className='sidenav-icons' size="20" /> Delivery
-                    </Link>
+                        <hr className='sidenav-hr' />
+                        <Link to="/delivery" onClick={toggleNav} >
+                            <Truck className='sidenav-icons' size="20" /> Delivery
+                        </Link>
                     </>        
-                : null }
+                : null : null }
                 <hr className='sidenav-hr' />
                 <Link to="/contact-us" onClick={toggleNav} >
                    <Headset className='sidenav-icons' size="20" /> Contact
