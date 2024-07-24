@@ -186,4 +186,7 @@
         bottom:1.5rem;
         right: 1rem;
     }
+    .homeContainer .homeSectionFirst .productSlider .sliderDivImg {
+        height: 100%;
+    }
 }
