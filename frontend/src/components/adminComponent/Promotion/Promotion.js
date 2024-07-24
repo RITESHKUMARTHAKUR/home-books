@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Promotion.css";
+import { X,Plus } from 'lucide-react';
 import { toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import PromotionsCard from "./PromotionCard/PromotionCard";
 
 const Promotion = () => {
   const Navigate = useNavigate();
   const { currentUser } = useAuth();
+  const [promotionImgUrl,setPromotionImgUrl] = useState("");
+
+  const [showAddPromotionBox,setAddPromotionBox] = useState(false);
+  const [promotionId,setPromotionId] = useState("");
+  const [promotionsList,setPromotionsList] = useState([]);
+  
   const [promotionTitle, setPromotionTitle] = useState("");
+  const [promotionRedirect, setPromotionRedirect] = useState("");
   const [files, setFiles] = useState(null);
   const [promotionDesc, setPromotionDesc] = useState("");
-  const [promotionRedirect, setPromotionRedirect] = useState("");
 
   const addPromotionUrl = `${process.env.REACT_APP_API_BASE_URL}/addPromotion`;
+  const getPromotionUrl = `${process.env.REACT_APP_API_BASE_URL}/getPromotions`;
+  const deletePromotionUrl = `${process.env.REACT_APP_API_BASE_URL}/deletePromotion`;
+  const updatePromotionUrl = `${process.env.REACT_APP_API_BASE_URL}/updatePromotion/${promotionId}`;
+  
   const fileTypes = ["image/png", "image/jpg", "image/jpeg"];
 
   const handleChange = (e) => {
@@ -95,22 +107,151 @@ const Promotion = () => {
     }
   };
 
+  const updatePromotionList = (upDateDoc) => {
+    const promotionIndex = promotionsList.findIndex(promotion => promotion._id === promotionId );
+    promotionsList[promotionIndex] = upDateDoc;
+  }
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    let updatedUrl = promotionImgUrl;
+
+    const promise = new Promise(async (resolve, reject) => { 
+      if(files) {
+        const storageRef = ref(storage, "promotions/" + getFileName());
+        const fileUpload = await uploadBytesResumable(storageRef, files);
+
+        if (fileUpload.state === "success") {
+          await getDownloadURL(storageRef).then(downloadURL => {  
+            updatedUrl = downloadURL;
+          });
+        }
+      }
+
+      const updateDoc = await fetch(updatePromotionUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+          promotionTitle,
+          promotionImg: updatedUrl,
+          promotionDesc,
+          promotionRedirect,
+        })  
+      });
+      const data = await updateDoc.json();
+        if(updateDoc.ok){
+          resolve("Promotion added!");
+          updatePromotionList(data);
+        }
+        else{
+          toast.error(data.msg);
+        }
+    });
+    toast.promise(promise, {
+      pending: "Updating data...",
+      success: "Promotion Updated successfully",
+      error: "Some error occured!",
+    });
+
+  }
+  
+  const getPromotions = async () => {
+    const promotionsDoc = await fetch(getPromotionUrl,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+    });
+    if(promotionsDoc.ok){
+      promotionsDoc.json().then(responseDoc => {
+        setPromotionsList(responseDoc);
+      })
+    }else {
+      toast.error("Unable to fetch Data!!")
+    }
+  }
+  const handleAddPromotion = () => {
+    setPromotionTitle("");
+    setPromotionDesc("");
+    setPromotionRedirect("");
+    handleShowPromotion();
+  }
+  const handleClosePromotion = () => {
+    handleShowPromotion();
+    setPromotionId("");
+    setFiles(null);
+  }
+
+  const handleShowPromotion = () => {
+    setAddPromotionBox(!showAddPromotionBox);
+  }
+
+  const handleDelete = async (pId) => {
+    const deleteDoc = await fetch(deletePromotionUrl,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: pId
+        })
+    })
+    const data = await deleteDoc.json();
+    if(deleteDoc.ok) {
+      const promotionIndex = promotionsList.findIndex(promotion => promotion._id === pId );
+      const newPromotionsList = [...promotionsList];
+      newPromotionsList[promotionIndex] = data;
+      setPromotionsList(newPromotionsList);
+      toast.success("Promotion Updated!!");
+    }else {
+      toast.error(data.msg)
+    }
+  }
+
+  const handleEdit = (pId) => {
+    setPromotionId(pId);
+    const promotionDoc = promotionsList.find(blog => blog._id === pId );
+    setPromotionTitle(promotionDoc.promotionTitle);
+    setPromotionDesc(promotionDoc.promotionDesc);
+    setPromotionRedirect(promotionDoc.promotionRedirect);
+    setPromotionImgUrl(promotionDoc.promotionImg);
+    handleShowPromotion();
+  }
+  
+  useEffect(() => {
+    getPromotions();
+  },[]);
   return (
     <div className="promotionContainer">
       {currentUser.accType === 1 ? (
         <>
           <div className="promotionHeader">
             <center>
-              <h2 className="promotionHeaderTitle">Add or Update Promotions</h2>
+              <button className="addPromotion" onClick={handleAddPromotion} >
+                Add Promotion <Plus/> 
+              </button>
             </center>
           </div>
 
+          { showAddPromotionBox &&
+            <>
+          <div className="promotionCreateOverlay"
+            onClick={handleClosePromotion}
+          ></div>
           <div className="promotionCreate">
             <div className="promotionCreateHeading">
-              <h4 className="promotionInputTitle">Add Promotion</h4>
+              <h4 className="promotionInputTitle">
+                {promotionId === "" ? 
+                "Add Promotion" :
+                "Update Promotion" 
+                }
+              </h4>
+              <X size="30" cursor="pointer"  strokeWidth="3" onClick={handleClosePromotion} />
             </div>
 
-            <form action="" className="promotionForm" onSubmit={handleSubmit}>
+            <form action="" className="promotionForm">
               <div className="promotionInputGroup">
                 <label htmlFor="title">
                   <h4 className="promotionInputTitle">Title</h4>
@@ -119,6 +260,7 @@ const Promotion = () => {
                   className="promotionInputBorder"
                   onChange={(e) => setPromotionTitle(e.target.value)}
                   type="text"
+                  value={promotionTitle}
                   name="title"
                   placeholder="title"
                 />
@@ -132,6 +274,7 @@ const Promotion = () => {
                   onChange={(e) => setPromotionRedirect(e.target.value)}
                   type="text"
                   name="title"
+                  value={promotionRedirect}
                   placeholder="redirect link"
                 />
               </div>
@@ -154,13 +297,34 @@ const Promotion = () => {
                   className="promotionInputDescription"
                   onChange={(e) => setPromotionDesc(e.target.value)}
                   type="text"
+                  value={promotionDesc}
                   name="promotionDescription"
                   placeholder="description"
                 />
               </div>
-
-              <button className="promotionSubmitBtn">Submit Promotion</button>
+              {
+                promotionId === "" ? 
+                <button className="promotionSubmitBtn" onClick={handleSubmit} >Submit Promotion</button>
+                :
+                <button className="promotionSubmitBtn" onClick={handleUpdate} >Update Promotion</button>
+              }
             </form>
+          </div> </>}
+          <div className="promotionsList">
+              {promotionsList.length>0 ? promotionsList.map(response => (
+                  <PromotionsCard
+                      deleteBtn={handleDelete}
+                      editBtn={handleEdit}
+                      promotionId={response._id}
+                      status={response.promotionStatus}
+                      img={response.promotionImg}
+                      title={response.promotionTitle}
+                      desc={response.promotionDesc}
+                  />
+              )) 
+              : 
+                <div className="">No Promotions Here</div>
+              }
           </div>
         </>
       ) : (

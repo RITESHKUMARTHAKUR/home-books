@@ -1,0 +1,86 @@
+.promotionCard {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    color: var(--bs-theme-secondary);
+    background-color: var(--bs-white);
+}
+.promotionCard .promotionImgDiv {
+    width: 150px;
+    margin: auto;
+}
+.promotionCard .promotionImgDiv .promotionImg  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.promotionTitle {
+    margin: 1rem 0 0;
+}
+
+.promotionButtonDiv {
+    margin: 1rem 0 0;
+    display: flex;
+    gap: 1rem;
+}
+.promotionButtonDiv .promotionDelete,.promotionEdit {
+    width: 50%;
+    padding: 7px 0;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.3s ease-in;
+}
+
+.promotionButtonDiv .promotionDelete {
+    border: 2px solid var(--bs-theme-secondary);
+    color: var(--bs-theme-secondary);
+    background: var(--bs-white);
+}
+.promotionButtonDiv .promotionDelete:hover {
+    background: var(--bs-secondary);
+    border: 2px solid var(--bs-secondary);
+}
+.promotionButtonDiv .promotionEdit {
+    color: var(--bs-white);
+    background: var(--bs-theme-secondary);
+}
+.promotionButtonDiv .promotionEdit:hover {
+    background: var(--bs-secondary);
+    color: var(--bs-theme-secondary);
+    border: 2px solid var(--bs-secondary);
+}
+.promotionActive , .promotionInactive {
+    border-radius: 5px;
+    padding:  2px 10px;
+   max-width: max-content;
+}
+.promotionActive {
+    background-color: lightgreen;
+    color: green;
+}
+.promotionInactive {
+    background-color: lightcoral;
+    color: brown;
+}
+
+@media only screen and (max-width: 992px ) {
+    .promotionCard .promotionImgDiv {
+        width: 100px;
+        margin: auto;
+    }
+    .promotionCard {
+        gap: 2px;
+    }
+    .promotionButtonDiv .promotionDelete,.promotionEdit {
+        padding: 3px 0;
+        font-size: 16px;
+    }
+}

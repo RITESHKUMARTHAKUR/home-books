@@ -59,6 +59,9 @@ const getSingleOrder = require('./routes/Orders/getSingleOrder');
 const userMessage = require('./routes/Messages/userMessage');
 const getAllMessage = require('./routes/Messages/getAllMessages');
 const addPromotion = require('./routes/Promotions/addPromotions');
+const getPromotion = require('./routes/Promotions/getPromotions');
+const deletePromotion = require('./routes/Promotions/deletePromotion');
+const updatePromotion = require('./routes/Promotions/updatePromotion');
 
 const otpMail = require('./routes/Delivery/otpMail');
 const verifyOtp = require('./routes/Delivery/verifyOtp');
@@ -106,6 +109,9 @@ app.post("/getAllMessage", getAllMessage);
 
 //<------- Promotion Api Endpoints ------->
 app.post("/addPromotion", addPromotion);
+app.get("/getPromotions", getPromotion);
+app.post("/deletePromotion", deletePromotion);
+app.put("/updatePromotion/:promotionId", updatePromotion);
 //<------- Promotion Api Endpoints ------->
 
 

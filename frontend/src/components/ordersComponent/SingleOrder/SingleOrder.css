@@ -78,9 +78,9 @@
     font-weight: bold;
     border-bottom: 4px solid var(--bs-theme-secondary);
 }
-.showSection .showSectionDelivery {
+/* .showSection .showSectionDelivery {
     height: 50vh;
-}
+} */
 .singleOrderContainer .singleOrderDivHeader .showDelivery{
     font-weight: 500;
     padding: 5px 10px;
