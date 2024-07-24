@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { BookCopy,MoveRight  } from 'lucide-react';
+import { Flame,MoveRight  } from 'lucide-react';
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import NoteBookImg from "../../images/phys_book.jpg";
@@ -26,12 +26,14 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const {currentUser} = useAuth();
+  const getPromotionUrl = `${process.env.REACT_APP_API_BASE_URL}/getPromotions`;
   const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
   const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getBooks`;
   const addCartUrl = `${process.env.REACT_APP_API_BASE_URL}/addCart`;
 
   const [schoolDoc,setSchoolDoc] = useState([]);
   const [booksDoc,setBooksDoc] = useState([]);
+  const [promotionDoc,setPromotionDoc] = useState([]);
 
   const [booksTwelve,setBooksTwelve] = useState([]);
   const [booksEleven,setBooksEleven] = useState([]);
@@ -39,14 +41,38 @@ const Home = () => {
   const [booksNine,setBooksNine] = useState([]);
 
   var settingsOffers = {
-    dots: true,
-    infinite: true,
+    dots: promotionDoc.length > 1,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
     speed: 200,
     autoplaySpeed: 1500,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          autoplay: true,
+          speed: 200,
+          autoplaySpeed: 150,
+          slidesToScroll: 1,
+          infinite: true,
+          initialSlide: 0,
+          dots: false
+        }
+      }
+    ]
   };
 
   var settingsTwelve = {
@@ -262,6 +288,19 @@ const Home = () => {
 
   }
 
+  const fetchPromotions = async () => {
+    await fetch(getPromotionUrl,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then(async (response) => {
+      if(response.ok) {
+        const promotionData = await response.json();
+        setPromotionDoc(promotionData);
+      }
+    })
+  }
 
   const fetchBooks = async () => {
 
@@ -357,6 +396,7 @@ const Home = () => {
   useEffect(() => {
     fetchSchools();
     fetchBooks();
+    fetchPromotions();
   },[]);
 
   return (
@@ -392,43 +432,27 @@ const Home = () => {
           </Link> */}
         </div>
         <div className="productSlider">
-          <Slider {...settingsOffers}>
-
-            <div className="sliderDiv">
-              <div className="sliderDivContent">
-                <h1>
-                  50% Off For Your First <br /> Shopping
-                </h1>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit.Impedit sint iure velit saepe nemo magni dolorum dolorem
-                  explicabo aliquam eaque?
-                </p>
-                <button>Visit Collections</button>
-              </div>
-              <div className="sliderDivImg">
-                <img src={NoteBookImg} alt="" />
-              </div>
-            </div>
-            
-            <div className="sliderDiv">
-              <div className="sliderDivContent">
-                <h1>
-                  50% Off For Your First <br /> Shopping
-                </h1>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit.Impedit sint iure velit saepe nemo magni dolorum dolorem
-                  explicabo aliquam eaque?
-                </p>
-                <button>Visit Collections</button>
-              </div>
-              <div className="sliderDivImg">
-                <img src={NoteBookImg} alt="" />
-              </div>
-            </div>
-            
+          {
+            promotionDoc.length > 1 ?
+            <Slider {...settingsOffers}>
+              {
+                promotionDoc.length>0 && promotionDoc.map(promotions => (
+                  <div className="sliderDivImg">
+                    <img src={promotions.promotionImg} alt="" />
+                  </div>
+                  
+                ))
+              }
           </Slider>
+            :
+            promotionDoc.length>0 && promotionDoc.map(promotions => (
+              
+              <div className="sliderDivImg">
+                <img src={promotions.promotionImg} alt="" />
+              </div>
+            ))
+          }
+          
         </div>
       </div>
 
@@ -459,9 +483,9 @@ const Home = () => {
           {" "}
           {/* <FaBolt /> */}
         
-          <BookCopy/>
+          <Flame strokeWidth={3} />
           
-          &nbsp; Top Books
+          &nbsp; Trending Books
         </h3>
         <div className="productDiv">
           {booksTwelve && booksTwelve.map(booksDoc => (
