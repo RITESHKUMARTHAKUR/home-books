@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Search.css';
 import { toast } from "react-toastify";
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { FaFileImage } from "react-icons/fa6";
 import BookImg from "../../images/phys_book.jpg";
 import {useAuth} from '../../contexts/AuthContext';
@@ -10,7 +10,8 @@ import BooksCard from '../homeComponent/productCard2/ProductCard2';
 
 const Search = () => {
     const {currentUser} = useAuth();
-
+    const { searchId } = useParams();
+  
     const getSchoolUrl = `${process.env.REACT_APP_API_BASE_URL}/getSchool`;
     const getSchoolBooksUrl = `${process.env.REACT_APP_API_BASE_URL}/getBooks`;
     const addCartUrl = `${process.env.REACT_APP_API_BASE_URL}/addCart`;
@@ -41,15 +42,16 @@ const Search = () => {
         setShowBooksDoc(shuffledArray.slice(0, 5));
     }
 
-    function searchObjects(input) {
+    const searchObjects = () =>  {
+      const searchQuery = searchId.toLowerCase();
       const schoolResults = [];
       const bookResults = [];
-
+      
       schoolDoc.forEach(obj => {
         // Iterate over each key in the object
         Object.keys(obj).forEach(key => {
           // Check if the key's value contains the input string (case-insensitive)
-          if (obj[key].toString().toLowerCase().includes(input.toLowerCase())) {
+          if (obj[key].toString().toLowerCase().includes(searchQuery)) {
             // If found, add the object to the results array
             schoolResults.push(obj);
             // Break out of the loop for this object
@@ -63,7 +65,7 @@ const Search = () => {
         // Iterate over each key in the object
         Object.keys(obj).forEach(key => {
           // Check if the key's value contains the input string (case-insensitive)
-          if (obj[key].toString().toLowerCase().includes(input.toLowerCase())) {
+          if (obj[key].toString().toLowerCase().includes(searchQuery)) {
             // If found, add the object to the results array
             bookResults.push(obj);
             // Break out of the loop for this object
@@ -100,8 +102,8 @@ const Search = () => {
         })
     };
     
-    const fetchSchools = () => {
-        fetch(getSchoolUrl, {
+    const fetchSchools = async () => {
+        await fetch(getSchoolUrl, {
             method: 'GET',
             headers: {
             "Content-Type": "application/json"
@@ -163,17 +165,25 @@ const Search = () => {
 
     useEffect(() => {
         fetchSchools();
-        fetchBooks();
-    },[])
+        fetchBooks()
+    },[]);
 
+    useEffect(() => {
+      if(searchId) {
+        searchObjects();
+      }else {
+        setShowSchoolDoc(schoolDoc);
+        getRandomItems(booksDoc);
+      }
+    }, [searchId, schoolDoc, booksDoc]); 
     return (
         <div className='searchContainer'>
-            <div className="searchInputContainer">
+            { window.innerWidth > 992 && <div className="searchInputContainer">
                 <input 
                     className='searchInputBar' 
                     type="text" 
                     placeholder='search for books or schools'
-                    onChange={(e) => searchObjects(e.target.value)}
+                    // onChange={  }
                 />
                 <Link className='searchUpload' to="/uploadBookList" >
                     {window.innerWidth < 992 ? 
@@ -183,11 +193,12 @@ const Search = () => {
                     }
                     
                 </Link>
-            </div>
+            </div>}
             <div className="searchResultContainer">
                 <div className="searchSchoolContainer">
                     {showSchoolDoc && showSchoolDoc.map(schoolInfo => (
                         <SchoolCard 
+                            link={`/school/${schoolInfo._id}`}
                             img={schoolInfo.schoolImg}
                             title={schoolInfo.schoolName}
                             address={schoolInfo.area}
@@ -208,10 +219,13 @@ const Search = () => {
                                 discount={booksInfo.discount}
                             />
                         ))}
-                </div>
-                
-               
+                </div>   
             </div>
+            {
+              showSchoolDoc.length === 0 && showBooksDoc.length === 0 ? 
+                <h5>No results</h5>
+              : null
+            }
         </div>
     )
 }

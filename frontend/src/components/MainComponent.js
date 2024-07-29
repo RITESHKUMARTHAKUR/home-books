@@ -34,7 +34,7 @@ const MainComponent = () => {
           <Route path='/orders'  element={<PrivateRoute Component={Orders} />}/>
           <Route path='/order/:orderId'  element={<PrivateRoute Component={SingleOrder} />}/>
           <Route path='/cart'  element={<PrivateRoute Component={Cart} />}/>
-          <Route path='/search' element={<SearchBar/>} />
+          <Route path='/search/:searchId?' element={<SearchBar/>} />
           <Route path='/uploadBookList' element={<UploadBook/>} />
           <Route path='/profile'  element={<PrivateRoute Component={Profile} />}/>
           <Route path='/contact-us' element={<Contact/>} />

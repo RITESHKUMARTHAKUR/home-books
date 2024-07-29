@@ -3,14 +3,16 @@ import './Navbar.css';
 import { Menu, House, Package,ShoppingCart ,Headset,Search ,User,UserPlus,LogIn,Truck } from 'lucide-react';
 import Logo from '../../images/Logo.png';
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import {Link} from 'react-router-dom';
+import { LuShoppingCart } from "react-icons/lu";
+import {Link, useParams} from 'react-router-dom';
 import { FaUser,FaBorderAll,FaAngleDown } from "react-icons/fa6";
-import { IoBag } from "react-icons/io5";
+import { IoBag,IoPersonCircle,IoSearchCircle } from "react-icons/io5";
 import { useAuth } from '../../contexts/AuthContext';
 
 
 const Navbar = () => {
   const [showNav,setShowNav] = useState(false);
+  const [searchInput,setSearchInput] = useState("");
   const [hamburgerIndex,setHamburgerIndex] = useState(false);
   const {setCurrentUser,currentUser} = useAuth();
   const logOutUrl = `${process.env.REACT_APP_API_BASE_URL}/logout`;
@@ -30,8 +32,6 @@ const Navbar = () => {
     setHamburgerIndex(!hamburgerIndex);
     setShowNav(!showNav);
   }
-
-
 
   const logout = () => {
     fetch(logOutUrl, {
@@ -67,19 +67,20 @@ const Navbar = () => {
                 <img src={Logo} alt="" />
             </Link>
 
-            <div className='searchContainer'>
-                <div className="searchInput">
-                    {
-                        window.innerWidth < 993 ?
-                            null
-                        :
+            <div className='mob-searchContainer'>
+                
+                {
+                    window.innerWidth < 993 ?
+                        null
+                    :
+                    <div className="searchInput">
                         <Link to="/search" > 
                             <input type="text" placeholder='Search here...' />
                         </Link>
-                        
-                    }
+                    </div>
+                }
                     
-                </div>
+                
 
             {/* {currentUser && (
                 <div style={{"display": "flex"}} >
@@ -95,17 +96,21 @@ const Navbar = () => {
 
 
             {currentUser !== null ? (
-                <div style={{"display": "flex", "alignItems": "center", "gap": "0.5em"}} >
-                <Link to="/profile" className='usericons'><FaUser /></Link>
-                {/* <button onClick={logout} >Logout</button> */}
-                { window.innerWidth < 992 ? null : <p>{currentUser.name}</p>}
-                </div>
-            ): (
-                <div className="regBtn">
-                    {/* <Link to="/login" > Login </Link> */}
-                    <Link to="/signup"> Sign up </Link>
-               </div>
-            )
+                    <div style={{"display": "flex", "alignItems": "center","gap":"14px"}} >
+                        {
+                            window.innerWidth < 992 && <Link to="/cart" className='usericons nav-flex'><LuShoppingCart /></Link>
+                        }
+                    
+                    <Link to="/profile" className='usericons nav-flex'><IoPersonCircle /></Link>
+                    { window.innerWidth < 992 ? null : <p>{currentUser.name}</p>}
+                    {/* <button onClick={logout} >Logout</button> */}
+                    </div>
+                ): (
+                    <div className="regBtn">
+                        {/* <Link to="/login" > Login </Link> */}
+                        <Link to="/signup"> Sign up </Link>
+                    </div>
+                )
             }
             </div>
            
@@ -206,11 +211,32 @@ const Navbar = () => {
             </div>
         </div>
         <div className="navSection3">
-            <Link to={"/search"} className='nav-searchBtn'>
-        
+
+            <div className="mobile-search">
+                <input 
+                    type="text" 
+                    className='mobile-search-input' 
+                    value={searchInput}
+                    placeholder='search your books/school' 
+                    onChange={(e)=> setSearchInput(e.target.value) }
+                />
+                {/* <IoSearchCircle /> */}
+                <Link className='mobile-search-icon' to={`/search/${searchInput}`} >
+                    <Search 
+                        className='sidenav-icons ' 
+                        size="20" 
+                    />
+                </Link>
+                
+            </div>
+            <button className='upload-booklist'>
+                Upload Booklist
+            </button>
+            {/* <Link to={"/search"} className='nav-searchBtn'>
+                
                 Search Books<Search className='sidenav-icons' size="20" />
     
-            </Link>
+            </Link> */}
             
         </div>
         

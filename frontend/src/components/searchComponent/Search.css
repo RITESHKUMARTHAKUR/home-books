@@ -1,14 +1,10 @@
-.searchContainer {
-    margin: 1rem 0;
-}
+
 .searchContainer .searchInputContainer {
     display: flex;
     gap: 1rem;
     /* margin: 0 2rem; */
 }
-.searchContainer .searchResultContainer {
-    margin: 1rem 0;
-}
+
 /* .searchContainer .searchInputContainer  .searchInputBar, .searchUpload {
     height: ma;
 } */

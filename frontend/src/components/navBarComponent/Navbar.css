@@ -20,7 +20,7 @@
 .navBarContainer .navSection1 .logo img{
     width: 100%;
 }
-.navSection1 .searchContainer {
+.navSection1 .mob-searchContainer {
     display: flex;
     gap:2rem;
     align-items: center;
@@ -36,11 +36,11 @@
 }
 
 .navBarContainer .navSection1 .usericons{
-    font-size: 16px;
-    padding: 11px 15px;
-    background: var(--bs-gray-200);
+    font-size: 30px;
+    /* padding: 10px 15px; */
+    /* background: var(--bs-gray-200); */
     border-radius: 50%;
-    margin-left: 1em;
+    /* margin-left: 1em; */
     /* border:  1px solid black; */
 }
 .navBarContainer .navSection2 .usericons .nav-usericons{
@@ -146,7 +146,46 @@
 .navBarContainer .navSection3 {
     display: none;
     width: 90%;
-    margin: auto;
+    margin: 12px auto 8px;
+    height: 35px;
+}
+.navSection3 .mobile-search {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    font-weight: 500;
+}
+.navSection3 .mobile-search .mobile-search-input{ 
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    color: var(--bs-theme-secondary);
+    outline: none;
+    border: 2px solid var(--bs-secondary);
+    border-radius: 5px;
+}
+.navSection3 .mobile-search .mobile-search-input::placeholder { 
+ color: var(--bs-theme-secondary);
+}
+.navSection3 .mobile-search .mobile-search-icon {
+    margin-left: -1.8rem;
+    width: 10%;
+    display: flex;
+    background-color: white;
+    color: var(--bs-theme-secondary);
+}
+.navSection3 .upload-booklist {
+    font-size: 12px;
+    border-radius: 5px;
+    margin-left: 8px;
+    box-shadow: var(--bs-theme-box-shadow);
+    font-weight: 500;
+    background-color: var(--bs-secondary);
+    border: 2px solid var(--bs-secondary);
+    color: var(--bs-theme-secondary);
+}
+.nav-flex {
+    display: flex;
 }
 /* .navBarContainer .navSection3 .nav-search{
     width: 100%;
@@ -158,7 +197,7 @@
     border: 2px solid var(--bs-theme-secondary);
     border-radius: 5px;
 } */
-.navBarContainer .navSection3 .nav-searchBtn{
+/* .navBarContainer .navSection3 .nav-searchBtn{
     width: 100%;
     margin: 1rem auto 0;
     display: flex;
@@ -173,7 +212,7 @@
     outline: none;
     border: none;
     border-radius: 5px;
-}
+} */
 /* .sidenav-hr {
     background: var(--bs-theme-secondary);
 } */
@@ -182,7 +221,7 @@
         width: 100px;
     } */
     .navBarContainer .navSection3 {
-        display: block;
+        display: flex;
     }
     .navBarContainer .navSection2 .pageLinks a .sidenav-icons { 
         display: block;
