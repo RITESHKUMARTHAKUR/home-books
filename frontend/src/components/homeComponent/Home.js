@@ -42,30 +42,39 @@ const Home = () => {
 
   var settingsOffers = {
     dots: promotionDoc.length > 1,
-    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
-    speed: 200,
-    autoplaySpeed: 1500,
+    autoplay: true,
+    speed:1000,
+    infinite: true,
+    autoplaySpeed: 4500,
     cssEase: "linear",
+    dots: false,
+    // fade: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false
-        }
-      },
+      // {
+      //   breakpoint: 1024,
+      //   settings: {
+      //     slidesToShow: 1,
+      //     autoplay: true,
+      //     speed: 100,
+      //     fade: true,
+      //     cssEase: 'linear',
+      //     autoplaySpeed: 3000,
+      //     slidesToScroll: 1,
+      //     infinite: true,
+      //     initialSlide: 0,
+      //     dots: false
+      //   }
+      // },
       {
         breakpoint: 992,
         settings: {
           slidesToShow: 1,
           autoplay: true,
-          speed: 200,
-          autoplaySpeed: 150,
+          speed: 1000,
+          cssEase: 'linear',
+          autoplaySpeed: 4500,
           slidesToScroll: 1,
           infinite: true,
           initialSlide: 0,
