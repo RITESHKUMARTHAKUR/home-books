@@ -63,6 +63,8 @@ const getPromotion = require('./routes/Promotions/getPromotions');
 const deletePromotion = require('./routes/Promotions/deletePromotion');
 const updatePromotion = require('./routes/Promotions/updatePromotion');
 
+const addBookList = require('./routes/BookList/addBookList');
+
 const otpMail = require('./routes/Delivery/otpMail');
 const verifyOtp = require('./routes/Delivery/verifyOtp');
 
@@ -112,6 +114,11 @@ app.post("/addPromotion", addPromotion);
 app.get("/getPromotions", getPromotion);
 app.post("/deletePromotion", deletePromotion);
 app.put("/updatePromotion/:promotionId", updatePromotion);
+//<------- Promotion Api Endpoints ------->
+
+//<------- Promotion Api Endpoints ------->
+app.post("/uploadBookList", addBookList);
+
 //<------- Promotion Api Endpoints ------->
 
 

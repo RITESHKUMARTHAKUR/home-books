@@ -117,7 +117,7 @@
     width: unset;
 }
 .slick-prev:before,.slick-next:before  {
-    color: var(--bs-theme-secondary);
+    color: lightgray;
     font-size: 30px;
 }
 .whatsaap-icon-container {

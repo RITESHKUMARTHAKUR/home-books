@@ -229,9 +229,9 @@ const Navbar = () => {
                 </Link>
                 
             </div>
-            <button className='upload-booklist'>
+            <Link to="/uploadBookList" className='upload-booklist'>
                 Upload Booklist
-            </button>
+            </Link>
             {/* <Link to={"/search"} className='nav-searchBtn'>
                 
                 Search Books<Search className='sidenav-icons' size="20" />
