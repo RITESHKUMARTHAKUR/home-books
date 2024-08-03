@@ -38,7 +38,8 @@ const Product = () => {
           toast.error("Book Not Found!")
         }
           
-    })
+    });
+    window.scrollTo(0, 0);
   }
 
   const handleAddToCart = async () => {

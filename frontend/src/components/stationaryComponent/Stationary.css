@@ -1,0 +1,16 @@
+.stationaryComponent{
+    padding-top: 1rem;
+}
+.stationaryComponent .stationaryTitle {
+    color: var(--bs-theme-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stationaryComponent .stationaryProductDiv {
+    display: grid;
+    gap: 5px;
+    margin: 1rem 0;
+    grid-template-columns: repeat(4,1fr);
+} 

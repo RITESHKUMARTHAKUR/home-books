@@ -3,7 +3,6 @@ import "./Home.css";
 import { Flame,MoveRight  } from 'lucide-react';
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import NoteBookImg from "../../images/phys_book.jpg";
 import {
   FaBolt,
   FaBookOpen,
@@ -18,9 +17,10 @@ import BenefitCard from "./benefitsCard/Benefit";
 import SchoolCard from "../schoolComponent/schoolCard/schoolCard";
 import {useAuth} from '../../contexts/AuthContext';
 import BookImg from "../../images/phys_book.jpg";
-import SchoolImg from "../../images/school.jpg";
-import { IoLogoWhatsapp } from "react-icons/io";
+import NotebookImg from "../../images/notebook.webp";
+import StationaryImg from "../../images/stationary.webp";
 import ProdCard2 from "../homeComponent/productCard2/ProductCard2";
+import NotebooksCard from "./noteBooksCard/NotebooksCard";
 import WhatsaapPng from "../../images/whatsapp.png";
 import { toast } from "react-toastify";
 
@@ -308,7 +308,8 @@ const Home = () => {
         const promotionData = await response.json();
         setPromotionDoc(promotionData);
       }
-    })
+    });
+      window.scrollTo(0, 0);
   }
 
   const fetchBooks = async () => {
@@ -486,8 +487,22 @@ const Home = () => {
           </Slider>
         </div>
       {/* ---------------------- School Slider Ends ---------------------- */}
+      
+      <div className="homeSectionFifth">
+            <NotebooksCard
+              link={"/stationary"}
+              noteBookimg={NotebookImg}
+              title={"Notebooks"} 
+            />
+            <NotebooksCard
+            link={"/stationary"}
+              noteBookimg={StationaryImg}
+              title={"Stationary"} 
+            />
+      </div>
 
-      <div className="homeSectionSecond">
+      {/* ---------------------- Trending Books Section ---------------------- */}
+        <div className="homeSectionSecond">
         <h3 className="sectionHeader">
           {" "}
           {/* <FaBolt /> */}
@@ -527,7 +542,9 @@ const Home = () => {
           
           
         </Slider> */}
-      </div>
+        </div>
+      {/* ---------------------- Trending Books Section ---------------------- */}
+
 
       {/* Section class 11 */}
       {/* <div className="homeSectionSecond">

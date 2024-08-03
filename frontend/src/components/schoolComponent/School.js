@@ -234,6 +234,7 @@ const School = () => {
   useEffect(() => {
       fetchSchool();
       fetchSchoolBooks();
+      window.scrollTo(0, 0);
   }, [])
   
   return (

@@ -183,6 +183,8 @@ const Navbar = () => {
                 : null : null }
                 <hr className='sidenav-hr' />
                 <Link to="/contact-us" onClick={toggleNav} >
+
+                   {/* <Headset className='' size="20" /> */}
                    <Headset className='sidenav-icons' size="20" /> Contact
                 </Link>
                 

@@ -131,6 +131,11 @@
 .whatsapp-icon {
     width: 80px;
 }
+.homeContainer .homeSectionFifth {
+    display: flex;
+    margin-bottom: 4rem;
+    gap: 2rem;
+}
 
 @keyframes whatsappAnimation {
     from{

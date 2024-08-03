@@ -111,11 +111,26 @@
 .navBarContainer .navSection2 .pageLinks a{
     text-decoration: none;
     display: flex;
-    gap: 1rem;
+    position: relative;
+    gap: 7px;
     align-items: center;
-    transition: ease 0.5s all;
+    transition: ease 0.3s all;
     font-weight: 500;
     color: var(--bs-theme-secondary);
+}
+.navBarContainer .navSection2 .pageLinks a::after {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: ease 0.3s all;
+    border-radius: 10px;
+    content: '';
+    background: var(--bs-secondary);
+    width: 0;
+    height: 5px;
+}
+.navBarContainer .navSection2 .pageLinks a:hover::after {
+    width: 100%;
 }
 .navBarContainer .navSection2 .pageLinks a:hover{
     color: var(--bs-secondary);
@@ -123,9 +138,9 @@
 .navBarContainer .navSection2 .pageLinks a:not(:first-child) {
     margin-left: 1em;
 }
-.navBarContainer .navSection2 .pageLinks a .sidenav-icons { 
+/* .navBarContainer .navSection2 .pageLinks a .sidenav-icons { 
     display: none;
- }
+ } */
 .navBarContainer .hamburger {
     display: none;
 }

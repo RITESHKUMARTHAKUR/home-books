@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Routes,Route, Router} from 'react-router-dom'
 import Home from './homeComponent/Home';
 import Orders from './ordersComponent/Orders';
@@ -13,6 +13,7 @@ import Login from "./registerComponent/loginComponent/login";
 import Signup from "./registerComponent/signupComponent/signup";
 import SearchBar from "./searchComponent/Search";
 import UploadBook from "./uploadBookComponent/UploadBook";
+import Stationary from './stationaryComponent/Stationary';
 
 import Admin from "./adminComponent/Admin";
 import AddSchoolBooks from './adminComponent/AddSchoolBooksComponent/AddSchoolBooks';
@@ -44,6 +45,7 @@ const MainComponent = () => {
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/pdf' element={<PDFFile/>} />
+          <Route path='/stationary' element={<Stationary/>} />
 
           <Route path='/admin'  element={<PrivateRoute Component={Admin} />}/>
           <Route path='/admin/addSchoolBooks' element={<PrivateRoute Component={AddSchoolBooks} />} />
