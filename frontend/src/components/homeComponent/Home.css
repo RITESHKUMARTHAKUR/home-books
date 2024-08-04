@@ -133,7 +133,7 @@
 }
 .homeContainer .homeSectionFifth {
     display: flex;
-    margin-bottom: 4rem;
+    margin: 2rem 0 4rem;
     gap: 2rem;
 }
 
@@ -193,5 +193,9 @@
     }
     .homeContainer .homeSectionFirst .productSlider .sliderDivImg {
         height: 100%;
+    }
+    .homeContainer .homeSectionFifth {
+        gap: 10px;
+        margin: 3rem 0 4rem;
     }
 }

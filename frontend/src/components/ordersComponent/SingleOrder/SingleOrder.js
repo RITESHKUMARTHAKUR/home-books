@@ -369,7 +369,7 @@ const SingleOrder = () => {
                 <div className="singleOrderTotalContainer">
                   <div className="singleOrderTotalDiv">
                     <div className="singleOrderTotal">
-                      <h5>SubTotal</h5>
+                      <h5>Price</h5>
                       <h5>
                         &#8377;{" "}
                         {Number.isInteger(orderData.orderTotal)
@@ -379,8 +379,16 @@ const SingleOrder = () => {
                     </div>
                     <hr />
                     <div className="singleOrderTotal">
+                      <h5>Discount</h5>
+                      <h5>25%</h5>
+                    </div>
+                    <hr />
+                    <div className="singleOrderTotal">
                       <h5>Shipping</h5>
-                      <h5>&#8377;0.00</h5>
+                      <span style={{"display":"flex","alignItems":"center","gap":"10px"}}>
+                          <h6 style={{"margin":"0"}} > <strike>&#8377; 40.00</strike>  </h6>
+                          <h4 style={{"margin":"0"}} >Free</h4>
+                      </span>
                     </div>
                   </div>
 

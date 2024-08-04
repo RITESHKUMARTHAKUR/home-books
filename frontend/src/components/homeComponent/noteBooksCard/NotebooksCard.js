@@ -15,7 +15,9 @@ const NotebooksCard = ({noteBookimg,title,link}) => {
                     {title}
                     <MoveRight 
                       strokeWidth={2}
-                      size={40}
+                      size={
+                        window.innerWidth<992? 30: 40
+                      }
                     />
             </div>
     </Link>
