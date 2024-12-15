@@ -1,12 +1,20 @@
 import React from 'react';
 import "./ProductCard2.css";
 import { Link } from 'react-router-dom';
-import { FaPlus  } from "react-icons/fa6";
+import { FaPlus ,FaPencil, FaTrash } from "react-icons/fa6";
 
 const ProductCard2 = (props) => {
+
   const handleCart = () => {
     props.cartFun(props.cartId);
   }
+  const handleEdit = () => {
+    props.editFun(props.bookDoc);
+  }
+  const handleDelete = () => {
+    props.deleteFun(props.bookDoc);
+  }
+  
   return (
     <div className='productCards'>
       <Link to={props.link} className='productCardLinks'>
@@ -21,10 +29,18 @@ const ProductCard2 = (props) => {
       </Link>
       <div className="productCardThirds">
         <p> <strike>&#8377;{props.price}</strike> <b>&#8377;{props.price - props.discount}</b>    </p>
-        {
-          !props.isProfile && 
-        <button className='product-cartBtn' onClick={handleCart} > <FaPlus/></button>
-        }
+        <span style={{"display":"flex", "gap":"0.5rem"}}>
+          {
+            !props.isProfile && props.deleteBtn ? 
+            <button className='product-cartBtn' onClick={handleDelete} > <FaTrash/></button>
+            : null
+          }
+          {
+            !props.isProfile && props.editBtn ? 
+            <button className='product-cartBtn' onClick={handleEdit} > <FaPencil/></button>
+            : <button className='product-cartBtn' onClick={handleCart} > <FaPlus/></button>
+          }
+        </span>
       </div>
       <div className="productCardFourths">
           {/* <button className='cardWishlist'><FaRegHeart /></button> */}

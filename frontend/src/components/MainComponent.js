@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import {Routes,Route, Router} from 'react-router-dom'
+import React from 'react'
+import {Routes,Route} from 'react-router-dom'
 import Home from './homeComponent/Home';
 import Orders from './ordersComponent/Orders';
 import SingleOrder from './ordersComponent/SingleOrder/SingleOrder';
@@ -17,6 +17,7 @@ import Stationary from './stationaryComponent/Stationary';
 
 import Admin from "./adminComponent/Admin";
 import AddSchoolBooks from './adminComponent/AddSchoolBooksComponent/AddSchoolBooks';
+import EditSchoolBooks from './adminComponent/EditSchoolBooksComponent/EditSchoolBooks';
 import AddExamBooks from './adminComponent/AddExamBooksComponent/AddExamBooks';
 import AddSchool from './adminComponent/AddSchools/AddSchool';
 import ViewOrders from './adminComponent/ViewOrders/ViewOrder';
@@ -49,6 +50,7 @@ const MainComponent = () => {
 
           <Route path='/admin'  element={<PrivateRoute Component={Admin} />}/>
           <Route path='/admin/addSchoolBooks' element={<PrivateRoute Component={AddSchoolBooks} />} />
+          <Route path='/admin/editSchoolBooks' element={<PrivateRoute Component={EditSchoolBooks} />} />
           <Route path='/admin/addSchool' element={<PrivateRoute Component={AddSchool} />} />
           <Route path='/admin/addExamBooks' element={<PrivateRoute Component={AddExamBooks} />} />
           <Route path='/admin/viewOrders' element={<PrivateRoute Component={ViewOrders} />} />

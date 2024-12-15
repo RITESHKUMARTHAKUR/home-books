@@ -45,6 +45,8 @@ const addBook = require('./routes/Books/addBook');
 const getSchoolBooks = require('./routes/Books/getSchoolBooks');
 const getBooks = require('./routes/Books/getBooks'); //getAllBooks
 const getSingleBook = require('./routes/Books/getSingleBook'); //getAllBooks
+const deleteBook = require('./routes/Books/deleteBook');
+const updateBook = require('./routes/Books/updateBook');
 
 const createOrder = require('./routes/Orders/createOrder');
 const createCartOrder = require('./routes/Orders/createCartOrder');
@@ -87,6 +89,8 @@ app.get("/getSchoolBooks/:id", getSchoolBooks);
 app.get("/getBooks", getBooks);
 app.get("/getSingleBook/:id", getSingleBook);
 app.post("/addBook", addBook);
+app.delete("/deleteBook/:id", deleteBook);
+app.put("/updateBook", updateBook);
 //<------- Book Api Endpoints ------->
 
 //<------- Order Api Endpoints ------->

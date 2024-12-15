@@ -206,7 +206,7 @@ const Cart = () => {
           </div>
         </> : 
 
-        <p>No Data Found</p>
+        <p>No Items Here</p>
       }
       
     </div>
