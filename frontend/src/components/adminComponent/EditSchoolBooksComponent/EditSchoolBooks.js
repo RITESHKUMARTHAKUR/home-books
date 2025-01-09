@@ -39,8 +39,6 @@ const EditSchoolBooks = () => {
       const {name,value} = e.target;
       setupdateDoc({...updateDoc,[name]: value});
     }
-    console.log(updateDoc);
-    console.log(files);
 
 
     const editForm = (booksDoc) => {

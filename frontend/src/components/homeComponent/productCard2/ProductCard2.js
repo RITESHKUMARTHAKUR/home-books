@@ -44,7 +44,7 @@ const ProductCard2 = (props) => {
       </div>
       <div className="productCardFourths">
           {/* <button className='cardWishlist'><FaRegHeart /></button> */}
-          <p className='cardDiscounts'>{props.off}% off</p>
+          <p className='cardDiscounts'>{parseInt((props.discount/props.price)*100)}% off</p>
         </div>
     </div>
   )

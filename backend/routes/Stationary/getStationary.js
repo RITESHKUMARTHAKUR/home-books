@@ -1,8 +1,8 @@
-const booksSchema = require('../../models/Books')
+const stationarySchema = require('../../models/Stationaries')
 
 const getStationary = async (req,res) => {
     try{
-        const stationaryDoc = await booksSchema.find({elementType: { $in: ["noteBook", "stationery"]}});
+        const stationaryDoc = await stationarySchema.find({elementType: { $in: ["notebook", "stationery"]}});
         res.status(200).json(stationaryDoc);
     }catch (error) {
         res.status(400).json(error);

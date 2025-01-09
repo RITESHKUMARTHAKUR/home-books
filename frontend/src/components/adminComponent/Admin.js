@@ -1,10 +1,43 @@
 import React from 'react';
 import "./Admin.css";
 import {useAuth} from "../../contexts/AuthContext";
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const Admin = () => {
     const {currentUser} = useAuth();
+    const adminButtonsList = [
+        {
+            name: "Add School",
+            link:"/admin/addSchool"
+        },
+        {
+            name: "Add School Books",
+            link:"/admin/addSchoolBooks"
+        },
+        {
+            name: "Edit School Books",
+            link:"/admin/editSchoolBooks"
+        },
+        {
+            name: "Stationery",
+            link:"/admin/stationeries"
+        },
+        {
+            name: "View Orders",
+            link:"/admin/viewOrders"
+        }
+        ,{
+            name: "View Booklist",
+            link:"/admin/bookList"
+        }
+        ,{
+            name: "View Messages",
+            link:"/admin/viewMessages"
+        }
+        ,{
+            name: "Promotions",
+            link:"/admin/promotions"
+        }
+    ]
 
     return (
         <div className='adminContainer'>
@@ -12,13 +45,11 @@ const Admin = () => {
                 <>
                     <center><h2>Admin Panel</h2></center>
                     <div className="adminBtns">
-                    <Link className='adminLinks' to="/admin/addSchool">Add School</Link>
-                    <Link className='adminLinks' to="/admin/addSchoolBooks">Add School Books</Link>
-                    <Link className='adminLinks' to="/admin/editSchoolBooks">Edit School Books</Link>
-                    <Link className='adminLinks' to="/admin/addExamBooks">Add Exam Books</Link>
-                    <Link className='adminLinks' to="/admin/viewOrders">View Orders</Link>
-                    <Link className='adminLinks' to="/admin/viewMessages">View Messages</Link>
-                    <Link className='adminLinks' to="/admin/promotions">Promotions</Link>
+                    {
+                        adminButtonsList.map((buttonList) => (
+                            <Link className='adminLinks' to={`${buttonList.link}`}>{buttonList.name}</Link>
+                        ))
+                    }
                     </div>
                 </>
             ) : 

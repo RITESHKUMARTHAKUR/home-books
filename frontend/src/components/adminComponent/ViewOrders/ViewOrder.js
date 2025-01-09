@@ -3,6 +3,9 @@ import './ViewOrder.css';
 import {useAuth} from '../../../contexts/AuthContext' ;
 import OrderCard from '../../ordersComponent/OrderCard/OrderCard';
 import { Link } from 'react-router-dom';
+import { Frown } from 'lucide-react';
+import NoOrders from '../../../shared/NoOrders/NoOrders';
+
 // import PDFFile from '../../pdfComponent/PDFFile';
 // import { PDFDownloadLink } from '@react-pdf/renderer';
 
@@ -67,8 +70,9 @@ const ViewOrder = () => {
 
   return (
     <div className='viewOrdersContainer'>
-        {(currentUser.accType === 1 ) ? <>
-                {ordersDoc && ordersDoc.map((orders,index) => (
+        {(currentUser.accType === 1 ) ? 
+            <>
+                {ordersDoc.length > 0 ? ordersDoc.map((orders,index) => (
                     <OrderCard 
                         orderImg={firstProduct[index].bookImg} 
                         link={`/admin/viewOrder/${orders._id}`} 
@@ -82,7 +86,10 @@ const ViewOrder = () => {
                         items={orders.itemsCount} 
                         // pdfDownload={handleDownloadPdf}
                     />
-                ))} </>
+                )) : 
+                    <NoOrders icon={<Frown />} name={"orders"} />
+                }
+            </>
         : 
             <div className='notPermission'>
                 <center>

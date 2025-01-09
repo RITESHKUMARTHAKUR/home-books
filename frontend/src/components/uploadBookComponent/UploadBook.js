@@ -70,7 +70,6 @@ const UploadBook = () => {
             });
             if (bookListDoc.ok) {
               resolve("Book added!");
-              Navigate("/search");
             } else {
               reject("Failed to add book!")
             }

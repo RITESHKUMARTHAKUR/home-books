@@ -490,14 +490,14 @@ const Home = () => {
       
       <div className="homeSectionFifth">
             <NotebooksCard
-              link={"/stationary"}
+              link={"/notebooks"}
               noteBookimg={NotebookImg}
               title={"Notebooks"} 
             />
             <NotebooksCard
-            link={"/stationary"}
+            link={"/stationeries"}
               noteBookimg={StationaryImg}
-              title={"Stationary"} 
+              title={"Stationery"} 
             />
       </div>
 
@@ -672,7 +672,7 @@ const Home = () => {
           icon={<TbTruckDelivery />}
           title={"Nation Wide Delivery"}
           desc={
-            "Get your books delivered right to your doorstep, no matter where you are in the world!"
+            "Get your books delivered right to your doorstep, no matter where you are in India!"
           }
         />
         <BenefitCard

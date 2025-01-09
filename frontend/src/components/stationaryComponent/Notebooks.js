@@ -5,9 +5,10 @@ import { BookHeart } from 'lucide-react';
 import BookImg from "../../images/phys_book.jpg";
 import { toast } from 'react-toastify';
 import { useAuth } from '../../contexts/AuthContext';
-const Stationary = () => {
+
+const Notebooks = () => {
     const {currentUser} = useAuth();
-    const stationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/getStationaries`;
+    const stationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/getNotebooks`;
     const addCartUrl = `${process.env.REACT_APP_API_BASE_URL}/addCart`;
 
     const [stationary,setStationary] = useState([]);
@@ -82,7 +83,7 @@ const Stationary = () => {
     <div className='stationaryComponent'>
         <div className="stationaryTitle">
             <BookHeart strokeWidth={3} />
-            Get Your Stationeries here 
+            Get Your Notebooks here 
         </div>
         <div className="stationaryProductDiv">
             {
@@ -110,4 +111,4 @@ const Stationary = () => {
   )
 }
 
-export default Stationary
+export default Notebooks

@@ -1,0 +1,90 @@
+.stationary-admin {
+    margin-top: 1rem;
+    position: relative;
+}
+.addStationaryDiv {
+    position: fixed;
+    top: 0;
+    overflow: auto;
+    transform: translateX(-50%, -50%);
+    left: 0;
+    width: 100%;
+    background: white;
+    height: 100vh;
+    z-index: 999;
+
+}
+.addStationaryDiv .addStationary-heading{
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+}
+.addStationaryHeading {
+    color: var(--bs-theme-secondary);
+}
+
+.addStationaryDiv .addStationary-heading .addStationaryClose {
+    height: max-content;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: var(--bs-theme-secondary);
+    background: transparent;
+    border: 2px solid var(--bs-gray-400);
+    cursor: pointer;
+    transition: all ease-out 0.2s;
+    border-radius: 5px;
+}
+.addStationaryDiv .addStationary-heading .addStationaryClose:hover {
+    color: white;
+    background: var(--bs-theme-secondary);
+    border: 2px solid var(--bs-gray-400);
+}
+
+.addStationaryDiv .addStationaryForm {
+    margin: auto;
+    display: grid;
+    gap: 1em;
+    width: 80%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.addEdit-stationaryDiv .addStationary-button {
+    padding: 0.5em 1em;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    background: white;
+    text-decoration: none;
+    color: var(--bs-theme-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px var(--bs-gray-500);
+    transition: all ease-in-out 0.3s;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.addEdit-stationaryDiv .addStationary-button:hover {
+    color: var(--bs-theme-bg);
+    background-color: var(--bs-theme-secondary);
+}
+
+.stationary-admin .admin-stationaryItems-div{
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0 1rem ;
+}
+
+
+@media only screen and (max-width: 992px){
+    .addStationaryDiv .addStationaryForm {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .stationary-admin .admin-stationaryItems-div{
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem ;
+    }
+}
+

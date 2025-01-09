@@ -82,7 +82,6 @@ const ViewAll = () => {
           {classBooks && classBooks.map(booksDoc => (
             <ProductCard2 
             link={`/product/${booksDoc._id}`}
-            off={25}
             name={getTitle(booksDoc.title)}
             price={booksDoc.price}
             discount={booksDoc.discount}

@@ -1,0 +1,57 @@
+.booklist-cardcomponent{
+    display: flex;
+    padding: 10px;
+    gap: 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--bs-theme-secondary);
+}
+.booklist-cardcomponent .booklist-cardimg{
+    width: 200px;
+    padding: 5px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+.booklist-cardcomponent .booklist-cardcontent {
+    display: flex;
+    flex-direction: column;
+}
+.booklist-cardbuttons{
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+.booklist-cardbuttons .booklist-deletebtn{
+    border: 2px solid var(--bs-theme-secondary);
+    color: var(--bs-theme-secondary);
+    background: var(--bs-white);
+}
+.booklist-cardbuttons .booklist-deletebtn:hover {
+    background: var(--bs-secondary);
+    border: 2px solid var(--bs-secondary);
+}
+.booklist-cardbuttons .booklist-createorder-btn{
+    color: var(--bs-white);
+    background: var(--bs-theme-secondary);
+}
+.booklist-cardbuttons .booklist-createorder-btn:hover{
+    background: var(--bs-secondary);
+    color: var(--bs-theme-secondary);
+    border: 2px solid var(--bs-secondary);
+}
+.booklist-cardbuttons .booklist-deletebtn,.booklist-createorder-btn{
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.3s ease-in;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 5px;
+}
