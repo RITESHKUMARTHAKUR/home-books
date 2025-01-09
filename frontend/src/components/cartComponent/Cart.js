@@ -183,7 +183,7 @@ const Cart = () => {
                 increaseFun={handladd}
                 decreaseFun={handlSub}
                 removeFun={handleRemove}
-                img={cartProd.productDetails.bookImg}
+                img={cartProd.productDetails.bookImg || cartProd.productDetails.stationaryUrl }
               />
             ))}
             

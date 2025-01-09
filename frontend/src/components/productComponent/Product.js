@@ -106,7 +106,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchBook();
-  },[])
+  },[]);
 
   return (
     <div className="productContainer">

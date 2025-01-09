@@ -91,8 +91,7 @@ const Notebooks = () => {
                     stationary.length>0? 
                         stationary.map(statData => (
                                 <ProductCard2
-                                    link={`/product/${statData._id}`}
-                                    off={25}
+                                    link={`/stationery/${statData._id}`}
                                     name={getTitle(statData.title)}
                                     price={statData.price}
                                     discount={statData.discount}

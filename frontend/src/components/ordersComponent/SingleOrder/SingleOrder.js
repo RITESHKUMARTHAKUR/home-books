@@ -359,7 +359,7 @@ const SingleOrder = () => {
                             productPrice={
                               orderProduct.price - orderProduct.discount
                             }
-                            productImg={orderProduct.bookImg}
+                            productImg={orderProduct.bookImg || orderProduct.stationaryUrl}
                             productCount={orderProduct.bookQuantity}
                           />
                         ))}
@@ -384,10 +384,10 @@ const SingleOrder = () => {
                     </div>
                     <hr />
                     <div className="singleOrderTotal">
-                      <h5>Shipping</h5>
+                      <h5 style={{"color":"green"}} >Shipping</h5>
                       <span style={{"display":"flex","alignItems":"center","gap":"10px"}}>
-                          <h6 style={{"margin":"0"}} > <strike>&#8377; 40.00</strike>  </h6>
-                          <h4 style={{"margin":"0"}} >Free</h4>
+                          <h6 style={{"margin":"0","color":"red"}} > <strike>&#8377; 40.00</strike>  </h6>
+                          <h4 style={{"margin":"0" , "color":"green"}} >Free</h4>
                       </span>
                     </div>
                   </div>

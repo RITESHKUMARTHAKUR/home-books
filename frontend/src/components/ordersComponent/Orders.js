@@ -23,7 +23,6 @@ const Orders = () => {
       response.json().then(responseDoc => {
         setOrderDoc(responseDoc);
         
-
         responseDoc.map(orderData => {
           const {orderProducts} = orderData ;
           // setFirstProduct(...firstProduct,orderProducts[0]);
@@ -67,7 +66,7 @@ const Orders = () => {
     <div className='ordersContainer'>
       {orderDoc.length > 0 ? orderDoc.map((orders,index) => (
         <OrderCard 
-        orderImg={firstProduct[index].bookImg} 
+        orderImg={firstProduct[index].bookImg || firstProduct[index].stationaryUrl} 
         link={`/order/${orders._id}`} 
         orderId={getOrderId(orders._id)} 
         date={getDate(orders.createdAt)} 

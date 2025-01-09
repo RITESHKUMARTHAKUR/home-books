@@ -13,6 +13,9 @@ import Login from "./registerComponent/loginComponent/login";
 import Signup from "./registerComponent/signupComponent/signup";
 import SearchBar from "./searchComponent/Search";
 import UploadBook from "./uploadBookComponent/UploadBook";
+
+
+import StationaryPage from './stationaryComponent/StationeryPage';
 import Stationary from './stationaryComponent/Stationary';
 import Notebook from './stationaryComponent/Notebooks';
 
@@ -45,6 +48,7 @@ const MainComponent = () => {
           <Route path='/contact-us' element={<Contact/>} />
           <Route path='/school/:id' element={<School/>} />
           <Route path='/product/:id' element={<Product/>} />
+          <Route path='/stationery/:id' element={<StationaryPage/>} />
           <Route path='/viewallBooks' element={<ViewAll/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />

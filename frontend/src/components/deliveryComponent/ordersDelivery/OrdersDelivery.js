@@ -61,7 +61,7 @@ const OrdersDelivery = () => {
     <div className='ordersDelivery'>
       { currentUser.accType === 1 || currentUser.accType === 2 ?  orderDoc.length > 0  ? orderDoc.map((orders,index) => (
           <OrderCard 
-          orderImg={firstProduct[index].bookImg} 
+          orderImg={firstProduct[index].bookImg || firstProduct[index].stationaryUrl} 
           link={`/order/${orders._id}`} 
           orderId={getOrderId(orders._id)} 
           date={getDate(orders.createdAt)} 

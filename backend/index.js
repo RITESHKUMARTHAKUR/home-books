@@ -66,6 +66,7 @@ const deletePromotion = require('./routes/Promotions/deletePromotion');
 const updatePromotion = require('./routes/Promotions/updatePromotion');
 
 const getStationary = require('./routes/Stationary/getStationary');
+const getSingleStationary = require('./routes/Stationary/getSingle');
 const {getNotebooks,getStationaries} = require('./routes/Stationary/getStationaryItems');
 const addStationary = require('./routes/Stationary/addStationary');
 
@@ -134,6 +135,7 @@ app.post("/uploadBookList", addBookList);
 //<------- Promotion Api Endpoints ------->
 app.get("/getStationary", getStationary);
 app.get("/getNotebooks", getNotebooks);
+app.get("/getSingleStationeries/:id", getSingleStationary);
 app.get("/getStationaries", getStationaries);
 app.post("/addStationary", addStationary);
 
