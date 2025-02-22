@@ -305,7 +305,6 @@ const EditSchoolBooks = () => {
                 <button className='deleteBoxBtn deleteNoBtn' onClick={handleDeleteNo} >No</button>
               </div>
             </div>
-            
           </div>
 
           {/* ) : (

@@ -7,7 +7,7 @@ const connectDB = require("./db/connect");
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT||5000;
 const origin = ['https://homebooks.in','https://www.homebooks.in', 'http://localhost:3000', 'http://192.168.29.234:3000'];
 
 
@@ -69,6 +69,8 @@ const getStationary = require('./routes/Stationary/getStationary');
 const getSingleStationary = require('./routes/Stationary/getSingle');
 const {getNotebooks,getStationaries} = require('./routes/Stationary/getStationaryItems');
 const addStationary = require('./routes/Stationary/addStationary');
+const deleteStationary = require('./routes/Stationary/deleteStationary');
+const updateStationary = require('./routes/Stationary/updateStationary');
 
 const getBookList = require('./routes/BookList/getBookList');
 const addBookList = require('./routes/BookList/addBookList');
@@ -138,6 +140,8 @@ app.get("/getNotebooks", getNotebooks);
 app.get("/getSingleStationeries/:id", getSingleStationary);
 app.get("/getStationaries", getStationaries);
 app.post("/addStationary", addStationary);
+app.delete("/deleteStationary/:id",deleteStationary );
+app.put("/updateStationary",updateStationary );
 
 //<------- Promotion Api Endpoints ------->
 

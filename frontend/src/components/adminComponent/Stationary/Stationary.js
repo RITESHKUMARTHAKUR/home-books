@@ -6,17 +6,24 @@ import BookImg from "../../../images/phys_book.jpg";
 import { ImCross } from 'react-icons/im';
 import { storage } from '../../../firebase';
 import { Frown } from 'lucide-react';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import NoOrders from "../../../shared/NoOrders/NoOrders";
 
 
 const Stationary = () => {
-    const stationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/getStationary`;
-    const addStationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/addStationary`;
-
     const [stationary,setStationary] = useState([]);
     const[updateDoc,setupdateDoc] = useState({});
+    const[deleteDoc,setDeleteDoc] = useState({});
+    const[formStatus,setFormStatus] = useState(true);
+
+    const stationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/getStationary`;
+    const addStationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/addStationary`;
+    const deleteStationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/deleteStationary/${deleteDoc._id}`;
+    const editStationaryUrl = `${process.env.REACT_APP_API_BASE_URL}/updateStationary`;
+
+     
     const [addFormShow,setAddFormShow] = useState(false);
+    const [deleteShow,setdeleteShow] = useState(false);
 
 
     const [files,setFiles] = useState(null);
@@ -26,9 +33,6 @@ const Stationary = () => {
       "image/jpg",
       "image/jpeg",
     ];
-
-    console.log(updateDoc);
-    console.log(files);
 
     const fetchStationary = async () => {
             await fetch(stationaryUrl, {
@@ -91,8 +95,43 @@ const Stationary = () => {
 
 
     const toggleForm = () => {
+      setupdateDoc({});
       setAddFormShow(!addFormShow);
-    } 
+    }
+
+    const closeEditForm = () => {
+      setFormStatus(true);
+      setAddFormShow(!addFormShow);
+      setupdateDoc({
+        title: "",
+        price: 0,
+        author: "",
+        bookPublication: "",
+        pubDate: "",
+        edition: "",
+        language: "",
+        discount: 0,
+        elementType: "",
+        bookDesc: "",
+        stationaryUrl: "",
+    });
+    }
+    console.log(updateDoc);
+    
+    const editForm = (stationaryDoc) => {
+      setFormStatus(false);
+      setAddFormShow(!addFormShow);
+      setupdateDoc(stationaryDoc);
+    }
+
+    const deleteConform = (stationaryDoc) => {
+      setdeleteShow(!deleteShow);
+      setDeleteDoc(stationaryDoc);
+    }
+
+    const handleDeleteNo = () => {
+      setdeleteShow(!deleteShow);
+    }
 
     const handleChange = (e) => {
       const fileUpload = e.target.files[0];
@@ -147,6 +186,63 @@ const Stationary = () => {
         
     }
 
+    const handleUpdateSubmit = async (event) => {
+      event.preventDefault();
+      const promise = new Promise(async (resolve,reject) => {
+        const editDoc = await fetch(editStationaryUrl,{
+          method:"PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updateDoc)
+        });
+        if(editDoc.ok){
+          resolve("Stationary Updated!!");
+        }
+        else{
+          reject("Failed to Update Stationary!!");
+        }
+      });
+      toast.promise(promise, {
+        success: "Stationary updated successfully",
+        error: "Failed to update Stationary!",
+        pending: "Saving data...",
+      });
+    }
+
+    const handleDelete = async (event) => {
+      event.preventDefault();
+      const promise = new Promise(async (resolve, reject) => {
+        const storageRef = ref(storage, deleteDoc.stationaryUrl );
+        deleteObject(storageRef).then(async () => {
+          await fetch(deleteStationaryUrl,{
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then(response => {
+            const newData = stationary.filter(data => data._id !== deleteDoc._id );
+            setStationary(newData);
+            handleDeleteNo();
+
+            if(response.ok) {
+              resolve("Stationary Deleted Successfully");
+            }else {
+              reject("Stationary not found!");
+            }
+          })
+
+        }).catch((error) => {
+          console.log("Image Delete error", error);
+        })
+      });
+      toast.promise(promise, {
+        pending: "Saving data...",
+        success: "Stationary deleted successfully",
+        error: "Failed to delete Stationary!",
+      });
+    };
+
     const elementData = ["stationery","notebook"];
 
     useEffect(() => {
@@ -156,10 +252,14 @@ const Stationary = () => {
 
   return (
     <div className='stationary-admin'>
+        <div className='delete-background'></div>
         <div className={`addStationaryDiv ${addFormShow ? '': "display-none"} `}>
             <div className="addStationary-heading">
-                <h2 className='addStationaryHeading'>Add Stationaries</h2>
-                <button className='addStationaryClose' onClick={toggleForm}>
+              {
+                formStatus?<h2 className='addStationaryHeading'>Add Stationaries</h2>:
+                <h2 className='addStationaryHeading'>Update Stationary</h2>
+              }
+                <button className='addStationaryClose' onClick={closeEditForm}>
                     <ImCross/>
                 </button>
             </div>
@@ -235,7 +335,10 @@ const Stationary = () => {
                   <textarea className='editBooksInp addBookDesc' value={updateDoc.bookDesc} onChange={(e) => handleUpdate(e) } name="bookDesc" id="" rows="4" placeholder='book description'></textarea>
                   <label className='editBooksTitle' htmlFor="title">Stationary Description</label>
                 </div>
-                <button onClick={handleSubmit} className='addBookBtn' >Submit</button>
+                {
+                  formStatus?<button onClick={handleSubmit} className='addBookBtn' >Submit</button>:
+                  <button onClick={handleUpdateSubmit} className='addBookBtn' >Update</button>
+                }
             </form>
         </div>
 
@@ -243,6 +346,17 @@ const Stationary = () => {
             <button className="addStationary-button" onClick={toggleForm}>
                 Add Stationary +
             </button>
+        </div>
+
+        <div className={`deleteForm ${deleteShow ? '' : "display-none" }`}>
+          <button onClick={deleteConform}  className="deleteFormClose"> <ImCross/> </button>
+            <div className='deleteFormContent' >
+              <p className='deleteFormHeading'>Confirm Delete? </p>
+              <div className='deleteFormButton'>
+                <button className='deleteBoxBtn deleteYesBtn' onClick={handleDelete} >Yes</button>
+                <button className='deleteBoxBtn deleteNoBtn' onClick={handleDeleteNo} >No</button>
+              </div>
+            </div>
         </div>
 
         <div className="admin-stationaryItems-div">
@@ -255,10 +369,11 @@ const Stationary = () => {
                                     name={getTitle(statData.title)}
                                     price={statData.price}
                                     discount={statData.discount}
-                                    // cartFun={handleAddToCart}
-                                    // editFun={}
                                     deleteBtn={"show"}
+                                    deleteFun={deleteConform}
+                                    bookDoc={statData}
                                     editBtn={"show"}
+                                    editFun={editForm}
                                     cartId={statData._id}
                                     img={getImage(statData.stationaryUrl)}
                                 />
