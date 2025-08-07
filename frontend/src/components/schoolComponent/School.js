@@ -179,6 +179,7 @@ const School = () => {
   }
 
   const handleConfirm = async (selectedArray,orderTotal) => {
+    if(!selectedArray.length > 0) return;
     const orderResponse = await fetch(createOrderUrl,{
       method: 'POST',
       credentials: "include",
@@ -301,9 +302,9 @@ const School = () => {
             <tr>
               <th className="borderLeft" aria scope="col">S.No.</th>
               <th scope="col">Name</th>
-              <th scope="col">Publication</th>
-              <th scope="col">Author</th>
-              <th scope="col">Price</th>
+              <th scope="col" style={{textAlign:"center"}}>Publication</th>
+              <th scope="col" style={{textAlign:"center"}}>Author</th>
+              <th scope="col" style={{textAlign:"center"}}>Price</th>
               <th className="borderRight" scope="col">
                 <label htmlFor="selectAll"></label>
                 <input onClick={handleSelectAll} checked={selectAllValue} type="checkbox" name="selectAll" id="" />
@@ -313,9 +314,13 @@ const School = () => {
               <tr>
                 <th scope="row">{index+1}</th>
                 <td className="schoolTableBookTitle">{bookList.title}</td>
-                <td>{bookList.bookPublication}</td>
-                <td>{bookList.author}</td>
-                <td> &#8377; {bookList.price} </td>
+                <td style={{textAlign:"center"}}>{bookList.bookPublication}</td>
+                <td style={{textAlign:"center"}}>{bookList.author}</td>
+                {bookList.discount? 
+                <td style={{textAlign:"center", padding:"0 30px"}}><span style={{textDecoration: "line-through", color:"gray"}}>&#8377;{bookList.price}</span>&nbsp;&#8377;{bookList.price - bookList.discount} </td>
+                : 
+                <td style={{textAlign:"center", padding:"0 30px"}}> &#8377; {bookList.price} </td>
+                }
                 <td>
                   <input 
                   checked={bookList.selected} 

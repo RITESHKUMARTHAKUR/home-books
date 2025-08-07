@@ -22,6 +22,8 @@ const SingleOrder = () => {
 
 
   const [showState,setShowState] = useState(false);
+  const [totalPrice,setTotalPrice] = useState(0);
+  const [totalDiscount,setTotalDiscount] = useState(0);
   const [orderData,setOrderData] = useState({});
   const [orderStatusValue,setOrderStatusValue] = useState("Pending");
   const [orderStatusColorValue,setOrderStatusColorValue] = useState("statusPending");
@@ -82,6 +84,15 @@ const SingleOrder = () => {
           const {orderProducts} = orderDoc ;
           setOrderProducts(orderProducts);
 
+          const tDiscount = orderProducts.reduce((sum,product) => {
+            return sum + (product.discount || 0);
+          },0);
+          setTotalDiscount(tDiscount);
+          const tPrice = orderProducts.reduce((sum,product) => {
+            return sum + (product.price || 0);
+          },0);
+          setTotalPrice(tPrice);
+          
         })
     });
   };
@@ -356,9 +367,8 @@ const SingleOrder = () => {
                           <SingleOrderCard
                             productTitle={orderProduct.title}
                             productType={orderProduct.elementType}
-                            productPrice={
-                              orderProduct.price - orderProduct.discount
-                            }
+                            originalPrice={orderProduct.price}
+                            discountPrice={orderProduct.discount}
                             productImg={orderProduct.bookImg || orderProduct.stationaryUrl}
                             productCount={orderProduct.bookQuantity}
                           />
@@ -372,16 +382,28 @@ const SingleOrder = () => {
                       <h5>Price</h5>
                       <h5>
                         &#8377;{" "}
-                        {Number.isInteger(orderData.orderTotal)
-                          ? orderData.orderTotal + ".00"
-                          : orderData.orderTotal}
+                        {Number.isInteger(totalPrice)
+                          ? totalPrice + ".00"
+                          : totalPrice}
                       </h5>
                     </div>
                     <hr />
                     <div className="singleOrderTotal">
                       <h5>Discount</h5>
-                      <h5>25%</h5>
+                      <h5>{
+                        (totalDiscount*100)/totalPrice
+                      }%</h5>
                     </div>
+                    <div className="singleOrderTotal">
+                      <h5>Discounted Price</h5>
+                      <h5>
+                        &#8377;{" "}
+                        {Number.isInteger(totalPrice-totalDiscount)
+                          ? totalPrice-totalDiscount + ".00"
+                          : totalPrice-totalDiscount}
+                      </h5>
+                    </div>
+                    
                     <hr />
                     <div className="singleOrderTotal">
                       <h5 style={{"color":"green"}} >Shipping</h5>
@@ -393,12 +415,12 @@ const SingleOrder = () => {
                   </div>
 
                   <div className="singleOrderTotal singleOrderSum">
-                    <h5>Total</h5>
+                    <h5>Total Amount</h5>
                     <h5>
                       &#8377;{" "}
-                      {Number.isInteger(orderData.orderTotal)
-                        ? orderData.orderTotal + ".00"
-                        : orderData.orderTotal}{" "}
+                      {Number.isInteger(totalPrice-totalDiscount)
+                        ? totalPrice-totalDiscount + ".00"
+                        : totalPrice-totalDiscount}{" "}
                     </h5>
                   </div>
                 </div>

@@ -268,8 +268,11 @@
     padding: 1rem 0rem;
     justify-content: space-between;
 }
+.singleOrderTotalContainer .singleOrderTotal:nth-child(1)>h5 {
+    color: gray;
+}
 .singleOrderTotalContainer .singleOrderSum {
-    background: var(--bs-secondary);
+    background: #f1c55b;
     padding: 1rem 1rem;
     color: var(--bs-theme-secondary);
     border-radius: 0 0 5px 5px ;

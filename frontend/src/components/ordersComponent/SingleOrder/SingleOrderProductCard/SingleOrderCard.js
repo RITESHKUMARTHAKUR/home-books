@@ -12,7 +12,16 @@ const SingleOrderCard = (props) => {
             <p className='singleOrderP'>{props.productType}</p>
         </div>
         <div className="productPriceDiv">
-            <h4 className='singleOrderH'>&#8377; {props.productPrice}</h4>
+          {props.discountPrice ?
+            <h4 className='singleOrderH'>
+              <span style={{textDecoration:"line-through",color:"gray"}}>
+                &#8377; {props.originalPrice}
+              </span>
+              &nbsp; &#8377; {props.originalPrice - props.discountPrice}
+            </h4>
+          :
+            <h4 className='singleOrderH'>&#8377; {props.originalPrice}</h4>
+          }
             <p className='singleOrderP'>Qty: {props.productCount}</p>
         </div>
     </div>

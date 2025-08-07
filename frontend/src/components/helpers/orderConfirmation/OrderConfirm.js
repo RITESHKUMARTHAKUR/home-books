@@ -102,7 +102,11 @@ const OrderConfirm = (props) => {
                                 <tr className='selectedBooksTableBodyTr'>
                                     <th>{index+1}</th>
                                     <td className='orderConfirmBookTitle' >{bookList.title}</td>
-                                    <td> &#8377; {bookList.price-bookList.discount}</td>
+                                    {bookList.discount? 
+                                        <td><span style={{textDecoration: "line-through", color:"gray"}}>&#8377;{bookList.price}</span>&nbsp;&#8377;{bookList.price - bookList.discount} </td>
+                                    : 
+                                        <td> &#8377; {bookList.price} </td>
+                                    }
                                     <td> <button className='booksAddBtn' onClick={() => handleQuantityAdd(bookList._id)}> <FaCirclePlus/> </button> &nbsp;  {bookList.bookQuantity<10 ?0: "" }{bookList.bookQuantity}&nbsp; <button className='booksSubBtn' onClick={() => handleQuantitySub(bookList._id)}> <FaCircleMinus /> </button></td>
                                 </tr>
                             ))}
