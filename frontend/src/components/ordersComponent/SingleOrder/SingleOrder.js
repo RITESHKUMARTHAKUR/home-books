@@ -391,7 +391,7 @@ const SingleOrder = () => {
                     <div className="singleOrderTotal">
                       <h5>Discount</h5>
                       <h5>{
-                        (totalDiscount*100)/totalPrice
+                        Math.round((totalDiscount*100)/totalPrice)
                       }%</h5>
                     </div>
                     <div className="singleOrderTotal">
