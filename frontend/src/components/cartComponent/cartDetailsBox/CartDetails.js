@@ -26,8 +26,8 @@ const OrdersDetails = (props) => {
             </div>
             <div className="bookCartSecondary">
                 <div className="bookCartPrice">
-                    <p>&#8377;{props.price}*{props.quantity}  &nbsp; &nbsp;</p>
-                    <p>&#8377;{props.quantity *  props.price}</p>
+                    <p><span style={{textDecoration:"line-through",color:"gray"}}>&#8377;{props.price}</span> &#8377;{props.price-props.discount}*{props.quantity}  &nbsp; &nbsp;</p>
+                    <p>  &#8377;{(props.price-props.discount)*props.quantity}</p>
                 </div>
                 <div className="bookCartIncrease">
                     <button onClick={handleIncrease} className="bookCartIncrease-btn"> <FaPlus/> </button>

@@ -177,7 +177,8 @@ const Cart = () => {
             {cartDoc.map(cartProd => (
               <CartDetails  
                 title={cartProd.productDetails.title} 
-                price={cartProd.productDetails.price-cartProd.productDetails.discount} 
+                price={cartProd.productDetails.price} 
+                discount={cartProd.productDetails.discount} 
                 quantity={cartProd.productQuantity}
                 pID={cartProd._id}
                 increaseFun={handladd}

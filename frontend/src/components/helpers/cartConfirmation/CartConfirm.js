@@ -59,7 +59,7 @@ const CartConfirm = (props) => {
                                 <tr className='selectedBooksTableBodyTr'>
                                     <td className='cartConfirmTd' style={{"textAlign": "center"}} ><b>{index+1}</b></td>
                                     <td className='cartConfirmTd' >{bookList.productDetails.title}</td>
-                                    <td className='cartConfirmTd' > &#8377; {bookList.productDetails.price}</td>
+                                    <td className='cartConfirmTd' > <span style={{textDecoration:"line-through", color:"gray"}}>&#8377;{bookList.productDetails.price}</span> &#8377;{bookList.productDetails.price-bookList.productDetails.discount}</td>
                                     <td className='cartConfirmTd' >{bookList.productQuantity}</td>
 
                                     {/* <td> <button className='booksAddBtn' onClick={() => handleQuantityAdd(bookList._id)}> <FaCirclePlus/> </button> &nbsp;  {bookList.bookQuantity<10 ?0: "" }{bookList.bookQuantity}&nbsp; <button className='booksSubBtn' onClick={() => handleQuantitySub(bookList._id)}> <FaCircleMinus /> </button></td> */}
