@@ -8,7 +8,11 @@ const connectDB = require("./db/connect");
 
 
 const PORT = process.env.PORT||5000;
-const origin = ['https://homebooks.in','https://www.homebooks.in', 'http://localhost:3000', 'http://192.168.29.234:3000'];
+const origin = ['https://homebooks.in',
+    'https://www.homebooks.in', 
+    'http://localhost:3000', 'http://192.168.29.234:3000',
+    'home-books-1194f.web.app','home-books-1194f.firebaseapp.com'
+    ];
 
 
 app.use(cors({credentials: true, origin: origin }));
